@@ -54,7 +54,12 @@ vector_store = QdrantVectorStore(
     collection_name="my_documents",
     embedding=embeddings,
 )
-retriever = vector_store.as_retriever(search_kwargs={"k": 3})
+
+# Use MMR to force diversity, preventing one document from hogging all the chunks!
+retriever = vector_store.as_retriever(
+    search_type="mmr", 
+    search_kwargs={"k": 8, "fetch_k": 20} # Fetches 20 behind the scenes, returns the 8 most diverse
+)
 
 # 3. Initialize the Groq LLM 
 llm = ChatGroq(
@@ -66,10 +71,12 @@ llm = ChatGroq(
 system_prompt = (
     "You are a strict document-retrieval assistant. "
     "Your ONLY purpose is to answer questions using information explicitly supported by the provided Context. "
-    "1. Answer ONLY based on the provided Context. Do not use outside knowledge or assumptions. "
-    "2. Pay close attention to NAMES and ENTITIES. If the user asks about a specific person (e.g., 'Sahil') and the Context is about someone else, you MUST reply ONLY with: 'I cannot answer this based on the provided document.' "
-    "3. If the answer cannot be determined from the Context, or if the user asks conversational questions ('how are you?'), you MUST reply ONLY with: 'I cannot answer this based on the provided document.' "
-    "Do not engage in small talk or conversational pleasantries.\n\n"
+    "1. Answer ONLY based on the provided Context. Do not use outside knowledge. "
+    "2. Pay close attention to the SOURCE DOCUMENT of each context chunk. "
+    "Each chunk starts with '--- CHUNK FROM [Filename] ---'. "
+    "If the user asks about a specific person (e.g., 'Sahil') and the retrieved context comes from a document belonging to someone else (e.g., 'Thirumalai_Resume.pdf'), you MUST reply ONLY with: 'I cannot answer this based on the provided document.' "
+    "3. If the answer cannot be determined from the Context, you MUST reply ONLY with: 'I cannot answer this based on the provided document.' "
+    "Do not engage in small talk.\n\n"
     "Context:\n{context}"
 )
 
@@ -87,14 +94,20 @@ class ChatRequest(BaseModel):
 async def chat(request: ChatRequest):
     # A. Retrieve the relevant documents from Qdrant
     docs = retriever.invoke(request.query)
+    print("RETRIEVED CHUNKS:", len(docs))
 
-    print("===== RETRIEVED DOCUMENTS =====")
-    for doc in docs:
-        print("-----")
-        print(doc.page_content)
+    for i, doc in enumerate(docs):
+         print(f"\n--- CHUNK {i+1} ---")
+         print(doc.page_content)
+         print("SOURCE:", doc.metadata.get("source_file"))
     
-    # B. Combine the text from the documents into one string
-    context_text = "\n\n".join(doc.page_content for doc in docs)
+    # B. Combine the text, INJECTING THE FILENAME into every chunk so the LLM knows who it belongs to
+    context_parts = []
+    for doc in docs:
+        source_name = doc.metadata.get("source_file", "Unknown Document")
+        context_parts.append(f"--- CHUNK FROM {source_name} ---\n{doc.page_content}\n--- END CHUNK ---")
+    
+    context_text = "\n\n".join(context_parts)
     
     # C. Create a simple chain: Prompt -> LLM -> Text Output
     chain = prompt | llm | StrOutputParser()
@@ -125,7 +138,7 @@ async def upload_file(file: UploadFile = File(...)):
     for doc in documents:
         doc.metadata["source_file"] = file.filename
     
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=100)
     chunks = text_splitter.split_documents(documents)
     
     vector_store.add_documents(chunks)
