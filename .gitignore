@@ -1,0 +1,7 @@
+venv/
+.env
+__pycache__/
+qdrant_db/
+node_modules/
+dist/
+*.pdf
