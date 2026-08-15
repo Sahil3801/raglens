@@ -6,7 +6,9 @@ function App() {
   const [documents, setDocuments] = useState<string[]>([]);
   const [uploading, setUploading] = useState(false);
 
-  // Reusable fetch function for uploads and deletes
+  // NEW: State to track which document is currently selected for filtering
+  const [selectedDocument, setSelectedDocument] = useState<string | null>(null);
+
   const fetchDocuments = async () => {
     try {
       const res = await fetch("http://127.0.0.1:8000/documents");
@@ -17,7 +19,6 @@ function App() {
     }
   };
 
-  // Initial load using a strictly typed, internal async function to satisfy linters
   useEffect(() => {
     const loadInitialData = async () => {
       try {
@@ -28,11 +29,9 @@ function App() {
         console.error("Failed to load initial documents:", error);
       }
     };
-
     loadInitialData();
   }, []);
 
-  // Using React.ChangeEvent explicitly fixes the TypeScript import warning
   const handleFileUpload = async (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
@@ -49,6 +48,9 @@ function App() {
         body: formData,
       });
       await fetchDocuments();
+
+      // NEW: Automatically select the newly uploaded document!
+      setSelectedDocument(file.name);
     } catch (error) {
       console.error("Upload failed:", error);
     } finally {
@@ -61,6 +63,10 @@ function App() {
       await fetch(`http://127.0.0.1:8000/documents/${filename}`, {
         method: "DELETE",
       });
+      // If we delete the currently selected document, clear the selection
+      if (selectedDocument === filename) {
+        setSelectedDocument(null);
+      }
       await fetchDocuments();
     } catch (error) {
       console.error("Delete failed:", error);
@@ -71,11 +77,17 @@ function App() {
     if (!query) return;
     setAnswer("Thinking...");
 
+    // NEW: Dynamically build the payload based on whether a document is selected
+    const payload: { query: string; filter_filename?: string } = { query };
+    if (selectedDocument) {
+      payload.filter_filename = selectedDocument;
+    }
+
     try {
       const res = await fetch("http://127.0.0.1:8000/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query }),
+        body: JSON.stringify(payload),
       });
       const data = await res.json();
       setAnswer(data.answer);
@@ -128,7 +140,7 @@ function App() {
           <h3
             style={{ fontSize: "14px", color: "#6b7280", marginBottom: "10px" }}
           >
-            UPLOADED FILES
+            UPLOADED FILES (Click to filter)
           </h3>
           {documents.length === 0 ? (
             <p style={{ fontSize: "14px", color: "#9ca3af" }}>
@@ -136,44 +148,58 @@ function App() {
             </p>
           ) : (
             <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-              {documents.map((doc) => (
-                <li
-                  key={doc}
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    backgroundColor: "white",
-                    padding: "10px",
-                    marginBottom: "8px",
-                    borderRadius: "4px",
-                    border: "1px solid #e5e7eb",
-                  }}
-                >
-                  <span
+              {documents.map((doc) => {
+                const isSelected = selectedDocument === doc;
+                return (
+                  <li
+                    key={doc}
+                    // NEW: Clicking the row selects/deselects the document
+                    onClick={() => setSelectedDocument(isSelected ? null : doc)}
                     style={{
-                      fontSize: "14px",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    {doc}
-                  </span>
-                  <button
-                    onClick={() => handleDelete(doc)}
-                    style={{
-                      color: "#ef4444",
-                      background: "none",
-                      border: "none",
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      backgroundColor: isSelected ? "#eff6ff" : "white", // Highlight if selected
+                      padding: "10px",
+                      marginBottom: "8px",
+                      borderRadius: "4px",
+                      border: isSelected
+                        ? "2px solid #3b82f6"
+                        : "1px solid #e5e7eb",
                       cursor: "pointer",
-                      fontSize: "18px",
+                      transition: "all 0.2s",
                     }}
                   >
-                    &times;
-                  </button>
-                </li>
-              ))}
+                    <span
+                      style={{
+                        fontSize: "14px",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        whiteSpace: "nowrap",
+                        fontWeight: isSelected ? "bold" : "normal",
+                        color: isSelected ? "#1d4ed8" : "black",
+                      }}
+                    >
+                      {doc}
+                    </span>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation(); // NEW: Prevents row click when clicking delete
+                        handleDelete(doc);
+                      }}
+                      style={{
+                        color: "#ef4444",
+                        background: "none",
+                        border: "none",
+                        cursor: "pointer",
+                        fontSize: "18px",
+                      }}
+                    >
+                      &times;
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
           )}
         </div>
@@ -188,16 +214,26 @@ function App() {
           margin: "0 auto",
         }}
       >
-        <h1 style={{ fontSize: "24px", marginBottom: "20px" }}>
+        <h1 style={{ fontSize: "24px", marginBottom: "5px" }}>
           Evaluation-First RAG
         </h1>
+
+        {/* NEW: Visual indicator of current mode */}
+        <p style={{ color: "#6b7280", marginBottom: "20px", fontSize: "14px" }}>
+          Mode:{" "}
+          {selectedDocument ? (
+            <strong>Filtering by {selectedDocument}</strong>
+          ) : (
+            <strong>Global Search (All Documents)</strong>
+          )}
+        </p>
 
         <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="e.g., What are Sahil's core skills?"
+            placeholder="e.g., What is Chinmay's highest education?"
             style={{
               flex: 1,
               padding: "10px",

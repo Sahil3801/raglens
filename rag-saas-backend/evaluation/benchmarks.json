@@ -1,0 +1,18 @@
+[
+  {
+    "id": "direct_factual_001",
+    "category": "direct_factual_retrieval",
+    "question": "What is thiru's current role and company?",
+    "expected_behavior": "answer",
+    "ground_truth": "AI Engineer at Alyson.ai",
+    "document_ids": ["Thirumalai_Resume.pdf"]
+  },
+  {
+    "id": "unanswerable_001",
+    "category": "unanswerable_question",
+    "question": "What is the capital of France?",
+    "expected_behavior": "abstain",
+    "ground_truth": "I cannot answer this based on the provided document.",
+    "document_ids": ["Thirumalai_Resume.pdf"]
+  }
+]
