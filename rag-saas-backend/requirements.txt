@@ -1,0 +1,34 @@
+# Web Framework
+fastapi
+uvicorn
+python-multipart
+
+# Configuration & Environment
+pydantic
+pydantic-settings
+python-dotenv
+
+# LangChain & Vector Store
+langchain
+langchain-community
+langchain-text-splitters
+langchain-qdrant
+langchain-huggingface
+langchain-groq
+qdrant-client
+
+# LLMs & Embeddings
+openai
+sentence-transformers
+
+# Document Processing
+pypdf
+
+# Evaluation & Data Handling
+ragas
+pandas
+requests
+
+# Testing
+pytest
+httpx

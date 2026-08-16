@@ -5,3 +5,6 @@ qdrant_db/
 node_modules/
 dist/
 *.pdf
+*.pyc
+.pytest_cache/
+evaluation/results/

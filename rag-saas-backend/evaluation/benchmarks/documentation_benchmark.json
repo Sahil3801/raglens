@@ -2,31 +2,49 @@
   {
     "id": "doc_01",
     "category": "factual_extraction",
-    "question": "What is a Docker image?",
-    "ground_truth": "A Docker image is a packaged template used to create containers."
+    "question": "What percentage of organizations already have AI agents in production?",
+    "ground_truth": "60% of organizations already have AI agents in production."
   },
   {
     "id": "doc_02",
-    "category": "conceptual",
-    "question": "What is the difference between a Docker image and a Docker container?",
-    "ground_truth": "An image is the packaged template, while a container is a running instance of an image."
+    "category": "factual_extraction",
+    "question": "What percentage of organizations view building AI agents as a strategic priority?",
+    "ground_truth": "94% of organizations view building AI agents as a strategic priority."
   },
   {
     "id": "doc_03",
-    "category": "technical_detail",
-    "question": "What is the purpose of a Dockerfile?",
-    "ground_truth": "A Dockerfile contains instructions for building a Docker image."
+    "category": "barrier_analysis",
+    "question": "What is the top barrier to scaling agentic AI?",
+    "ground_truth": "Security and compliance concerns are the top barrier, cited by 40% of respondents."
   },
   {
-  "id": "doc_04",
-  "category": "technical_feature",
-  "question": "What is the primary purpose of introducing a cache tier?",
-  "ground_truth": "A cache stores frequently accessed data in memory to serve subsequent requests faster and reduce database workload."
-},
+    "id": "doc_04",
+    "category": "comparison",
+    "question": "What are the two dominant obstacles organizations face when scaling AI agents?",
+    "ground_truth": "Security and technical complexity are the two dominant obstacles."
+  },
   {
     "id": "doc_05",
+    "category": "factual_extraction",
+    "question": "What percentage of organizations use containers for agent development or production?",
+    "ground_truth": "94% of organizations use containers for agent development or production."
+  },
+  {
+    "id": "doc_06",
+    "category": "technical_concept",
+    "question": "What are the main challenges organizations face with agent orchestration?",
+    "ground_truth": "Organizations face difficulties coordinating multiple tools, models, and frameworks, along with integration complexity, security risks, and operational fragility."
+  },
+  {
+    "id": "doc_07",
+    "category": "multi_fact",
+    "question": "What are the three most common global AI-agent use cases mentioned in the report?",
+    "ground_truth": "The report identifies DevOps and CI/CD optimization, security automation, and general process automation among the most common global use cases."
+  },
+  {
+    "id": "doc_08",
     "category": "unanswerable",
-    "question": "What is Docker's internal employee salary structure?",
+    "question": "What is the annual salary of the companies surveyed in the report?",
     "ground_truth": "I cannot answer this based on the provided document."
   }
-]
+] 
