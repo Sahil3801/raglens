@@ -9,7 +9,11 @@ from app.core.config import settings
 class VectorStoreRepository:
     def __init__(self):
         self.embeddings = HuggingFaceEmbeddings(model_name=settings.EMBEDDING_MODEL)
-        self.client = QdrantClient(path=settings.QDRANT_PATH)
+        self.client = QdrantClient(
+    url=settings.QDRANT_URL,
+    api_key=settings.QDRANT_API_KEY,
+    timeout=60.0  # Gives the Free Tier cloud cluster 60 seconds to respond
+)
         self._ensure_collection_exists()
         
         self.store = QdrantVectorStore(
@@ -26,6 +30,12 @@ class VectorStoreRepository:
                     size=settings.EMBEDDING_DIMENSION, 
                     distance=Distance.COSINE
                 ),
+            )
+            # Create the required keyword index for fast filtering and deletion
+            self.client.create_payload_index(
+                collection_name=settings.QDRANT_COLLECTION,
+                field_name="metadata.source_file",
+                field_schema=models.PayloadSchemaType.KEYWORD,
             )
 
     def add_documents(self, documents: List[Document]) -> None:

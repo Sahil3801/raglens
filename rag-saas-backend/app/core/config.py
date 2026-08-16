@@ -10,7 +10,8 @@ class Settings(BaseSettings):
     GROQ_MODEL: str = "llama-3.1-8b-instant"
     EMBEDDING_MODEL: str = "all-MiniLM-L6-v2"
     EMBEDDING_DIMENSION: int = 384
-    QDRANT_PATH: str = "./qdrant_db"
+    QDRANT_URL: str = ""
+    QDRANT_API_KEY: str = ""
     QDRANT_COLLECTION: str = "my_documents"
     
     # Retrieval Configuration
