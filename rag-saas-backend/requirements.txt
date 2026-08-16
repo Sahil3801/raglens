@@ -16,6 +16,7 @@ langchain-qdrant
 langchain-huggingface
 langchain-groq
 qdrant-client
+sentence-transformers
 
 # Document Processing
 pypdf

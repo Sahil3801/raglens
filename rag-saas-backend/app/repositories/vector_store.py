@@ -1,7 +1,7 @@
 from typing import List, Set
 from langchain_core.documents import Document
-# from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_huggingface import HuggingFaceEndpointEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
+# from langchain_huggingface import HuggingFaceEndpointEmbeddings
 import os
 from langchain_qdrant import QdrantVectorStore
 from qdrant_client import QdrantClient, models
@@ -17,12 +17,7 @@ class VectorStoreRepository:
             timeout=60.0 # Keep your timeout fix!
         )
 
-        # 2. Initialize the free Hugging Face API embeddings
-        self.embeddings = HuggingFaceEndpointEmbeddings(
-            model="sentence-transformers/all-MiniLM-L6-v2",
-            task="feature-extraction",
-            huggingfacehub_api_token=os.getenv("HUGGINGFACEHUB_API_TOKEN")
-        )
+        self.embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
         
         self._ensure_collection_exists()
         
@@ -102,7 +97,7 @@ class VectorStoreRepository:
             )
         )
 
-# Remove: vector_store_repo = VectorStoreRepository()
+# vector_store_repo = VectorStoreRepository()
 
 _vector_store_repo = None
 
