@@ -91,4 +91,12 @@ class VectorStoreRepository:
             )
         )
 
-vector_store_repo = VectorStoreRepository()
+# Remove: vector_store_repo = VectorStoreRepository()
+
+_vector_store_repo = None
+
+def get_vector_store_repo() -> VectorStoreRepository:
+    global _vector_store_repo
+    if _vector_store_repo is None:
+        _vector_store_repo = VectorStoreRepository()
+    return _vector_store_repo
