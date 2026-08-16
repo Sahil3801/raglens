@@ -17,10 +17,6 @@ langchain-huggingface
 langchain-groq
 qdrant-client
 
-# LLMs & Embeddings
-openai
-sentence-transformers
-
 # Document Processing
 pypdf
 
