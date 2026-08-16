@@ -22,7 +22,10 @@ class GenerationService:
             "3. If the context does not contain enough information to answer the question with certainty, "
             "you MUST reply ONLY with: 'I cannot answer this based on the provided document.'\n"
             "4. Do not engage in small talk or conversational pleasantries.\n\n"
+            "5. If the user asks for a summary, construct the best possible summary using ONLY the provided chunks. "
+            "Do not apologize or state what you cannot do; just provide the synthesized information directly.\n\n"
             "Context:\n{context}"
+
         )
         
         self.prompt = ChatPromptTemplate.from_messages([
