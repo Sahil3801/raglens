@@ -4,10 +4,10 @@ from fastapi import UploadFile
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from app.core.config import settings
-from app.repositories.vector_store import VectorStoreRepository, vector_store_repo
+from app.repositories.vector_store import VectorStoreRepository
 
 class IngestionService:
-    def __init__(self, repo: VectorStoreRepository = vector_store_repo):
+    def __init__(self, repo: VectorStoreRepository):
         self.repo = repo
         self.splitter = RecursiveCharacterTextSplitter(
             chunk_size=settings.CHUNK_SIZE, 
@@ -32,5 +32,3 @@ class IngestionService:
         finally:
             if os.path.exists(temp_file_path):
                 os.remove(temp_file_path)
-
-ingestion_service = IngestionService()
