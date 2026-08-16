@@ -1,6 +1,8 @@
 from typing import List, Set
 from langchain_core.documents import Document
-from langchain_huggingface import HuggingFaceEmbeddings
+# from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEndpointEmbeddings
+import os
 from langchain_qdrant import QdrantVectorStore
 from qdrant_client import QdrantClient, models
 from qdrant_client.models import Distance, VectorParams
@@ -8,14 +10,23 @@ from app.core.config import settings
 
 class VectorStoreRepository:
     def __init__(self):
-        self.embeddings = HuggingFaceEmbeddings(model_name=settings.EMBEDDING_MODEL)
+        # 1. Initialize the Qdrant connection first
         self.client = QdrantClient(
-    url=settings.QDRANT_URL,
-    api_key=settings.QDRANT_API_KEY,
-    timeout=60.0  # Gives the Free Tier cloud cluster 60 seconds to respond
-)
+            url=settings.QDRANT_URL,
+            api_key=settings.QDRANT_API_KEY,
+            timeout=60.0 # Keep your timeout fix!
+        )
+
+        # 2. Initialize the free Hugging Face API embeddings
+        self.embeddings = HuggingFaceEndpointEmbeddings(
+            model="sentence-transformers/all-MiniLM-L6-v2",
+            task="feature-extraction",
+            huggingfacehub_api_token=os.getenv("HUGGINGFACEHUB_API_TOKEN")
+        )
+        
         self._ensure_collection_exists()
         
+        # 3. Connect them both to the LangChain VectorStore
         self.store = QdrantVectorStore(
             client=self.client,
             collection_name=settings.QDRANT_COLLECTION,
