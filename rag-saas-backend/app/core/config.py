@@ -14,15 +14,15 @@ class Settings(BaseSettings):
     QDRANT_COLLECTION: str = "my_documents"
     
     # Retrieval Configuration
-    RETRIEVER_K: int = 18
+    RETRIEVER_K: int = 40
     RETRIEVER_FETCH_K: int = 60
 
     # Reranker Configuration
     RERANKER_TOP_N: int = 8
 
     # Ingestion Defaults
-    CHUNK_SIZE: int = 500
-    CHUNK_OVERLAP: int = 100
+    CHUNK_SIZE: int = 800
+    CHUNK_OVERLAP: int = 200
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 

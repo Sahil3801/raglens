@@ -1,0 +1,32 @@
+[
+  {
+    "id": "doc_01",
+    "category": "factual_extraction",
+    "question": "What is a Docker image?",
+    "ground_truth": "A Docker image is a packaged template used to create containers."
+  },
+  {
+    "id": "doc_02",
+    "category": "conceptual",
+    "question": "What is the difference between a Docker image and a Docker container?",
+    "ground_truth": "An image is the packaged template, while a container is a running instance of an image."
+  },
+  {
+    "id": "doc_03",
+    "category": "technical_detail",
+    "question": "What is the purpose of a Dockerfile?",
+    "ground_truth": "A Dockerfile contains instructions for building a Docker image."
+  },
+  {
+  "id": "doc_04",
+  "category": "technical_feature",
+  "question": "What is the primary purpose of introducing a cache tier?",
+  "ground_truth": "A cache stores frequently accessed data in memory to serve subsequent requests faster and reduce database workload."
+},
+  {
+    "id": "doc_05",
+    "category": "unanswerable",
+    "question": "What is Docker's internal employee salary structure?",
+    "ground_truth": "I cannot answer this based on the provided document."
+  }
+]

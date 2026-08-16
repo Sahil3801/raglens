@@ -1,0 +1,32 @@
+[
+  {
+    "id": "interview_01",
+    "category": "definition",
+    "question": "What is rate limiting?",
+    "ground_truth": "Rate limiting restricts the number of requests a client or user can make during a given period."
+  },
+  {
+    "id": "interview_02",
+    "category": "comparison",
+    "question": "What is the difference between hard and soft rate limiting?",
+    "ground_truth": "Hard rate limiting strictly prevents requests from exceeding the threshold, while soft rate limiting allows temporary bursts above the threshold."
+  },
+  {
+    "id": "interview_03",
+    "category": "system_design",
+    "question": "What techniques can be used to implement rate limiting?",
+    "ground_truth": "The document discusses token bucket, leaky bucket, fixed window, sliding window log, and sliding window counter approaches."
+  },
+  {
+    "id": "interview_04",
+    "category": "tradeoff",
+    "question": "Why might a distributed rate limiter require shared state?",
+    "ground_truth": "Because multiple application instances need a consistent view of request counts or rate-limit state."
+  },
+  {
+    "id": "interview_05",
+    "category": "unanswerable",
+    "question": "What is the interviewer's current salary?",
+    "ground_truth": "I cannot answer this based on the provided document."
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "id": "1",
+    "category": "factual_extraction",
+    "question": "What is Chinmay's CGPA for his Integrated Dual Degree?",
+    "ground_truth": "Chinmay's CGPA is 8.42."
+  },
+  {
+    "id": "2",
+    "category": "factual_extraction",
+    "question": "What university did Thirumalai attend for his B.E.?",
+    "ground_truth": "Thirumalai attended Sinhgad College of Engineering, Pune."
+  },
+  {
+    "id": "3",
+    "category": "multi_document_aggregation",
+    "question": "List all the competitive programming platforms mentioned by both candidates.",
+    "ground_truth": "The competitive programming platforms mentioned are LeetCode, Codeforces, CodeChef, and GeeksforGeeks."
+  },
+  {
+    "id": "4",
+    "category": "multi_document_comparison",
+    "question": "Which candidate has experience with a Neo4j knowledge graph workflow?",
+    "ground_truth": "Thirumalai has experience with a Neo4j knowledge graph workflow."
+  },
+  {
+    "id": "5",
+    "category": "unanswerable_out_of_scope",
+    "question": "What is the expected salary for the AI Engineer position?",
+    "ground_truth": "I cannot answer this based on the provided documents."
+  },
+  {
+    "id": "6",
+    "category": "unanswerable_out_of_scope",
+    "question": "Who is older, Chinmay or Thirumalai?",
+    "ground_truth": "I cannot answer this based on the provided documents."
+  },
+  {
+    "id": "7",
+    "category": "hallucination_trap_distractor",
+    "question": "What high school did Chinmay attend?",
+    "ground_truth": "I cannot answer this based on the provided documents."
+  },
+  {
+    "id": "8",
+    "category": "hallucination_trap_distractor",
+    "question": "Did Thirumalai work at FICO?",
+    "ground_truth": "No, Thirumalai did not work at FICO. Chinmay worked at FICO."
+  },
+  {
+    "id": "9",
+    "category": "summarization",
+    "question": "Summarize Chinmay's experience at Epets.",
+    "ground_truth": "At Epets, Chinmay developed a Next.js frontend using Redux Toolkit and SSR, built a responsive WordPress theme with CMS integration, and designed 10+ automated chatbot workflows using Comm100."
+  },
+  {
+    "id": "10",
+    "category": "long_document_deep_retrieval",
+    "question": "What specific disaster recovery mechanism did Chinmay validate at FICO?",
+    "ground_truth": "He validated Amazon MemoryDB disaster recovery by restoring snapshot-backed clusters from Amazon S3 and verifying deterministic model outputs."
+  },
+  {
+    "id": "11",
+    "category": "formatting_constraints",
+    "question": "Output Thirumalai's education history as a JSON object.",
+    "ground_truth": "{\n  \"B.E.\": \"Sinhgad College of Engineering, Pune\",\n  \"HSC\": \"Lakshya Prep Junior College, Mumbai\",\n  \"SSC\": \"The South Indian Association High School, Mumbai\"\n}"
+  },
+  {
+    "id": "12",
+    "category": "ambiguity_handling",
+    "question": "Who has a CodeChef rating and what are their ranks?",
+    "ground_truth": "Both candidates have CodeChef experience. Thirumalai secured a 4-star rating, and Chinmay secured the 60th rank in the August Long Challenge 2022 (Div 3)."
+  }
+]

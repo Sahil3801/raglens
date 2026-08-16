@@ -28,16 +28,18 @@ from ragas.llms import llm_factory
 
 load_dotenv()
 
-async def run_benchmark_suite(benchmarks_path: str = "evaluation/benchmarks.json"):
+async def run_benchmark_suite(benchmarks_path: str = "evaluation/benchmarks/resume_benchmark.json"):
     groq_api_key = os.getenv("GROQ_API_KEY")
     if not groq_api_key:
         print("❌ Error: GROQ_API_KEY not found in .env")
         return
 
+    # Initialize LLM and Embeddings
     groq_client = AsyncOpenAI(api_key=groq_api_key, base_url="https://api.groq.com/openai/v1")
     ragas_llm = llm_factory("llama-3.1-8b-instant", client=groq_client)
     ragas_embeddings = HuggingFaceEmbeddings(model="all-MiniLM-L6-v2")
 
+    # Initialize Ragas Metrics
     faithfulness_metric = Faithfulness(llm=ragas_llm)
     answer_relevancy_metric = AnswerRelevancy(
         llm=ragas_llm, 
@@ -55,11 +57,15 @@ async def run_benchmark_suite(benchmarks_path: str = "evaluation/benchmarks.json
     results = []
     print(f"🚀 Running Evaluation on {len(benchmarks)} benchmark items...\n")
 
-    for item in benchmarks:
-        q = item["question"]
-        category = item["category"]
-        print(f"Testing [{item['id']}] ({category}): '{q}'")
+    for idx, item in enumerate(benchmarks):
+        # Safely extract keys, handling both "query" and "question" formats
+        q = item.get("question") or item.get("query")
+        category = item.get("category", "unassigned")
+        item_id = item.get("id", str(idx + 1))
 
+        print(f"Testing [{item_id}] ({category}): '{q}'")
+
+        # Call your FastAPI backend
         try:
             res = requests.post("http://127.0.0.1:8000/chat", json={"query": q})
             res.raise_for_status()
@@ -70,6 +76,7 @@ async def run_benchmark_suite(benchmarks_path: str = "evaluation/benchmarks.json
             print(f"  ❌ API call failed: {e}")
             continue
 
+        # Evaluate the response using Ragas
         f_score = await faithfulness_metric.ascore(
             user_input=q,
             response=answer,
@@ -81,6 +88,7 @@ async def run_benchmark_suite(benchmarks_path: str = "evaluation/benchmarks.json
             response=answer
         )
 
+        # Extract numerical values safely
         f_val = f_score.value if hasattr(f_score, 'value') else f_score
         ar_val = ar_score.value if hasattr(ar_score, 'value') else ar_score
 
@@ -88,13 +96,14 @@ async def run_benchmark_suite(benchmarks_path: str = "evaluation/benchmarks.json
         print(f"  ↳ Answer Relevancy: {ar_val}\n")
 
         results.append({
-            "id": item["id"],
+            "id": item_id,
             "category": category,
             "question": q,
             "faithfulness": f_val,
             "answer_relevancy": ar_val
         })
 
+    # Generate Final Report
     df = pd.DataFrame(results)
     print("\n🏆 Benchmark Evaluation Summary:")
     print("=" * 80)
@@ -102,4 +111,10 @@ async def run_benchmark_suite(benchmarks_path: str = "evaluation/benchmarks.json
     print("=" * 80)
 
 if __name__ == "__main__":
-    asyncio.run(run_benchmark_suite())
+    benchmark_file = (
+        sys.argv[1]
+        if len(sys.argv) > 1
+        else "evaluation/benchmarks/resume_benchmark.json"
+    )
+
+    asyncio.run(run_benchmark_suite(benchmark_file))

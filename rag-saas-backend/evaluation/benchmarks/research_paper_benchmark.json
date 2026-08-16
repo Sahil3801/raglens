@@ -1,0 +1,44 @@
+[
+  {
+  "id": "paper_01",
+  "category": "factual_extraction",
+  "question": "What architecture does the Attention Is All You Need paper introduce?",
+  "ground_truth": "The paper introduces the Transformer architecture, based solely on attention mechanisms."
+},
+  {
+    "id": "paper_02",
+    "category": "core_concept",
+    "question": "What mechanism does the Transformer rely on instead of recurrence?",
+    "ground_truth": "The Transformer relies entirely on attention mechanisms instead of recurrence."
+  },
+  {
+    "id": "paper_03",
+    "category": "numerical",
+    "question": "What BLEU score did the model achieve on WMT 2014 English-to-German?",
+    "ground_truth": "28.4 BLEU."
+  },
+  {
+    "id": "paper_04",
+    "category": "numerical",
+    "question": "What BLEU score did the model achieve on WMT 2014 English-to-French?",
+    "ground_truth": "41.0 BLEU in the original paper."
+  },
+  {
+    "id": "paper_05",
+    "category": "reasoning",
+    "question": "Why is the Transformer more parallelizable than recurrent architectures?",
+    "ground_truth": "Because it eliminates recurrence and relies on attention, allowing more computation to be performed in parallel."
+  },
+  {
+    "id": "paper_06",
+    "category": "summarization",
+    "question": "Summarize the main contribution of the paper.",
+    "ground_truth": "The paper proposes the Transformer, an encoder-decoder architecture based solely on attention, eliminating recurrence and improving parallelization and training efficiency."
+  },
+  {
+    "id": "paper_07",
+    "category": "unanswerable",
+    "question": "What was the authors' annual salary at Google?",
+    "ground_truth": "I cannot answer this based on the provided document."
+  }
+]
