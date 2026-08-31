@@ -1,0 +1,77 @@
+{
+  "method": "Compare actual Context Precision usefulness verdicts against frozen contributing-evidence labels; deduplicate identical query/chunk pairs across arms. Scores are NOT corrected.",
+  "unique_query_chunk_judgments": 153,
+  "disagreement_count": 5,
+  "disagreements": [
+    {
+      "query_id": "q05",
+      "chunk_id": "add433644b2f4faf5a168d06bf2dd5304957e81eb4d6ad470f2f1b2fb9e07b0b",
+      "question": "List the maintenance access codes for both Aurora and Borealis stations.",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 0,
+      "gold_relevant": true,
+      "judge_verdict": 0,
+      "judge_reason": "The context only provides the maintenance access code for Aurora station (AMBER-731) and does not contain any information about the Borealis station code, yet the answer includes a code for Borealis (COBALT-482). Therefore the context was not sufficient to produce the full answer.",
+      "arm_context_ranks": {
+        "A": 1,
+        "B": 1
+      }
+    },
+    {
+      "query_id": "q06",
+      "chunk_id": "add433644b2f4faf5a168d06bf2dd5304957e81eb4d6ad470f2f1b2fb9e07b0b",
+      "question": "Compare the inspection intervals at Aurora and Borealis stations.",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 0,
+      "gold_relevant": true,
+      "judge_verdict": 0,
+      "judge_reason": "The context only provides the inspection interval for Aurora station (17 days) and does not contain any information about the inspection interval for Borealis station, yet the answer includes a specific interval for Borealis (29 days). Therefore the context is insufficient to support the full answer.",
+      "arm_context_ranks": {
+        "A": 1,
+        "B": 1
+      }
+    },
+    {
+      "query_id": "q06",
+      "chunk_id": "4abe94ef99a3d2e263e03eb3e0a9e24a2eea71fc83e779ea7f6e0db680a61812",
+      "question": "Compare the inspection intervals at Aurora and Borealis stations.",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 0,
+      "gold_relevant": true,
+      "judge_verdict": 0,
+      "judge_reason": "The context only provides the inspection interval for Borealis station (29 days) and does not contain any information about Aurora station's inspection interval, which is required to compare the two stations. Therefore, the context is not sufficient to support the given answer.",
+      "arm_context_ranks": {
+        "A": 3,
+        "B": 2
+      }
+    },
+    {
+      "query_id": "q07",
+      "chunk_id": "4abe94ef99a3d2e263e03eb3e0a9e24a2eea71fc83e779ea7f6e0db680a61812",
+      "question": "Which station is inspected more frequently, and by how many days do the intervals differ?",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 0,
+      "gold_relevant": true,
+      "judge_verdict": 0,
+      "judge_reason": "The context only provides the inspection interval for Borealis station (29 days) and does not mention Aurora station or its inspection interval, so it does not contain the information needed to determine which station is inspected more frequently or the difference in days.",
+      "arm_context_ranks": {
+        "A": 1,
+        "B": 1
+      }
+    },
+    {
+      "query_id": "q07",
+      "chunk_id": "add433644b2f4faf5a168d06bf2dd5304957e81eb4d6ad470f2f1b2fb9e07b0b",
+      "question": "Which station is inspected more frequently, and by how many days do the intervals differ?",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 0,
+      "gold_relevant": true,
+      "judge_verdict": 0,
+      "judge_reason": "The context only provides the inspection interval for Aurora station (17 days) and does not mention any other station or its interval, so it cannot support the claim that Aurora is inspected more frequently or the 12‑day difference. Therefore the context was not useful for arriving at the given answer.",
+      "arm_context_ranks": {
+        "A": 3,
+        "B": 2
+      }
+    }
+  ]
+}

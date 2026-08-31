@@ -1,0 +1,75 @@
+{
+  "request": {
+    "prompt": "Generate a question for the given answer and identify if the answer is noncommittal.\nGive noncommittal as 1 if the answer is noncommittal (evasive, vague, or ambiguous) and 0 if the answer is substantive.\nExamples of noncommittal answers: \"I don't know\", \"I'm not sure\", \"It depends\".\nPlease return the output in a JSON format that complies with the following schema as specified in JSON Schema:\n{\"description\": \"Structured output for answer relevance question generation.\", \"properties\": {\"question\": {\"description\": \"Question that can be answered from the response\", \"title\": \"Question\", \"type\": \"string\"}, \"noncommittal\": {\"description\": \"1 if the response is evasive/vague, 0 if it is substantive\", \"title\": \"Noncommittal\", \"type\": \"integer\"}}, \"required\": [\"question\", \"noncommittal\"], \"title\": \"AnswerRelevanceOutput\", \"type\": \"object\"}Do not use single quotes in your response but double quotes,properly escaped with a backslash.\n\n--------EXAMPLES-----------\nExample 1\nInput: {\n    \"response\": \"Albert Einstein was born in Germany.\"\n}\nOutput: {\n    \"question\": \"Where was Albert Einstein born?\",\n    \"noncommittal\": 0\n}\n\nExample 2\nInput: {\n    \"response\": \"The capital of France is Paris, a city known for its architecture and culture.\"\n}\nOutput: {\n    \"question\": \"What is the capital of France?\",\n    \"noncommittal\": 0\n}\n\nExample 3\nInput: {\n    \"response\": \"I don't know about the groundbreaking feature of the smartphone invented in 2023 as I am unaware of information beyond 2022.\"\n}\nOutput: {\n    \"question\": \"What was the groundbreaking feature of the smartphone invented in 2023?\",\n    \"noncommittal\": 1\n}\n-----------------------------\n\nNow perform the same with the following input\ninput: {\n    \"response\": \"Check the storage box’s paper label and record the shelf number.\"\n}\nOutput: ",
+    "response_schema": {
+      "description": "Structured output for answer relevance question generation.",
+      "properties": {
+        "question": {
+          "description": "Question that can be answered from the response",
+          "title": "Question",
+          "type": "string"
+        },
+        "noncommittal": {
+          "description": "1 if the response is evasive/vague, 0 if it is substantive",
+          "title": "Noncommittal",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "question",
+        "noncommittal"
+      ],
+      "title": "AnswerRelevanceOutput",
+      "type": "object"
+    },
+    "judge": {
+      "model": "openai/gpt-oss-120b",
+      "provider": "groq_openai_compatible",
+      "temperature": 0,
+      "max_tokens": 4096,
+      "seed": 20260831,
+      "transport_max_retries": 2,
+      "timeout_seconds": 60,
+      "resolved_model_args": {
+        "temperature": 0,
+        "top_p": 0.1,
+        "max_tokens": 4096,
+        "seed": 20260831
+      },
+      "adapter": "InstructorLLM"
+    },
+    "kwargs": {}
+  },
+  "response": {
+    "question": "How can you identify the shelf number of the storage box?",
+    "noncommittal": 0
+  },
+  "provider_metadata": {
+    "id": "chatcmpl-b859a4a0-8576-43c2-923a-0099e9536cde",
+    "model": "openai/gpt-oss-120b",
+    "created": 1788167803,
+    "system_fingerprint": "fp_5781dfb07c",
+    "usage": {
+      "completion_tokens": 187,
+      "prompt_tokens": 729,
+      "total_tokens": 916,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 155,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 0
+      },
+      "queue_time": 0.280168771,
+      "prompt_time": 0.031131579,
+      "completion_time": 0.391559306,
+      "total_time": 0.422690885
+    }
+  },
+  "completed_at": "2026-08-31T09:16:43.243810+00:00",
+  "elapsed_seconds": 0.7441089999992982
+}

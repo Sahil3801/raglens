@@ -1,0 +1,102 @@
+{
+  "status": "passed",
+  "method": "Exact stored-vector replay through pinned embedded Qdrant; no re-embedding or APIs.",
+  "queries": [
+    {
+      "query_id": "q01",
+      "vector_pool_count": 60,
+      "mmr_count": 40,
+      "vector_and_mmr_ranks_identical": true
+    },
+    {
+      "query_id": "q02",
+      "vector_pool_count": 60,
+      "mmr_count": 40,
+      "vector_and_mmr_ranks_identical": true
+    },
+    {
+      "query_id": "q03",
+      "vector_pool_count": 36,
+      "mmr_count": 36,
+      "vector_and_mmr_ranks_identical": true
+    },
+    {
+      "query_id": "q04",
+      "vector_pool_count": 36,
+      "mmr_count": 36,
+      "vector_and_mmr_ranks_identical": true
+    },
+    {
+      "query_id": "q05",
+      "vector_pool_count": 60,
+      "mmr_count": 40,
+      "vector_and_mmr_ranks_identical": true
+    },
+    {
+      "query_id": "q06",
+      "vector_pool_count": 60,
+      "mmr_count": 40,
+      "vector_and_mmr_ranks_identical": true
+    },
+    {
+      "query_id": "q07",
+      "vector_pool_count": 60,
+      "mmr_count": 40,
+      "vector_and_mmr_ranks_identical": true
+    },
+    {
+      "query_id": "q08",
+      "vector_pool_count": 60,
+      "mmr_count": 40,
+      "vector_and_mmr_ranks_identical": true
+    },
+    {
+      "query_id": "q09",
+      "vector_pool_count": 36,
+      "mmr_count": 36,
+      "vector_and_mmr_ranks_identical": true
+    },
+    {
+      "query_id": "q10",
+      "vector_pool_count": 36,
+      "mmr_count": 36,
+      "vector_and_mmr_ranks_identical": true
+    },
+    {
+      "query_id": "q11",
+      "vector_pool_count": 36,
+      "mmr_count": 36,
+      "vector_and_mmr_ranks_identical": true
+    },
+    {
+      "query_id": "q12",
+      "vector_pool_count": 36,
+      "mmr_count": 36,
+      "vector_and_mmr_ranks_identical": true
+    },
+    {
+      "query_id": "q13",
+      "vector_pool_count": 36,
+      "mmr_count": 36,
+      "vector_and_mmr_ranks_identical": true
+    },
+    {
+      "query_id": "q14",
+      "vector_pool_count": 36,
+      "mmr_count": 36,
+      "vector_and_mmr_ranks_identical": true
+    },
+    {
+      "query_id": "q15",
+      "vector_pool_count": 60,
+      "mmr_count": 40,
+      "vector_and_mmr_ranks_identical": true
+    },
+    {
+      "query_id": "q16",
+      "vector_pool_count": 60,
+      "mmr_count": 40,
+      "vector_and_mmr_ranks_identical": true
+    }
+  ]
+}

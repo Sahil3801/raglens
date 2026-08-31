@@ -1,0 +1,2018 @@
+[
+  {
+    "chunk_id": "add433644b2f4faf5a168d06bf2dd5304957e81eb4d6ad470f2f1b2fb9e07b0b",
+    "point_id": "f02631a8-428d-5935-83a1-df7bacf62253",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 0,
+      "ordinal_in_file": 0,
+      "text_sha256": "460e4d6e7be4b618f4120f4de5d8f3598acf2726ee94203d02803f1ff99e1f99"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 1\nThis is synthetic test material for the RagLens application. The maintenance access code for Aurora\nstation is AMBER-731. The inspection interval for Aurora station is 17 days. These values are\nfictional identifiers for software verification, not real credentials. The station handbook contains no\npersonal records, salary details, planetary facts, or weather forecasts.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 0,
+      "page_label": "1",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "add433644b2f4faf5a168d06bf2dd5304957e81eb4d6ad470f2f1b2fb9e07b0b"
+    }
+  },
+  {
+    "chunk_id": "80a81fc8128f894b8d256565a2ba450967e0f6a2e48995e576979e15d10d7f3d",
+    "point_id": "bee2120f-c22b-5e3a-a600-974de7f9fb92",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 1,
+      "ordinal_in_file": 1,
+      "text_sha256": "cf90129df0d3cf3f8866bcc79ca1cda56ba32a331ec59b829e51dbc574e7f6b7"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 2\nProcedure 02 covers archive shelf 02 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 1,
+      "page_label": "2",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "80a81fc8128f894b8d256565a2ba450967e0f6a2e48995e576979e15d10d7f3d"
+    }
+  },
+  {
+    "chunk_id": "e308debce0608781b662c7bed146bbf0b83e811e90a11836d2aa224e3704328b",
+    "point_id": "d240a372-8c7a-5668-9f26-78b4b8f2afa0",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 2,
+      "ordinal_in_file": 2,
+      "text_sha256": "cfdc9e9bdc8e80939187a0e2a77179ea5e73b881f966fb856af9eb9c73f20a1b"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 3\nProcedure 03 covers archive shelf 03 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 2,
+      "page_label": "3",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "e308debce0608781b662c7bed146bbf0b83e811e90a11836d2aa224e3704328b"
+    }
+  },
+  {
+    "chunk_id": "ec77699693ba8dd358ba097acd03083d866bbbf2c79937d4d2aa594694f8d6be",
+    "point_id": "28c4d33c-91e4-5984-9835-5df3acf7daa0",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 3,
+      "ordinal_in_file": 3,
+      "text_sha256": "0b21e7d4ec573fff55aa7c9913195f697e000ede12ddc33b706e1e3d2560d5fd"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 4\nProcedure 04 covers archive shelf 04 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 3,
+      "page_label": "4",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "ec77699693ba8dd358ba097acd03083d866bbbf2c79937d4d2aa594694f8d6be"
+    }
+  },
+  {
+    "chunk_id": "6c74272d57629232b67e0dff0b0884383fa11866b47981c775fde9db1331530e",
+    "point_id": "8ec77db8-c0c4-5f86-8136-6becd3646ad0",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 4,
+      "ordinal_in_file": 4,
+      "text_sha256": "961e7de6ab7756ec0638f55544ae008a96d858820eefec500f322e68e3f2b740"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 5\nProcedure 05 covers archive shelf 05 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 4,
+      "page_label": "5",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "6c74272d57629232b67e0dff0b0884383fa11866b47981c775fde9db1331530e"
+    }
+  },
+  {
+    "chunk_id": "fe7298b29ad95a84caabcb4da5800062d1a014b0f6e5e76eb87a5986cf370e9e",
+    "point_id": "d8bd5f15-dc9a-501e-a0ef-3ee7d419e8de",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 5,
+      "ordinal_in_file": 5,
+      "text_sha256": "9201c8db0c65f1565aaf8b7ae6e1d069631b9c3fe1c29c9b27a81dbe9eced196"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 6\nProcedure 06 covers archive shelf 06 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 5,
+      "page_label": "6",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "fe7298b29ad95a84caabcb4da5800062d1a014b0f6e5e76eb87a5986cf370e9e"
+    }
+  },
+  {
+    "chunk_id": "3c1cdfee9eb8850a1d76f2f14f3ae546c73641637a5f9d4c15e0807286bfbfef",
+    "point_id": "3290e97e-395b-56fe-ba3b-2629fd26d39e",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 6,
+      "ordinal_in_file": 6,
+      "text_sha256": "2e41c1ba93fdd8aac4ccb073cc24c3b8c19b9751f3e67f631ce1d5ae979bc2de"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 7\nProcedure 07 covers archive shelf 07 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 6,
+      "page_label": "7",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "3c1cdfee9eb8850a1d76f2f14f3ae546c73641637a5f9d4c15e0807286bfbfef"
+    }
+  },
+  {
+    "chunk_id": "8bbcd05fff918a7d7d8ab3678250776afb2f26952007b830d13b310b33454511",
+    "point_id": "e5323bf9-0c77-579f-ba6d-4a43844e431c",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 7,
+      "ordinal_in_file": 7,
+      "text_sha256": "c69287b21957e6536208b662246f71969ed61f76774122bfee8e08a9a1d14b25"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 8\nProcedure 08 covers archive shelf 08 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 7,
+      "page_label": "8",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "8bbcd05fff918a7d7d8ab3678250776afb2f26952007b830d13b310b33454511"
+    }
+  },
+  {
+    "chunk_id": "83a9ae6a42b1be546611afa77b7748dc490a6fbbd7075fab2182bbf7f754b0d3",
+    "point_id": "467d59af-d1d7-5e5b-a802-629437f72d39",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 8,
+      "ordinal_in_file": 8,
+      "text_sha256": "bc881593571da8656473be96650b7f346bdaec6cccdbabc3b897b2f4661c68f7"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 9\nProcedure 09 covers archive shelf 09 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 8,
+      "page_label": "9",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "83a9ae6a42b1be546611afa77b7748dc490a6fbbd7075fab2182bbf7f754b0d3"
+    }
+  },
+  {
+    "chunk_id": "8b7df63378eeb2a7d1e43d7d2dc7902653fc11341762238daad655eab0fdca11",
+    "point_id": "9fddf1f8-5bcb-535f-a56d-34c9f01474e2",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 9,
+      "ordinal_in_file": 9,
+      "text_sha256": "82064b04dc4a9ee1bd9ee774d2a3282e7aaac837d8e2f0aefccea419778dbce5"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 10\nProcedure 10 covers archive shelf 10 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 9,
+      "page_label": "10",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "8b7df63378eeb2a7d1e43d7d2dc7902653fc11341762238daad655eab0fdca11"
+    }
+  },
+  {
+    "chunk_id": "ff70df628c3944be04be74085f6f678b9030b48f245dde07bb1e12c1e7e69641",
+    "point_id": "40d4cda5-7f2d-5a11-969f-35ac02d89dc8",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 10,
+      "ordinal_in_file": 10,
+      "text_sha256": "6357fec9369d58b547092c45a127cb26db1477a4067a5b3ab571016aaaf74009"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 11\nProcedure 11 covers archive shelf 11 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 10,
+      "page_label": "11",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "ff70df628c3944be04be74085f6f678b9030b48f245dde07bb1e12c1e7e69641"
+    }
+  },
+  {
+    "chunk_id": "4db56c859dc408df7cbdd55f2e85c98af65523cdbbc4fff8dbadec5817097a1c",
+    "point_id": "6cb5df66-0b04-5978-9612-1c5d994e118e",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 11,
+      "ordinal_in_file": 11,
+      "text_sha256": "be09b8093976a00b05a50505618b95ebe6b1b20d426a8266799031c347d2e9c3"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 12\nProcedure 12 covers archive shelf 12 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 11,
+      "page_label": "12",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "4db56c859dc408df7cbdd55f2e85c98af65523cdbbc4fff8dbadec5817097a1c"
+    }
+  },
+  {
+    "chunk_id": "2abc58d8ded877eee25e675686de699b6fc6d8e15e45d27700923a632547e32e",
+    "point_id": "2b26fe27-e68f-5a09-9de9-0ed87c9aae16",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 12,
+      "ordinal_in_file": 12,
+      "text_sha256": "6f5960557cf58702f635a6c8d957fcd7647757d04ad16f3bdfd66a2a0d41956d"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 13\nProcedure 13 covers archive shelf 13 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 12,
+      "page_label": "13",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "2abc58d8ded877eee25e675686de699b6fc6d8e15e45d27700923a632547e32e"
+    }
+  },
+  {
+    "chunk_id": "2ec119d138785c1703a01fea061041197f9e2faf08ebd52374c71a8058886b96",
+    "point_id": "b7236bfb-5c2d-591e-b809-e16f12ca8627",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 13,
+      "ordinal_in_file": 13,
+      "text_sha256": "c6dc5893af0d25423cd42e857390cd5c5ce35d513dcd5161a29ecc31a11fae46"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 14\nProcedure 14 covers archive shelf 14 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 13,
+      "page_label": "14",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "2ec119d138785c1703a01fea061041197f9e2faf08ebd52374c71a8058886b96"
+    }
+  },
+  {
+    "chunk_id": "380719931aa42290fb87296b937d78f23ae385e22c1e66db4a86b93f31ae14da",
+    "point_id": "df47f0c4-89ed-5cd7-8f56-6691b4056100",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 14,
+      "ordinal_in_file": 14,
+      "text_sha256": "26f4fa31a213ed7ef09e6e22a9e695a740e1cceb8d080eb1f95eea7d0c686a3b"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 15\nProcedure 15 covers archive shelf 15 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 14,
+      "page_label": "15",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "380719931aa42290fb87296b937d78f23ae385e22c1e66db4a86b93f31ae14da"
+    }
+  },
+  {
+    "chunk_id": "bebf6f6ef2fcf54578be321c0a96019b75e534134871b2d2817eebe334d122dd",
+    "point_id": "2edb769c-1a0b-5a8f-8245-a6a802ba7c58",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 15,
+      "ordinal_in_file": 15,
+      "text_sha256": "e84416d2a4277dddfeaf71eb24275b843e528e301b7fdf46949b86489eb1b394"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 16\nProcedure 16 covers archive shelf 16 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 15,
+      "page_label": "16",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "bebf6f6ef2fcf54578be321c0a96019b75e534134871b2d2817eebe334d122dd"
+    }
+  },
+  {
+    "chunk_id": "2e95026111ec59dbb1c276875907f9335bb8460657745ae8fc25da52be1af07a",
+    "point_id": "51f4fd3d-c33f-5f65-83e5-f8476a7fb328",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 16,
+      "ordinal_in_file": 16,
+      "text_sha256": "16330691d0b067db7e004c757266469690d17db4645fc981bdebd12215e2c5bc"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 17\nProcedure 17 covers archive shelf 17 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 16,
+      "page_label": "17",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "2e95026111ec59dbb1c276875907f9335bb8460657745ae8fc25da52be1af07a"
+    }
+  },
+  {
+    "chunk_id": "98b28a8cdc24f333ab0e3946951d01bbd382798f9066b4124b1633a64c1f4de6",
+    "point_id": "df21ffcd-6a26-56fd-ba44-e9281efe2b17",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 17,
+      "ordinal_in_file": 17,
+      "text_sha256": "ae23c3354074ec0752243acad429bdc6caeb21dbbe756ba911160cfb7a899d18"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 18\nProcedure 18 covers archive shelf 18 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 17,
+      "page_label": "18",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "98b28a8cdc24f333ab0e3946951d01bbd382798f9066b4124b1633a64c1f4de6"
+    }
+  },
+  {
+    "chunk_id": "74adef1be3c2d6b2a418b4742f9375f3881ae5f9b1bf3851c6a2e26198f6d5b9",
+    "point_id": "89998873-3128-5d7c-9c0b-0a7ea3130ddc",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 18,
+      "ordinal_in_file": 18,
+      "text_sha256": "f43cf028746c4514f7401038d226a9d4efdbe95ff4ab65d82076ab04b251f816"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 19\nProcedure 19 covers archive shelf 19 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 18,
+      "page_label": "19",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "74adef1be3c2d6b2a418b4742f9375f3881ae5f9b1bf3851c6a2e26198f6d5b9"
+    }
+  },
+  {
+    "chunk_id": "5835ed379074f3174a8e709b7197b18c3b0a5b91608639f0fda41fbe1f342598",
+    "point_id": "5c1e834e-25b5-5efe-86ec-852c72f68864",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 19,
+      "ordinal_in_file": 19,
+      "text_sha256": "c4f0e2f1e26b8be52252a0866d265ccfdf86adcd681e66f2e5d497d21c4e65b4"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 20\nProcedure 20 covers archive shelf 20 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 19,
+      "page_label": "20",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "5835ed379074f3174a8e709b7197b18c3b0a5b91608639f0fda41fbe1f342598"
+    }
+  },
+  {
+    "chunk_id": "0575a9b13b12da5ce464e5ada6b0325498d5a113f730a5dac4809d9cfcc09ca4",
+    "point_id": "cbae3283-2e04-532d-91a6-16f4ab880928",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 20,
+      "ordinal_in_file": 20,
+      "text_sha256": "3663d5f24d0fcfc890415a2839d2be044960ea2320426560a6da6730481aa6e3"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 21\nProcedure 21 covers archive shelf 21 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 20,
+      "page_label": "21",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "0575a9b13b12da5ce464e5ada6b0325498d5a113f730a5dac4809d9cfcc09ca4"
+    }
+  },
+  {
+    "chunk_id": "bf54a4fdaf72690fdfb77122e2565f0f04a3dda3f01fa3abc6ebcfc2a09d528a",
+    "point_id": "b70b6ed8-087c-535b-a595-79bc6ea06573",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 21,
+      "ordinal_in_file": 21,
+      "text_sha256": "820d24144fee0b6b84756b7085c771660e4cf0b0b3c88da50db714f278cf9a9c"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 22\nProcedure 22 covers archive shelf 22 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 21,
+      "page_label": "22",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "bf54a4fdaf72690fdfb77122e2565f0f04a3dda3f01fa3abc6ebcfc2a09d528a"
+    }
+  },
+  {
+    "chunk_id": "a8eb452dfbc38437b2d673e72f2e0d4a6d12559db0068df65d55e1b15d176690",
+    "point_id": "a18b95f3-ecc4-5e99-9251-5eddc229af86",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 22,
+      "ordinal_in_file": 22,
+      "text_sha256": "469061aed69d7dc25074e4cac1d73c47ec9ef174839e93c91c0c14fff9b5bf1b"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 23\nProcedure 23 covers archive shelf 23 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 22,
+      "page_label": "23",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "a8eb452dfbc38437b2d673e72f2e0d4a6d12559db0068df65d55e1b15d176690"
+    }
+  },
+  {
+    "chunk_id": "b868531f3576f253232a87c865544f0d2a99c06de4a0c86df99be11322f34d06",
+    "point_id": "a688506f-7ef1-5a6b-bd5a-976fa3ba89f9",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 23,
+      "ordinal_in_file": 23,
+      "text_sha256": "c75bcbd0ddd08715d88c3d93082656ccc5bd21c58ed23de1c1c5f4baf5051d49"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 24\nProcedure 24 covers archive shelf 24 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 23,
+      "page_label": "24",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "b868531f3576f253232a87c865544f0d2a99c06de4a0c86df99be11322f34d06"
+    }
+  },
+  {
+    "chunk_id": "11d455967dda9ca680d46a7381bb8b724a28cba62289cfd14a9be7136b26505e",
+    "point_id": "cc758466-7142-540f-b8eb-ff75276d8cd6",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 24,
+      "ordinal_in_file": 24,
+      "text_sha256": "2c3630eabc2b287700c34165b88d11c77fcea48e119708e5f17c4e797df4e70c"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 25\nProcedure 25 covers archive shelf 25 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 24,
+      "page_label": "25",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "11d455967dda9ca680d46a7381bb8b724a28cba62289cfd14a9be7136b26505e"
+    }
+  },
+  {
+    "chunk_id": "4b0f60ec5ef00a2a17028c43fd5593960db2cd01a62887b64513ce4be7e63f8c",
+    "point_id": "6d369d78-d1a1-5b68-9323-1f2d2de8fc06",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 25,
+      "ordinal_in_file": 25,
+      "text_sha256": "1b674f36fd8270aadb5e17ee6b78a6d6e2dffa46527c14db6d977d3f84ff4676"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 26\nProcedure 26 covers archive shelf 26 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 25,
+      "page_label": "26",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "4b0f60ec5ef00a2a17028c43fd5593960db2cd01a62887b64513ce4be7e63f8c"
+    }
+  },
+  {
+    "chunk_id": "ba86df301602ba6dca40a21cc0ebb7d0c2ddfc037dab20bd7c8c4a58c7bc89e1",
+    "point_id": "40a4672d-65ff-5bb3-8c62-3a8f52728e1a",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 26,
+      "ordinal_in_file": 26,
+      "text_sha256": "d61eb88486c429120aac230a50ce6cdab6ce6ede3a0cb94a6e4a255f9dde2a4a"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 27\nProcedure 27 covers archive shelf 27 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 26,
+      "page_label": "27",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "ba86df301602ba6dca40a21cc0ebb7d0c2ddfc037dab20bd7c8c4a58c7bc89e1"
+    }
+  },
+  {
+    "chunk_id": "ffd8781ca3f440cf4a773d341c256cddc5f068549b16010b9ac400c5abd1dffd",
+    "point_id": "ddc78544-cda5-524a-a1f1-9b1f5bd2e6d5",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 27,
+      "ordinal_in_file": 27,
+      "text_sha256": "b241ed78dd4755b78fd622053aff40d7315bfdad8584fa53d931160368779300"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 28\nProcedure 28 covers archive shelf 28 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 27,
+      "page_label": "28",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "ffd8781ca3f440cf4a773d341c256cddc5f068549b16010b9ac400c5abd1dffd"
+    }
+  },
+  {
+    "chunk_id": "a3d29a9481384188d767476acc5077e363c509ac38110abfb81d755263925cef",
+    "point_id": "828b3298-a428-57b7-98cb-cc3212546a6d",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 28,
+      "ordinal_in_file": 28,
+      "text_sha256": "60bf2c78be1f4fd1bf787d753713221135329c2258a762db27ea832c6c4b8033"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 29\nProcedure 29 covers archive shelf 29 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 28,
+      "page_label": "29",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "a3d29a9481384188d767476acc5077e363c509ac38110abfb81d755263925cef"
+    }
+  },
+  {
+    "chunk_id": "7f060a3a47cba797d984ddc3372d7b5bc9145aae4dd47302cee999716a13fdb3",
+    "point_id": "acc81a3e-3932-5ed2-a015-515c95abe64a",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 29,
+      "ordinal_in_file": 29,
+      "text_sha256": "4343427f942f8127667e6dc4ea80512e68f56991e26cd49d68b811575ed5e107"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 30\nProcedure 30 covers archive shelf 30 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 29,
+      "page_label": "30",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "7f060a3a47cba797d984ddc3372d7b5bc9145aae4dd47302cee999716a13fdb3"
+    }
+  },
+  {
+    "chunk_id": "60a24147d3b9d6451a2a9887029ded126804b64a726a51d2f7012ea9f04a3541",
+    "point_id": "45329da4-63ca-5623-82ec-33c2178d11fd",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 30,
+      "ordinal_in_file": 30,
+      "text_sha256": "a9bc46fa4e296086145ffb4361b0e4776bd8d0d33e657af4424bf9b1cdf80547"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 31\nProcedure 31 covers archive shelf 31 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 30,
+      "page_label": "31",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "60a24147d3b9d6451a2a9887029ded126804b64a726a51d2f7012ea9f04a3541"
+    }
+  },
+  {
+    "chunk_id": "99f40b3ec9c42e211cadb90abba453a84fe952b02140d362560153e97ab21186",
+    "point_id": "a714c5e4-3013-54f6-a1ca-ced9f1101827",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 31,
+      "ordinal_in_file": 31,
+      "text_sha256": "b661b0d5fcb16cc19b6daba22eba5ec702d17719b668af16945501ac57d005a7"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 32\nProcedure 32 covers archive shelf 32 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 31,
+      "page_label": "32",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "99f40b3ec9c42e211cadb90abba453a84fe952b02140d362560153e97ab21186"
+    }
+  },
+  {
+    "chunk_id": "a9215b185360cd80e2ddfe071779e7b2aa133f775243f4beaec97d18f37736e6",
+    "point_id": "4dc1b58a-f500-5115-898b-5bec40e632c5",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 32,
+      "ordinal_in_file": 32,
+      "text_sha256": "62ff7fad99637d27205eab3ebbe073544de37b720b6d4d317dcd223ccb97694d"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 33\nProcedure 33 covers archive shelf 33 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 32,
+      "page_label": "33",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "a9215b185360cd80e2ddfe071779e7b2aa133f775243f4beaec97d18f37736e6"
+    }
+  },
+  {
+    "chunk_id": "c46846d8ddd68138f9eb4996a65b25bcd463ca91ca993c79395990bcfaaad98c",
+    "point_id": "9c4e2448-9b59-5f24-a444-46dfb82a3ac6",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 33,
+      "ordinal_in_file": 33,
+      "text_sha256": "76533291232101656acfbf1b850d4eae67f16f5f66af23db24ef0793ecd26965"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 34\nProcedure 34 covers archive shelf 34 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 33,
+      "page_label": "34",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "c46846d8ddd68138f9eb4996a65b25bcd463ca91ca993c79395990bcfaaad98c"
+    }
+  },
+  {
+    "chunk_id": "1e139a6e82c572c69be5f5cb15b3f4394f29cb9e123c9eb96943b44ac606ab03",
+    "point_id": "e796798d-06b7-5667-ab36-c242e4821b19",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 34,
+      "ordinal_in_file": 34,
+      "text_sha256": "75191c4147f6f08d56332a308bc479728858b4e3e921a40f93d932a9b81d1463"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 35\nProcedure 35 covers archive shelf 35 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 34,
+      "page_label": "35",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "1e139a6e82c572c69be5f5cb15b3f4394f29cb9e123c9eb96943b44ac606ab03"
+    }
+  },
+  {
+    "chunk_id": "4a9b82e0a0a381de0244653dd21fe18862fd3ba631f01476675610f5800f4772",
+    "point_id": "9931143a-a514-5d60-9396-dbcb7c32babb",
+    "identity": {
+      "file": "raglens_runtime_20260831_aurora.pdf",
+      "page": 35,
+      "ordinal_in_file": 35,
+      "text_sha256": "a1641ee7704eaaac9c1dc16557466481406f5b779f407b27c28311c0f09b7345"
+    },
+    "text": "Aurora Station - Runtime Verification - Page 36\nProcedure 36 covers archive shelf 36 at Aurora station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_aurora.pdf",
+      "total_pages": 36,
+      "page": 35,
+      "page_label": "36",
+      "source_file": "raglens_runtime_20260831_aurora.pdf",
+      "eval_chunk_id": "4a9b82e0a0a381de0244653dd21fe18862fd3ba631f01476675610f5800f4772"
+    }
+  },
+  {
+    "chunk_id": "4abe94ef99a3d2e263e03eb3e0a9e24a2eea71fc83e779ea7f6e0db680a61812",
+    "point_id": "4d43988c-6234-52aa-ac2c-58bf8f7ee22a",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 0,
+      "ordinal_in_file": 0,
+      "text_sha256": "9576bfe69849a4fdfa3b47694f92c1b4a16cefb2d6318e645246ab2279e72908"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 1\nThis is synthetic test material for the RagLens application. The maintenance access code for\nBorealis station is COBALT-482. The inspection interval for Borealis station is 29 days. These values\nare fictional identifiers for software verification, not real credentials. The station handbook contains\nno personal records, salary details, planetary facts, or weather forecasts.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 0,
+      "page_label": "1",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "4abe94ef99a3d2e263e03eb3e0a9e24a2eea71fc83e779ea7f6e0db680a61812"
+    }
+  },
+  {
+    "chunk_id": "f82664fb922c9c246f506514b78693d920f577b926874a6b67bd629a937af67d",
+    "point_id": "b0988151-baa1-58c5-8003-b9449a4f6f2b",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 1,
+      "ordinal_in_file": 1,
+      "text_sha256": "277334d8eb7fcf81e8685e75b8801b92fa4bd896486fd201c842fe8169b94ff2"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 2\nProcedure 02 covers archive shelf 02 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 1,
+      "page_label": "2",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "f82664fb922c9c246f506514b78693d920f577b926874a6b67bd629a937af67d"
+    }
+  },
+  {
+    "chunk_id": "b1d709dc7ae09b61784dd088348abdef30df038401e0e5fc293836c7876bb25f",
+    "point_id": "937753b5-5428-588f-8c4d-dca98c82db31",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 2,
+      "ordinal_in_file": 2,
+      "text_sha256": "f1848efc40b4dcf425201a4f2a6347d33625ade69aa6029112b73a83ef3fb3f7"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 3\nProcedure 03 covers archive shelf 03 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 2,
+      "page_label": "3",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "b1d709dc7ae09b61784dd088348abdef30df038401e0e5fc293836c7876bb25f"
+    }
+  },
+  {
+    "chunk_id": "201ac961243336c39a512e4193bc684a3804889e55cd54fb1e191bcedf8a97ab",
+    "point_id": "9c1bc0ef-ebcd-59c5-894f-5d652b116ccd",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 3,
+      "ordinal_in_file": 3,
+      "text_sha256": "c5613f6a11d282b275528866b3ebf7276ee2e8abd269199e21ad2343a685ad55"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 4\nProcedure 04 covers archive shelf 04 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 3,
+      "page_label": "4",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "201ac961243336c39a512e4193bc684a3804889e55cd54fb1e191bcedf8a97ab"
+    }
+  },
+  {
+    "chunk_id": "5eca09be7c37e55634271cea7df395b28cc6ce889d3c81ddece98865127fecdb",
+    "point_id": "f0d9ab0f-1eea-5bc3-90e8-001e8e65be14",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 4,
+      "ordinal_in_file": 4,
+      "text_sha256": "5643cd91fdccfafb221fab5f3b62f40c12637438a4405cb978370054f12aa6a6"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 5\nProcedure 05 covers archive shelf 05 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 4,
+      "page_label": "5",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "5eca09be7c37e55634271cea7df395b28cc6ce889d3c81ddece98865127fecdb"
+    }
+  },
+  {
+    "chunk_id": "eccda53cf09d567435f734dd8e43b9db19b76710b2e69ed46d04d0c2345b83a6",
+    "point_id": "b053c795-39e4-5152-9a5e-1750142ff24a",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 5,
+      "ordinal_in_file": 5,
+      "text_sha256": "1060df318cc94c879f37f341a45979a87f30748940f591f22e4885acec8052ca"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 6\nProcedure 06 covers archive shelf 06 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 5,
+      "page_label": "6",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "eccda53cf09d567435f734dd8e43b9db19b76710b2e69ed46d04d0c2345b83a6"
+    }
+  },
+  {
+    "chunk_id": "2ef3f1b6fde4d9f502992370e5057e730add61949addba7b5eac178db21ec231",
+    "point_id": "d4127609-b98d-5c0d-a59e-3d6641fd4ccb",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 6,
+      "ordinal_in_file": 6,
+      "text_sha256": "d83cc2e9700804b6597a3ed1fed83c8f21f2e9fefa2ee45939c504879830f482"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 7\nProcedure 07 covers archive shelf 07 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 6,
+      "page_label": "7",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "2ef3f1b6fde4d9f502992370e5057e730add61949addba7b5eac178db21ec231"
+    }
+  },
+  {
+    "chunk_id": "e5958ab8622f7883fc859a787826cffccced8c6e7d51e72f9a1b9d9309902cf7",
+    "point_id": "c503138a-a86f-5f2f-92a6-72349a9f9569",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 7,
+      "ordinal_in_file": 7,
+      "text_sha256": "5b5718fce7bd34dba230baa7f9d3a2615c97b7cffd43eb6035ab74814a49e54b"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 8\nProcedure 08 covers archive shelf 08 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 7,
+      "page_label": "8",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "e5958ab8622f7883fc859a787826cffccced8c6e7d51e72f9a1b9d9309902cf7"
+    }
+  },
+  {
+    "chunk_id": "1a755c1bf18dd6d5c4c546007a9c279520b12346b5e606b4a5bbcff5b5a5b226",
+    "point_id": "e9daf394-6933-553c-8e89-154ed66ea805",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 8,
+      "ordinal_in_file": 8,
+      "text_sha256": "f086a3e4016a7d6ebaa1be9af91cdb8255d3309f1adb3a2106ac3d3fd6559cf7"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 9\nProcedure 09 covers archive shelf 09 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 8,
+      "page_label": "9",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "1a755c1bf18dd6d5c4c546007a9c279520b12346b5e606b4a5bbcff5b5a5b226"
+    }
+  },
+  {
+    "chunk_id": "210772c7506a18bb821a201b64eedd01a0676e1f7e8c49cad9593fe033e95d46",
+    "point_id": "368331ab-c67c-517c-957f-aa0e68f0bc3c",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 9,
+      "ordinal_in_file": 9,
+      "text_sha256": "d746bfce9fae1b7c47084d4defc27a833cfdcbecfb3f3bb52f6b151dc742820c"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 10\nProcedure 10 covers archive shelf 10 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 9,
+      "page_label": "10",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "210772c7506a18bb821a201b64eedd01a0676e1f7e8c49cad9593fe033e95d46"
+    }
+  },
+  {
+    "chunk_id": "eb701a509e1e5c9e5dd13e8b197cfc3cc76363c9020d7fc6ca15a8b953674a02",
+    "point_id": "df379b94-c5ca-5280-8b38-9bf8297a4c24",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 10,
+      "ordinal_in_file": 10,
+      "text_sha256": "93309323ba1288243e5350278bf6b3e970fe8f9fbeaa2d5c1da3894e5d41a5a3"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 11\nProcedure 11 covers archive shelf 11 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 10,
+      "page_label": "11",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "eb701a509e1e5c9e5dd13e8b197cfc3cc76363c9020d7fc6ca15a8b953674a02"
+    }
+  },
+  {
+    "chunk_id": "a900590771105759df90dc309f7a21f96c100f1cc7c526bb16b64bc0ee0671df",
+    "point_id": "c4dffc00-39e6-582c-847e-6bfb4c5acee9",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 11,
+      "ordinal_in_file": 11,
+      "text_sha256": "4a5c3cda99498d9708a1625d9e1f3dfecc86c4a169920e2381f385865e647d5a"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 12\nProcedure 12 covers archive shelf 12 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 11,
+      "page_label": "12",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "a900590771105759df90dc309f7a21f96c100f1cc7c526bb16b64bc0ee0671df"
+    }
+  },
+  {
+    "chunk_id": "7529d373c2b85c278fb4fb48ba899419ab08be43422539f870caea30adb41c37",
+    "point_id": "5c31ffc1-bd23-5153-89ea-03259a64bccb",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 12,
+      "ordinal_in_file": 12,
+      "text_sha256": "6693381560dbe84c8ed952260a04eaa0728f9cb73c068c49793b9c7157dccf83"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 13\nProcedure 13 covers archive shelf 13 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 12,
+      "page_label": "13",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "7529d373c2b85c278fb4fb48ba899419ab08be43422539f870caea30adb41c37"
+    }
+  },
+  {
+    "chunk_id": "bd9111205842ba86813dffdf622d560926addb1ca780ef509189120613cd83b2",
+    "point_id": "7892be89-03d4-5bdd-85c3-c1697c264894",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 13,
+      "ordinal_in_file": 13,
+      "text_sha256": "80955dd313baad2268afdaf5f70bdf4e314932ffa46336c6d39a6631f4cc8c84"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 14\nProcedure 14 covers archive shelf 14 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 13,
+      "page_label": "14",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "bd9111205842ba86813dffdf622d560926addb1ca780ef509189120613cd83b2"
+    }
+  },
+  {
+    "chunk_id": "2c98d3210360f0733e8c65b61f4a1ef215e8adb08c9ee1cadf25618cb50bf82f",
+    "point_id": "20fdd240-cbdc-5fd3-90cb-5e3fe6126a0f",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 14,
+      "ordinal_in_file": 14,
+      "text_sha256": "0e03737c01324c7d4ecbed5592930208383219651b1627eedc93933261aa9ed5"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 15\nProcedure 15 covers archive shelf 15 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 14,
+      "page_label": "15",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "2c98d3210360f0733e8c65b61f4a1ef215e8adb08c9ee1cadf25618cb50bf82f"
+    }
+  },
+  {
+    "chunk_id": "6c190185a423026b4e7e3c1a57cce803eb0441aecc68fc41cb3d252cafc3111b",
+    "point_id": "e8be799b-cca5-5e99-8214-bb274e71065a",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 15,
+      "ordinal_in_file": 15,
+      "text_sha256": "685b831b993b6744b43e99c58d52b2dd1a9037224b25fcc2d86761bbc450b6ca"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 16\nProcedure 16 covers archive shelf 16 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 15,
+      "page_label": "16",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "6c190185a423026b4e7e3c1a57cce803eb0441aecc68fc41cb3d252cafc3111b"
+    }
+  },
+  {
+    "chunk_id": "d21f256f218aca2bde96a7a31e157dc10dc0cc51dd6b28dac62ec3136f2f9749",
+    "point_id": "2067ddc7-5ed6-5d60-aabf-3a145bb0a4bd",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 16,
+      "ordinal_in_file": 16,
+      "text_sha256": "30e1c7775de083c9961cb0c6f9ec5778fd7076421bdb83e0836c484274278a1c"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 17\nProcedure 17 covers archive shelf 17 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 16,
+      "page_label": "17",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "d21f256f218aca2bde96a7a31e157dc10dc0cc51dd6b28dac62ec3136f2f9749"
+    }
+  },
+  {
+    "chunk_id": "a9234096be527017c1ce0f6b56e7d2a689794a049023f76ba70ee5f3fb4adedc",
+    "point_id": "dd2ca432-5bba-5fae-9530-468c7517e0f7",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 17,
+      "ordinal_in_file": 17,
+      "text_sha256": "baaeab5365e6a9d0fa53f1eaab34377a75520f93a53b24f5278ca690e46967d7"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 18\nProcedure 18 covers archive shelf 18 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 17,
+      "page_label": "18",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "a9234096be527017c1ce0f6b56e7d2a689794a049023f76ba70ee5f3fb4adedc"
+    }
+  },
+  {
+    "chunk_id": "06f08a3e552419317eb4c3be3254c201d489aef28d015e380a31043b0449f2ba",
+    "point_id": "29ec603a-a9ce-5484-be49-d1e0df3fe240",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 18,
+      "ordinal_in_file": 18,
+      "text_sha256": "72619928e96bbb77a37b09795b33fcfa727d91d7d45b930aa11eb61c4e1154e8"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 19\nProcedure 19 covers archive shelf 19 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 18,
+      "page_label": "19",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "06f08a3e552419317eb4c3be3254c201d489aef28d015e380a31043b0449f2ba"
+    }
+  },
+  {
+    "chunk_id": "4bdc26850e9ad4c6a2a0ee6b5df6343a8e61d85d91f4c4a5fb8a2bdb08922ac6",
+    "point_id": "e85b4103-2e9e-553f-b274-0800bcd5be38",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 19,
+      "ordinal_in_file": 19,
+      "text_sha256": "43e2e99364c7bbc71985e7cd98779ce69aa642f4f53521aabeb28cf33600ec6f"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 20\nProcedure 20 covers archive shelf 20 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 19,
+      "page_label": "20",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "4bdc26850e9ad4c6a2a0ee6b5df6343a8e61d85d91f4c4a5fb8a2bdb08922ac6"
+    }
+  },
+  {
+    "chunk_id": "15279f38cf9ccbb84d151baf6398323613534a6d6d08eb26f3909a45803c0a67",
+    "point_id": "95567076-4e38-510f-aa3f-a2bf99c4ced3",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 20,
+      "ordinal_in_file": 20,
+      "text_sha256": "c8dd32866342371cf332b99f4655e2b1c471cfb6372795c031b053f6760c2637"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 21\nProcedure 21 covers archive shelf 21 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 20,
+      "page_label": "21",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "15279f38cf9ccbb84d151baf6398323613534a6d6d08eb26f3909a45803c0a67"
+    }
+  },
+  {
+    "chunk_id": "b696143432904b3177cf4136aaef476508199233b40ef424f4aaeefd3dcbe5e0",
+    "point_id": "f70253f3-2799-5a41-b02b-60117ebaac9b",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 21,
+      "ordinal_in_file": 21,
+      "text_sha256": "895321b9e4f0d80765997d7548673057bf33c82fedde78279e5c57a54ebd2b9d"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 22\nProcedure 22 covers archive shelf 22 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 21,
+      "page_label": "22",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "b696143432904b3177cf4136aaef476508199233b40ef424f4aaeefd3dcbe5e0"
+    }
+  },
+  {
+    "chunk_id": "8f6c7f765e104e754ba9e1cc7eb74c73193f5d7e251472a4aff4b5799e2ff225",
+    "point_id": "4cf62133-78f0-5f3c-8357-a2f42b6cc7d1",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 22,
+      "ordinal_in_file": 22,
+      "text_sha256": "bff0cc68c3e876bd961e963bcbfb1e3be505860df0e569850fed5c5f720c9dfa"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 23\nProcedure 23 covers archive shelf 23 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 22,
+      "page_label": "23",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "8f6c7f765e104e754ba9e1cc7eb74c73193f5d7e251472a4aff4b5799e2ff225"
+    }
+  },
+  {
+    "chunk_id": "309d9b9c48f058be92b2cfd774ffcba7def8b74e53931397052e833f15b1140f",
+    "point_id": "0b56129b-fd6e-5e28-85d4-104dc7df1388",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 23,
+      "ordinal_in_file": 23,
+      "text_sha256": "64e6a49629aca1a26aca5b3f7b145f272f1e1cf1ea7ac45507ed700bb34bc65b"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 24\nProcedure 24 covers archive shelf 24 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 23,
+      "page_label": "24",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "309d9b9c48f058be92b2cfd774ffcba7def8b74e53931397052e833f15b1140f"
+    }
+  },
+  {
+    "chunk_id": "091818212e37f3ef1269029794f338595a884290aa9d55bbd617fe2b55c7c971",
+    "point_id": "8e55541d-d3cf-5d6f-b462-1dc5cb1509b2",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 24,
+      "ordinal_in_file": 24,
+      "text_sha256": "d1c9f4226d7582f0ad070023d758286e821fce475c4f2161ce9bd05769545578"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 25\nProcedure 25 covers archive shelf 25 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 24,
+      "page_label": "25",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "091818212e37f3ef1269029794f338595a884290aa9d55bbd617fe2b55c7c971"
+    }
+  },
+  {
+    "chunk_id": "4f3ebb2e8026bfb8eb7cc6e0e44695b44e10ad13c8714ce0ed46b87511b97888",
+    "point_id": "191ddc46-4c2c-5f14-8afe-838b4f0e7030",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 25,
+      "ordinal_in_file": 25,
+      "text_sha256": "cf433116ae99a8140d2518b4f175da452b35312b84e9b4d4dea2880eeb206d5a"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 26\nProcedure 26 covers archive shelf 26 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 25,
+      "page_label": "26",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "4f3ebb2e8026bfb8eb7cc6e0e44695b44e10ad13c8714ce0ed46b87511b97888"
+    }
+  },
+  {
+    "chunk_id": "07c3090e419323338d2a8887fd152acbaa96d183a2cfd079d01c4abc04ddbfec",
+    "point_id": "596f5ad1-8dad-5249-84b1-085d87a411d1",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 26,
+      "ordinal_in_file": 26,
+      "text_sha256": "c5316342d06d7c923f55f25074edf0d0354eecaa1a56a75f377bb854a56fe5d6"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 27\nProcedure 27 covers archive shelf 27 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 26,
+      "page_label": "27",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "07c3090e419323338d2a8887fd152acbaa96d183a2cfd079d01c4abc04ddbfec"
+    }
+  },
+  {
+    "chunk_id": "b9dac67c23c601af28391ddfdaf7062386459544951fef442ab781ad63d49721",
+    "point_id": "d4102ca3-fb2d-527c-9b61-c4efb12aabea",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 27,
+      "ordinal_in_file": 27,
+      "text_sha256": "f349e9b6aaddebd874dfd80bcd5d001706f6bae29d35061ff5702435b22f7b7c"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 28\nProcedure 28 covers archive shelf 28 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 27,
+      "page_label": "28",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "b9dac67c23c601af28391ddfdaf7062386459544951fef442ab781ad63d49721"
+    }
+  },
+  {
+    "chunk_id": "65482c20d3bc5fe316f044db3c2eea13fc490279f9455dff28c0abb7b700ad3e",
+    "point_id": "84b4aada-40fc-528d-964e-d8f07b05604f",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 28,
+      "ordinal_in_file": 28,
+      "text_sha256": "d816f874b9bb17ec0b6de2bad457708055c0286805a91f49f1132d862b528b31"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 29\nProcedure 29 covers archive shelf 29 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 28,
+      "page_label": "29",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "65482c20d3bc5fe316f044db3c2eea13fc490279f9455dff28c0abb7b700ad3e"
+    }
+  },
+  {
+    "chunk_id": "5f38174bd27671dff33ef21d26cea4b402a1d03d7d2f2e0be09af77cd5c6b84d",
+    "point_id": "8413081b-0bef-5108-bf6f-df759a08ca20",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 29,
+      "ordinal_in_file": 29,
+      "text_sha256": "c334d6bfab0d2abc3b4a609f04fb7c2c5753b447fd76e6ab614b94b82c4f666a"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 30\nProcedure 30 covers archive shelf 30 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 29,
+      "page_label": "30",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "5f38174bd27671dff33ef21d26cea4b402a1d03d7d2f2e0be09af77cd5c6b84d"
+    }
+  },
+  {
+    "chunk_id": "d9e9e19873f0a50f53da75cc638b184b5055e10d06ffdc10b81d4e0f25593bcc",
+    "point_id": "e06406cf-e8fb-5e55-abab-6ec5215ef6bc",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 30,
+      "ordinal_in_file": 30,
+      "text_sha256": "cf90eef1e6c6686308dd42b0120d2acb69ddf7e3cc906e979806ae72d7b5f42d"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 31\nProcedure 31 covers archive shelf 31 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 30,
+      "page_label": "31",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "d9e9e19873f0a50f53da75cc638b184b5055e10d06ffdc10b81d4e0f25593bcc"
+    }
+  },
+  {
+    "chunk_id": "95bc29d043e4c3462420ff6e61cf9739e7a760cb9e7704be94a4ef5851ff38b8",
+    "point_id": "766757eb-f760-5041-98a2-cdf5bc5e2fc2",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 31,
+      "ordinal_in_file": 31,
+      "text_sha256": "06abbefe558d5714d2c6311207afbf568729641930594709c2d0051e990ba1ad"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 32\nProcedure 32 covers archive shelf 32 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 31,
+      "page_label": "32",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "95bc29d043e4c3462420ff6e61cf9739e7a760cb9e7704be94a4ef5851ff38b8"
+    }
+  },
+  {
+    "chunk_id": "43fc201855e27b76c412f94527fa8715f8841bba8d12b38efeb6b26dad249a4f",
+    "point_id": "8c183948-7e72-5623-8564-dac91b7f82a4",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 32,
+      "ordinal_in_file": 32,
+      "text_sha256": "86b3610833c30a48f8edbbb000e4820f7314cee49c491b0587566a8985cc8fa4"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 33\nProcedure 33 covers archive shelf 33 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 32,
+      "page_label": "33",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "43fc201855e27b76c412f94527fa8715f8841bba8d12b38efeb6b26dad249a4f"
+    }
+  },
+  {
+    "chunk_id": "e62843eb2c2f9aa846170bb8dc07d46471cb9d61c22290631c79650c3c37a4a3",
+    "point_id": "ae41e801-bf55-5c73-9e9f-9c7aa52cadd2",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 33,
+      "ordinal_in_file": 33,
+      "text_sha256": "8a69ec2086fae1b9f5d3cccf3f0a540f77dd36fb76e730850c21ae28da1dc44d"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 34\nProcedure 34 covers archive shelf 34 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 33,
+      "page_label": "34",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "e62843eb2c2f9aa846170bb8dc07d46471cb9d61c22290631c79650c3c37a4a3"
+    }
+  },
+  {
+    "chunk_id": "0b44e9866ea66a4be46974e82ca54eaabecbed94a14189b0a4929ad1da25c081",
+    "point_id": "12c0e471-2425-583f-9eac-e38e0e12cc11",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 34,
+      "ordinal_in_file": 34,
+      "text_sha256": "1c48c8a96fb42e35a0a51774a26263a5568b0249c4c4f53031ef760e926970af"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 35\nProcedure 35 covers archive shelf 35 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 34,
+      "page_label": "35",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "0b44e9866ea66a4be46974e82ca54eaabecbed94a14189b0a4929ad1da25c081"
+    }
+  },
+  {
+    "chunk_id": "492dbb62013eb7230b922f6ab5c876279a3c527be7e20f0498caf91365ede754",
+    "point_id": "af4ad6b2-32c2-54e4-aca3-bad0dbe8c3f8",
+    "identity": {
+      "file": "raglens_runtime_20260831_borealis.pdf",
+      "page": 35,
+      "ordinal_in_file": 35,
+      "text_sha256": "41df0303dbfd68b161676d8059ed7d126528b48603ffebf6fae282269c83f974"
+    },
+    "text": "Borealis Station - Runtime Verification - Page 36\nProcedure 36 covers archive shelf 36 at Borealis station. Before handling a storage box, check its\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\nledger to record completed housekeeping work. This page describes archive housekeeping only and\ndoes not specify the maintenance access code or inspection interval.",
+    "metadata": {
+      "producer": "ReportLab PDF Library - (opensource)",
+      "creator": "anonymous",
+      "creationdate": "2000-01-01T00:00:00+00:00",
+      "author": "anonymous",
+      "keywords": "",
+      "moddate": "2000-01-01T00:00:00+00:00",
+      "subject": "unspecified",
+      "title": "untitled",
+      "trapped": "/False",
+      "source": "./temp_raglens_runtime_20260831_borealis.pdf",
+      "total_pages": 36,
+      "page": 35,
+      "page_label": "36",
+      "source_file": "raglens_runtime_20260831_borealis.pdf",
+      "eval_chunk_id": "492dbb62013eb7230b922f6ab5c876279a3c527be7e20f0498caf91365ede754"
+    }
+  }
+]

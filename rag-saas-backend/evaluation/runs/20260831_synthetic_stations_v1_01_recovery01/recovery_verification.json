@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "same_inputs_answers_candidates_and_aggregate_results": true,
+  "all_successful_metrics_and_judge_outputs_unchanged": true,
+  "only_retried_metric": "q12/B/faithfulness",
+  "original_failure_preserved": true
+}

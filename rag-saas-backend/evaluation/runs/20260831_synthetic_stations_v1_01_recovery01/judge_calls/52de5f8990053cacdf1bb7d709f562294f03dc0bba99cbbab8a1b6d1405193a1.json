@@ -1,0 +1,121 @@
+{
+  "request": {
+    "prompt": "Your task is to judge the faithfulness of a series of statements based on a given context. For each statement you must return verdict as 1 if the statement can be directly inferred based on the context or 0 if the statement can not be directly inferred based on the context.\nPlease return the output in a JSON format that complies with the following schema as specified in JSON Schema:\n{\"$defs\": {\"StatementFaithfulnessAnswer\": {\"description\": \"Individual statement with reason and verdict for NLI evaluation.\", \"properties\": {\"statement\": {\"description\": \"the original statement, word-by-word\", \"title\": \"Statement\", \"type\": \"string\"}, \"reason\": {\"description\": \"the reason of the verdict\", \"title\": \"Reason\", \"type\": \"string\"}, \"verdict\": {\"description\": \"the verdict(0/1) of the faithfulness\", \"title\": \"Verdict\", \"type\": \"integer\"}}, \"required\": [\"statement\", \"reason\", \"verdict\"], \"title\": \"StatementFaithfulnessAnswer\", \"type\": \"object\"}}, \"description\": \"Structured output for NLI statement evaluation.\", \"properties\": {\"statements\": {\"description\": \"Evaluated statements with verdicts\", \"items\": {\"$ref\": \"#/$defs/StatementFaithfulnessAnswer\"}, \"title\": \"Statements\", \"type\": \"array\"}}, \"required\": [\"statements\"], \"title\": \"NLIStatementOutput\", \"type\": \"object\"}Do not use single quotes in your response but double quotes,properly escaped with a backslash.\n\n--------EXAMPLES-----------\nExample 1\nInput: {\n    \"context\": \"John is a student at XYZ University. He is pursuing a degree in Computer Science. He is enrolled in several courses this semester, including Data Structures, Algorithms, and Database Management. John is a diligent student and spends a significant amount of time studying and completing assignments. He often stays late in the library to work on his projects.\",\n    \"statements\": [\n        \"John is majoring in Biology.\",\n        \"John is taking a course on Artificial Intelligence.\",\n        \"John is a dedicated student.\",\n        \"John has a part-time job.\"\n    ]\n}\nOutput: {\n    \"statements\": [\n        {\n            \"statement\": \"John is majoring in Biology.\",\n            \"reason\": \"John's major is explicitly stated as Computer Science, not Biology.\",\n            \"verdict\": 0\n        },\n        {\n            \"statement\": \"John is taking a course on Artificial Intelligence.\",\n            \"reason\": \"The context mentions courses in Data Structures, Algorithms, and Database Management, but does not mention Artificial Intelligence.\",\n            \"verdict\": 0\n        },\n        {\n            \"statement\": \"John is a dedicated student.\",\n            \"reason\": \"The context states that John is a diligent student who spends a significant amount of time studying and completing assignments.\",\n            \"verdict\": 1\n        },\n        {\n            \"statement\": \"John has a part-time job.\",\n            \"reason\": \"There is no information in the context about John having a part-time job.\",\n            \"verdict\": 0\n        }\n    ]\n}\n-----------------------------\n\nNow perform the same with the following input\ninput: {\n    \"context\": \"Borealis Station - Runtime Verification - Page 1\\nThis is synthetic test material for the RagLens application. The maintenance access code for\\nBorealis station is COBALT-482. The inspection interval for Borealis station is 29 days. These values\\nare fictional identifiers for software verification, not real credentials. The station handbook contains\\nno personal records, salary details, planetary facts, or weather forecasts.\\nAurora Station - Runtime Verification - Page 25\\nProcedure 25 covers archive shelf 25 at Aurora station. Before handling a storage box, check its\\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\\nledger to record completed housekeeping work. This page describes archive housekeeping only and\\ndoes not specify the maintenance access code or inspection interval.\\nAurora Station - Runtime Verification - Page 1\\nThis is synthetic test material for the RagLens application. The maintenance access code for Aurora\\nstation is AMBER-731. The inspection interval for Aurora station is 17 days. These values are\\nfictional identifiers for software verification, not real credentials. The station handbook contains no\\npersonal records, salary details, planetary facts, or weather forecasts.\\nBorealis Station - Runtime Verification - Page 9\\nProcedure 09 covers archive shelf 09 at Borealis station. Before handling a storage box, check its\\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\\nledger to record completed housekeeping work. This page describes archive housekeeping only and\\ndoes not specify the maintenance access code or inspection interval.\\nBorealis Station - Runtime Verification - Page 26\\nProcedure 26 covers archive shelf 26 at Borealis station. Before handling a storage box, check its\\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\\nledger to record completed housekeeping work. This page describes archive housekeeping only and\\ndoes not specify the maintenance access code or inspection interval.\\nBorealis Station - Runtime Verification - Page 18\\nProcedure 18 covers archive shelf 18 at Borealis station. Before handling a storage box, check its\\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\\nledger to record completed housekeeping work. This page describes archive housekeeping only and\\ndoes not specify the maintenance access code or inspection interval.\\nBorealis Station - Runtime Verification - Page 28\\nProcedure 28 covers archive shelf 28 at Borealis station. Before handling a storage box, check its\\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\\nledger to record completed housekeeping work. This page describes archive housekeeping only and\\ndoes not specify the maintenance access code or inspection interval.\\nBorealis Station - Runtime Verification - Page 25\\nProcedure 25 covers archive shelf 25 at Borealis station. Before handling a storage box, check its\\npaper label and record the shelf number. Inspect the box for dust and confirm that its cover is\\nclosed. Keep the reading desk clear and return folders to their original order. Use the inventory\\nledger to record completed housekeeping work. This page describes archive housekeeping only and\\ndoes not specify the maintenance access code or inspection interval.\",\n    \"statements\": [\n        \"Aurora Station is inspected more frequently than Borealis Station.\",\n        \"The inspection interval for Borealis Station is 29 days.\",\n        \"The inspection interval for Aurora Station is 17 days.\",\n        \"The inspection intervals differ by 12 days.\"\n    ]\n}\nOutput: ",
+    "response_schema": {
+      "$defs": {
+        "StatementFaithfulnessAnswer": {
+          "description": "Individual statement with reason and verdict for NLI evaluation.",
+          "properties": {
+            "statement": {
+              "description": "the original statement, word-by-word",
+              "title": "Statement",
+              "type": "string"
+            },
+            "reason": {
+              "description": "the reason of the verdict",
+              "title": "Reason",
+              "type": "string"
+            },
+            "verdict": {
+              "description": "the verdict(0/1) of the faithfulness",
+              "title": "Verdict",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "statement",
+            "reason",
+            "verdict"
+          ],
+          "title": "StatementFaithfulnessAnswer",
+          "type": "object"
+        }
+      },
+      "description": "Structured output for NLI statement evaluation.",
+      "properties": {
+        "statements": {
+          "description": "Evaluated statements with verdicts",
+          "items": {
+            "$ref": "#/$defs/StatementFaithfulnessAnswer"
+          },
+          "title": "Statements",
+          "type": "array"
+        }
+      },
+      "required": [
+        "statements"
+      ],
+      "title": "NLIStatementOutput",
+      "type": "object"
+    },
+    "judge": {
+      "model": "openai/gpt-oss-120b",
+      "provider": "groq_openai_compatible",
+      "temperature": 0,
+      "max_tokens": 4096,
+      "seed": 20260831,
+      "transport_max_retries": 2,
+      "timeout_seconds": 60,
+      "resolved_model_args": {
+        "temperature": 0,
+        "top_p": 0.1,
+        "max_tokens": 4096,
+        "seed": 20260831
+      },
+      "adapter": "InstructorLLM"
+    },
+    "kwargs": {}
+  },
+  "response": {
+    "statements": [
+      {
+        "statement": "Aurora Station is inspected more frequently than Borealis Station.",
+        "reason": "Aurora's inspection interval is 17 days while Borealis's is 29 days, making Aurora inspected more frequently.",
+        "verdict": 1
+      },
+      {
+        "statement": "The inspection interval for Borealis Station is 29 days.",
+        "reason": "The context explicitly states the inspection interval for Borealis station is 29 days.",
+        "verdict": 1
+      },
+      {
+        "statement": "The inspection interval for Aurora Station is 17 days.",
+        "reason": "The context explicitly states the inspection interval for Aurora station is 17 days.",
+        "verdict": 1
+      },
+      {
+        "statement": "The inspection intervals differ by 12 days.",
+        "reason": "The difference between Borealis (29 days) and Aurora (17 days) intervals is 12 days.",
+        "verdict": 1
+      }
+    ]
+  },
+  "provider_metadata": {
+    "id": "chatcmpl-a84a3360-2d9a-45a8-8ce3-528e0ef1f1dc",
+    "model": "openai/gpt-oss-120b",
+    "created": 1788167323,
+    "system_fingerprint": "fp_02b0d31eca",
+    "usage": {
+      "completion_tokens": 537,
+      "prompt_tokens": 1937,
+      "total_tokens": 2474,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 366,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 0
+      },
+      "queue_time": 0.315375815,
+      "prompt_time": 0.100713606,
+      "completion_time": 1.128935107,
+      "total_time": 1.229648713
+    }
+  },
+  "completed_at": "2026-08-31T09:08:42.961534+00:00",
+  "elapsed_seconds": 17.6334480000005
+}

@@ -8,6 +8,8 @@ The system uses vector search, MMR retrieval, CrossEncoder reranking, and a grou
 
 For the verified local setup, environment variables, and runtime limitations, see [Local runtime setup](docs/LOCAL_RUNTIME.md) and the [2026-08-31 runtime verification report](docs/runtime-verification/2026-08-31/REPORT.md). The runtime checks are not a RAGAS comparison or evidence for resume quality metrics.
 
+For the separate paired MMR baseline-versus-reranker experiment, see [the reproducible evaluation protocol](rag-saas-backend/evaluation/COMPARISON.md) and [the measured results and resume-claim assessment](rag-saas-backend/evaluation/REPORT_2026-08-31.md). Its frozen corpus is explicitly synthetic; nine faithfulness values remain quota-blocked, and it does not establish the historical resume metrics.
+
 ---
 
 ## 🎥 Demo

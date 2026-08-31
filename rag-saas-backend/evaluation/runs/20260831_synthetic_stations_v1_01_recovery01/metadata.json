@@ -1,0 +1,1048 @@
+{
+  "schema_version": 1,
+  "run_id": "20260831_synthetic_stations_v1_01_recovery01",
+  "started_at": "2026-08-31T08:50:07.291104+00:00",
+  "status": "completed_with_failures",
+  "manifest_sha256": "940bf4853e1f7d215797f08e62cfa620c44a19d64d258e0cd4fc77734fd0b283",
+  "benchmark": {
+    "schema_version": 1,
+    "benchmark_id": "synthetic_stations_v1",
+    "provenance": "The unchanged two fictional Phase 2 runtime PDFs; original resume benchmark PDFs unavailable.",
+    "limitations": [
+      "Synthetic, tiny corpus with repetitive distractors; not representative of real PDF QA.",
+      "Questions share evidence and are not independent samples; no general population inference.",
+      "No historical scores are targets or accepted evidence."
+    ],
+    "seed": 20260831,
+    "documents": [
+      {
+        "path": "raglens_runtime_20260831_aurora.pdf",
+        "sha256": "cb3874b5a59366d1bc687b7ba47e77704cab9457e67da9573194ca0d9fedaf82",
+        "pages": 36
+      },
+      {
+        "path": "raglens_runtime_20260831_borealis.pdf",
+        "sha256": "6f61c0ab99d6894e2b981ad86efc76edff2929dbc50bb4b6c06e489bf7b28bfa",
+        "pages": 36
+      }
+    ],
+    "questions": [
+      {
+        "id": "q01",
+        "question": "What is the maintenance access code for Aurora station?",
+        "reference": "The maintenance access code for Aurora station is AMBER-731.",
+        "filter_filename": null,
+        "answerable": true,
+        "evidence_groups": [
+          [
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 0,
+              "contains": "AMBER-731"
+            }
+          ]
+        ]
+      },
+      {
+        "id": "q02",
+        "question": "What is the maintenance access code for Borealis station?",
+        "reference": "The maintenance access code for Borealis station is COBALT-482.",
+        "filter_filename": null,
+        "answerable": true,
+        "evidence_groups": [
+          [
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 0,
+              "contains": "COBALT-482"
+            }
+          ]
+        ]
+      },
+      {
+        "id": "q03",
+        "question": "How often is Aurora station inspected?",
+        "reference": "Aurora station has an inspection interval of 17 days.",
+        "filter_filename": "raglens_runtime_20260831_aurora.pdf",
+        "answerable": true,
+        "evidence_groups": [
+          [
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 0,
+              "contains": "17 days"
+            }
+          ]
+        ]
+      },
+      {
+        "id": "q04",
+        "question": "How many days are between inspections at Borealis station?",
+        "reference": "The inspection interval at Borealis station is 29 days.",
+        "filter_filename": "raglens_runtime_20260831_borealis.pdf",
+        "answerable": true,
+        "evidence_groups": [
+          [
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 0,
+              "contains": "29 days"
+            }
+          ]
+        ]
+      },
+      {
+        "id": "q05",
+        "question": "List the maintenance access codes for both Aurora and Borealis stations.",
+        "reference": "Aurora: AMBER-731. Borealis: COBALT-482.",
+        "filter_filename": null,
+        "answerable": true,
+        "evidence_groups": [
+          [
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 0,
+              "contains": "AMBER-731"
+            }
+          ],
+          [
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 0,
+              "contains": "COBALT-482"
+            }
+          ]
+        ]
+      },
+      {
+        "id": "q06",
+        "question": "Compare the inspection intervals at Aurora and Borealis stations.",
+        "reference": "Aurora is inspected every 17 days; Borealis every 29 days.",
+        "filter_filename": null,
+        "answerable": true,
+        "evidence_groups": [
+          [
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 0,
+              "contains": "17 days"
+            }
+          ],
+          [
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 0,
+              "contains": "29 days"
+            }
+          ]
+        ]
+      },
+      {
+        "id": "q07",
+        "question": "Which station is inspected more frequently, and by how many days do the intervals differ?",
+        "reference": "Aurora is inspected more frequently. The intervals differ by 12 days (29 minus 17).",
+        "filter_filename": null,
+        "answerable": true,
+        "evidence_groups": [
+          [
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 0,
+              "contains": "17 days"
+            }
+          ],
+          [
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 0,
+              "contains": "29 days"
+            }
+          ]
+        ]
+      },
+      {
+        "id": "q08",
+        "question": "Are the station maintenance access codes real credentials?",
+        "reference": "No. Both handbooks describe their values as fictional identifiers for software verification, not real credentials.",
+        "filter_filename": null,
+        "answerable": true,
+        "evidence_groups": [
+          [
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 0,
+              "contains": "not real credentials"
+            }
+          ],
+          [
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 0,
+              "contains": "not real credentials"
+            }
+          ]
+        ]
+      },
+      {
+        "id": "q09",
+        "question": "Which archive shelf does Procedure 27 cover at Aurora station?",
+        "reference": "Procedure 27 covers archive shelf 27 at Aurora station.",
+        "filter_filename": "raglens_runtime_20260831_aurora.pdf",
+        "answerable": true,
+        "evidence_groups": [
+          [
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 26,
+              "contains": "Procedure 27 covers archive shelf 27"
+            }
+          ]
+        ]
+      },
+      {
+        "id": "q10",
+        "question": "At Borealis station, what shelf is covered by Procedure 31?",
+        "reference": "Procedure 31 covers archive shelf 31 at Borealis station.",
+        "filter_filename": "raglens_runtime_20260831_borealis.pdf",
+        "answerable": true,
+        "evidence_groups": [
+          [
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 30,
+              "contains": "Procedure 31 covers archive shelf 31"
+            }
+          ]
+        ]
+      },
+      {
+        "id": "q11",
+        "question": "What should be checked and recorded before handling a storage box at Aurora station?",
+        "reference": "Check its paper label and record the shelf number.",
+        "filter_filename": "raglens_runtime_20260831_aurora.pdf",
+        "answerable": true,
+        "evidence_groups": [
+          [
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 1,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 2,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 3,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 4,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 5,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 6,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 7,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 8,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 9,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 10,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 11,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 12,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 13,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 14,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 15,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 16,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 17,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 18,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 19,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 20,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 21,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 22,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 23,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 24,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 25,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 26,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 27,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 28,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 29,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 30,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 31,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 32,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 33,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 34,
+              "contains": "check its paper label and record the shelf number"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_aurora.pdf",
+              "page": 35,
+              "contains": "check its paper label and record the shelf number"
+            }
+          ]
+        ]
+      },
+      {
+        "id": "q12",
+        "question": "Where should completed archive housekeeping work at Borealis station be recorded?",
+        "reference": "Use the inventory ledger to record completed housekeeping work.",
+        "filter_filename": "raglens_runtime_20260831_borealis.pdf",
+        "answerable": true,
+        "evidence_groups": [
+          [
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 1,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 2,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 3,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 4,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 5,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 6,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 7,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 8,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 9,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 10,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 11,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 12,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 13,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 14,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 15,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 16,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 17,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 18,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 19,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 20,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 21,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 22,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 23,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 24,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 25,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 26,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 27,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 28,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 29,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 30,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 31,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 32,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 33,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 34,
+              "contains": "Use the inventory ledger"
+            },
+            {
+              "source_file": "raglens_runtime_20260831_borealis.pdf",
+              "page": 35,
+              "contains": "Use the inventory ledger"
+            }
+          ]
+        ]
+      },
+      {
+        "id": "q13",
+        "question": "What is the salary of the Aurora station manager?",
+        "reference": "I cannot answer this based on the provided document.",
+        "filter_filename": "raglens_runtime_20260831_aurora.pdf",
+        "answerable": false,
+        "evidence_groups": []
+      },
+      {
+        "id": "q14",
+        "question": "What will the weather be at Borealis station tomorrow?",
+        "reference": "I cannot answer this based on the provided document.",
+        "filter_filename": "raglens_runtime_20260831_borealis.pdf",
+        "answerable": false,
+        "evidence_groups": []
+      },
+      {
+        "id": "q15",
+        "question": "How many moons does Jupiter have?",
+        "reference": "I cannot answer this based on the provided document.",
+        "filter_filename": null,
+        "answerable": false,
+        "evidence_groups": []
+      },
+      {
+        "id": "q16",
+        "question": "What is the maintenance access code for the third station, Cygnus?",
+        "reference": "I cannot answer this based on the provided document.",
+        "filter_filename": null,
+        "answerable": false,
+        "evidence_groups": []
+      }
+    ],
+    "primary_population": "12 answerable questions; unanswerable items reported separately",
+    "evidence_semantics": "Each group is required; any listed chunk matching file/page/quote satisfies that group. Pages are zero-based. All alternatives enumerated.",
+    "comparison": {
+      "A": "First 8 of the shared production MMR output, no CrossEncoder.",
+      "B": "Unmodified production CrossEncoder rerank of that same MMR output, including threshold and 4-chunk floor, at most 8.",
+      "matched_count": "Retrieval-only sensitivity analysis: compare first len(B) MMR chunks with B. No extra generation arm."
+    },
+    "aggregation": "Macro means with valid/failed/undefined counts; paired deltas use only pairs valid in both arms. Context Precision is not applicable for unanswerable questions."
+  },
+  "production_config": {
+    "CHUNK_SIZE": 800,
+    "CHUNK_OVERLAP": 200,
+    "EMBEDDING_DIMENSION": 384,
+    "RETRIEVER_K": 40,
+    "RETRIEVER_FETCH_K": 60,
+    "RERANKER_TOP_N": 8,
+    "GROQ_MODEL": "openai/gpt-oss-20b"
+  },
+  "judge": {
+    "model": "openai/gpt-oss-120b",
+    "provider": "groq_openai_compatible",
+    "temperature": 0,
+    "max_tokens": 4096,
+    "seed": 20260831,
+    "transport_max_retries": 2,
+    "timeout_seconds": 60,
+    "resolved_model_args": {
+      "temperature": 0,
+      "top_p": 0.1,
+      "max_tokens": 4096,
+      "seed": 20260831
+    },
+    "adapter": "InstructorLLM"
+  },
+  "generation": {
+    "model": "openai/gpt-oss-20b",
+    "temperature": 0,
+    "seed": "not set in production",
+    "prompt_source_sha256": "bfcefb36138b8401be3110431e35ff2a0243c708df77595d2e09c124e1724991"
+  },
+  "metrics": {
+    "faithfulness": "ragas.metrics.collections.Faithfulness",
+    "context_precision": "ragas.metrics.collections.ContextPrecisionWithReference",
+    "answer_relevancy": "ragas.metrics.collections.AnswerRelevancy",
+    "answer_relevancy_strictness": 1,
+    "undefined_values": "null; never imputed as zero"
+  },
+  "qdrant": {
+    "mode": "embedded_local",
+    "collection": "raglens_eval_20260831_synthetic_stations_v1_01",
+    "distance": "Cosine",
+    "mmr_lambda_default": 0.5,
+    "point_ids": "deterministic UUID5 from chunk identities"
+  },
+  "packages": {
+    "aiohappyeyeballs": "2.7.1",
+    "aiohttp": "3.14.3",
+    "aiosignal": "1.4.0",
+    "annotated-doc": "0.0.5",
+    "annotated-types": "0.8.0",
+    "anyio": "4.14.2",
+    "appdirs": "1.4.4",
+    "attrs": "26.1.0",
+    "certifi": "2026.7.22",
+    "charset-normalizer": "3.5.0",
+    "click": "8.4.2",
+    "colorama": "0.4.6",
+    "dataclasses-json": "0.6.7",
+    "datasets": "5.0.1",
+    "dill": "0.4.1",
+    "diskcache": "5.6.3",
+    "distro": "1.9.0",
+    "docstring_parser": "0.18.0",
+    "fastapi": "0.141.1",
+    "filelock": "3.32.3",
+    "frozenlist": "1.8.0",
+    "fsspec": "2026.6.0",
+    "greenlet": "3.5.5",
+    "groq": "0.37.1",
+    "grpcio": "1.83.0",
+    "h11": "0.16.0",
+    "h2": "4.4.1",
+    "hf-xet": "1.6.0",
+    "hpack": "4.2.0",
+    "httpcore": "1.0.9",
+    "httpx": "0.28.1",
+    "httpx-sse": "0.4.3",
+    "huggingface_hub": "1.27.0",
+    "hyperframe": "6.1.0",
+    "idna": "3.18",
+    "iniconfig": "2.3.0",
+    "instructor": "1.15.4",
+    "Jinja2": "3.1.6",
+    "jiter": "0.14.0",
+    "joblib": "1.5.3",
+    "jsonpatch": "1.33",
+    "jsonpointer": "3.1.1",
+    "langchain": "1.3.15",
+    "langchain-classic": "1.0.8",
+    "langchain-community": "0.4.1",
+    "langchain-core": "1.5.4",
+    "langchain-groq": "1.1.3",
+    "langchain-huggingface": "1.2.2",
+    "langchain-openai": "1.5.0",
+    "langchain-protocol": "0.0.18",
+    "langchain-qdrant": "1.1.0",
+    "langchain-text-splitters": "1.1.2",
+    "langgraph": "1.2.11",
+    "langgraph-checkpoint": "4.2.0",
+    "langgraph-prebuilt": "1.1.0",
+    "langgraph-sdk": "0.4.2",
+    "langsmith": "0.10.18",
+    "markdown-it-py": "4.2.0",
+    "MarkupSafe": "3.0.3",
+    "marshmallow": "3.26.2",
+    "mdurl": "0.1.2",
+    "mpmath": "1.3.0",
+    "multidict": "6.7.1",
+    "multiprocess": "0.70.19",
+    "mypy_extensions": "1.1.0",
+    "narwhals": "2.24.0",
+    "nest-asyncio": "1.6.0",
+    "networkx": "3.6.1",
+    "numpy": "2.5.2",
+    "openai": "2.54.0",
+    "orjson": "3.11.9",
+    "ormsgpack": "1.12.2",
+    "packaging": "26.3",
+    "pandas": "3.0.5",
+    "pillow": "12.3.0",
+    "pip": "26.2.1",
+    "pluggy": "1.6.0",
+    "portalocker": "3.2.0",
+    "propcache": "0.5.2",
+    "protobuf": "7.35.1",
+    "pyarrow": "25.0.1",
+    "pydantic": "2.13.4",
+    "pydantic_core": "2.46.4",
+    "pydantic-settings": "2.15.0",
+    "Pygments": "2.20.0",
+    "pypdf": "6.16.1",
+    "pytest": "9.1.1",
+    "pytest-asyncio": "1.4.0",
+    "python-dateutil": "2.9.0.post0",
+    "python-dotenv": "1.2.2",
+    "python-multipart": "0.0.32",
+    "pywin32": "312",
+    "PyYAML": "6.0.3",
+    "qdrant-client": "1.19.0",
+    "ragas": "0.4.3",
+    "regex": "2026.7.19",
+    "requests": "2.34.2",
+    "requests-toolbelt": "1.0.0",
+    "rich": "14.3.4",
+    "safetensors": "0.8.0",
+    "scikit-learn": "1.9.0",
+    "scikit-network": "0.33.5",
+    "scipy": "1.18.0",
+    "sentence-transformers": "5.7.0",
+    "setuptools": "84.0.0",
+    "shellingham": "1.5.4",
+    "six": "1.17.0",
+    "sniffio": "1.3.1",
+    "SQLAlchemy": "2.0.52",
+    "starlette": "1.6.0",
+    "sympy": "1.14.0",
+    "tenacity": "9.1.4",
+    "threadpoolctl": "3.6.0",
+    "tiktoken": "0.13.0",
+    "tokenizers": "0.22.2",
+    "torch": "2.13.0",
+    "tqdm": "4.70.0",
+    "transformers": "5.15.0",
+    "typer": "0.27.1",
+    "typing_extensions": "4.16.0",
+    "typing-inspect": "0.9.0",
+    "typing-inspection": "0.4.4",
+    "tzdata": "2026.3",
+    "urllib3": "2.7.0",
+    "uuid_utils": "0.17.0",
+    "uvicorn": "0.52.3",
+    "websockets": "15.0.1",
+    "xxhash": "4.0.0",
+    "yarl": "1.24.5",
+    "zstandard": "0.25.0"
+  },
+  "python": "3.13.14 (tags/v3.13.14:fd17997, Jun 10 2026, 13:03:48) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "device": "cpu",
+  "torch_threads": 4,
+  "seed": 20260831,
+  "schedule": [
+    {
+      "query_id": "q01",
+      "arm_order": [
+        "B",
+        "A"
+      ]
+    },
+    {
+      "query_id": "q02",
+      "arm_order": [
+        "B",
+        "A"
+      ]
+    },
+    {
+      "query_id": "q03",
+      "arm_order": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "query_id": "q04",
+      "arm_order": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "query_id": "q05",
+      "arm_order": [
+        "B",
+        "A"
+      ]
+    },
+    {
+      "query_id": "q06",
+      "arm_order": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "query_id": "q07",
+      "arm_order": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "query_id": "q08",
+      "arm_order": [
+        "B",
+        "A"
+      ]
+    },
+    {
+      "query_id": "q09",
+      "arm_order": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "query_id": "q10",
+      "arm_order": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "query_id": "q11",
+      "arm_order": [
+        "B",
+        "A"
+      ]
+    },
+    {
+      "query_id": "q12",
+      "arm_order": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "query_id": "q13",
+      "arm_order": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "query_id": "q14",
+      "arm_order": [
+        "B",
+        "A"
+      ]
+    },
+    {
+      "query_id": "q15",
+      "arm_order": [
+        "A",
+        "B"
+      ]
+    },
+    {
+      "query_id": "q16",
+      "arm_order": [
+        "A",
+        "B"
+      ]
+    }
+  ],
+  "git_commit": "fbda533f9f97f92df2b564d862cecb3eac007e1f",
+  "source_sha256": {
+    "app/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "app/api/chat.py": "0123749919b2dab139057ec973cf9bcdc4f9082bd93b0a66ae0d4a46658d92c3",
+    "app/api/documents.py": "d000fc930bf09d0b738da7b76080d237b6eb104931bf1d98f75eda2d58cc51d2",
+    "app/core/config.py": "563ad62f0d0a931ba20af84c90830d6196521118437e604586d53ab802f2376b",
+    "app/core/dependencies.py": "eeff93aa4a36f3999df47e46360f5496fbc171e5fb24ec75ba2c59582ad57c00",
+    "app/main.py": "e3a19a9f6b6dd98a714f61ff39747e00088d125d747952bde3b9fdaf0d5f910d",
+    "app/models/domain.py": "0ec83136483af6929dc1ea4eddfb512e6fc45c2ed93a2dcc720a5452820550ab",
+    "app/models/schemas.py": "3f601f10a0461f9696f818c0ec4e2cb182132dbb3268c58e65bf5643f59b6f85",
+    "app/repositories/vector_store.py": "df1adf9a661dc10f71efb42932f03eca5b62651eee3e55445a28c66308379d90",
+    "app/services/evaluation.py": "671325b50aa9cde27c368eddf3d888fedf2b708a58759502d5e982b693158de1",
+    "app/services/generation.py": "bfcefb36138b8401be3110431e35ff2a0243c708df77595d2e09c124e1724991",
+    "app/services/ingestion.py": "bc91e69afcf002d73014954150b6d3797d11425bd8f54329fd9d0172ebf78b1e",
+    "app/services/reranking.py": "6a0be132411fd35941a8bbed1aa644c7c4b102289aec766db7de2c3e72fa8896",
+    "app/services/retrieval.py": "bfa0c814a4871477d4f7b6a502f702b11d6c3bca61f1df2659bcf185c791d2de",
+    "evaluation/comparison_artifacts.py": "7f2b3fc25f4b10e7ec16cd0bdd0be6c85e945560d9ee2c7751f83e62e7bc42d0",
+    "evaluation/freeze_synthetic_benchmark.py": "cda5b3f54e6078fe26dc581fbc57fd83ec2e7a6582f2242d9c72dcd2185075c3",
+    "evaluation/metrics/custom_metrics.py": "01cac06c1494a0b6686afededa15f3ebd1a49797fd6263939c026796f3758493",
+    "evaluation/run_comparison.py": "382a53f0feaab47e76cb84139c92b67f59b767a3e6c5634bed17de5314f3418d",
+    "evaluation/run_eval.py": "41cdf52b01998ff81a03dd6b7ad961e0fabaa58ae0149810cbfa66b8c83c68ee"
+  },
+  "limitations": [
+    "Synthetic, tiny corpus with repetitive distractors; not representative of real PDF QA.",
+    "Questions share evidence and are not independent samples; no general population inference.",
+    "No historical scores are targets or accepted evidence.",
+    "Groq hosted model weights/backends cannot be pinned; temperature zero is not a determinism guarantee.",
+    "B includes the production score threshold and context-count floor; this is the reranker policy effect, not isolated sorting alone.",
+    "Embedded Qdrant exact search does not measure Qdrant Cloud ANN approximation behavior."
+  ],
+  "embedding": {
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "actual_dimension": 384,
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "document_encode_kwargs": {},
+    "query_encode_kwargs": {}
+  },
+  "crossencoder": {
+    "model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "threshold": "best_score - 8.0",
+    "minimum_chunks": 4,
+    "maximum_chunks": 8
+  },
+  "corpus_chunks": 72,
+  "judge_calls": {
+    "network_calls": 224,
+    "cache_hits": 48
+  },
+  "production_sources_unchanged": true,
+  "failed_arms": 9,
+  "finished_at": "2026-08-31T09:18:31.389059+00:00",
+  "recovery_started_at": "2026-08-31T09:23:00.639981+00:00",
+  "recovery": {
+    "parent_run_id": "20260831_synthetic_stations_v1_01",
+    "parent_metadata_sha256": "d2a467de60abedefbacebeb6f8b2f6dba69077d09cf21b4dfd06755a08907983",
+    "kind": "Retry failed rate-limited metrics only; same stored answers/candidates, not an independent run.",
+    "script_sha256": "0b0377a3820fcb30c3c599a30d192a8374291c62c2661707f97f5b4e449993df",
+    "retry_limit": 4,
+    "targeted_metrics": [
+      {
+        "query_id": "q12",
+        "arm": "B",
+        "metric": "faithfulness"
+      },
+      {
+        "query_id": "q13",
+        "arm": "A",
+        "metric": "faithfulness"
+      },
+      {
+        "query_id": "q13",
+        "arm": "B",
+        "metric": "faithfulness"
+      },
+      {
+        "query_id": "q14",
+        "arm": "A",
+        "metric": "faithfulness"
+      },
+      {
+        "query_id": "q14",
+        "arm": "B",
+        "metric": "faithfulness"
+      },
+      {
+        "query_id": "q15",
+        "arm": "A",
+        "metric": "faithfulness"
+      },
+      {
+        "query_id": "q15",
+        "arm": "B",
+        "metric": "faithfulness"
+      },
+      {
+        "query_id": "q16",
+        "arm": "A",
+        "metric": "faithfulness"
+      },
+      {
+        "query_id": "q16",
+        "arm": "B",
+        "metric": "faithfulness"
+      }
+    ],
+    "attempted_metrics": [
+      {
+        "query_id": "q12",
+        "arm": "B",
+        "metric": "faithfulness"
+      }
+    ],
+    "daily_quota_exhausted": true,
+    "judge_calls": {
+      "network_calls": 1,
+      "cache_hits": 1
+    }
+  },
+  "recovery_finished_at": "2026-08-31T09:23:18.076753+00:00"
+}

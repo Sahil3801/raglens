@@ -5,6 +5,9 @@ qdrant_db/
 node_modules/
 dist/
 *.pdf
+!rag-saas-backend/evaluation/corpora/synthetic_stations_v1/*.pdf
+rag-saas-backend/evaluation/.work/
+/tmp/eval-deps/
 *.pyc
 .pytest_cache/
 evaluation/results/

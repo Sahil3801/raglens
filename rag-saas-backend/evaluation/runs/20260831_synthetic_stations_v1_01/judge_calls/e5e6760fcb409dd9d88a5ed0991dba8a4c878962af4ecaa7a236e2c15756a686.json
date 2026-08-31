@@ -1,0 +1,73 @@
+{
+  "request": {
+    "prompt": "Given a question and an answer, analyze the complexity of each sentence in the answer. Break down each sentence into one or more fully understandable statements. Ensure that no pronouns are used in any statement.\nPlease return the output in a JSON format that complies with the following schema as specified in JSON Schema:\n{\"description\": \"Structured output for statement generation.\", \"properties\": {\"statements\": {\"description\": \"The generated statements from the answer\", \"items\": {\"type\": \"string\"}, \"title\": \"Statements\", \"type\": \"array\"}}, \"required\": [\"statements\"], \"title\": \"StatementGeneratorOutput\", \"type\": \"object\"}Do not use single quotes in your response but double quotes,properly escaped with a backslash.\n\n--------EXAMPLES-----------\nExample 1\nInput: {\n    \"question\": \"Who was Albert Einstein and what is he best known for?\",\n    \"answer\": \"He was a German-born theoretical physicist, widely acknowledged to be one of the greatest and most influential physicists of all time. He was best known for developing the theory of relativity, he also made important contributions to the development of the theory of quantum mechanics.\"\n}\nOutput: {\n    \"statements\": [\n        \"Albert Einstein was a German-born theoretical physicist.\",\n        \"Albert Einstein is recognized as one of the greatest and most influential physicists of all time.\",\n        \"Albert Einstein was best known for developing the theory of relativity.\",\n        \"Albert Einstein made important contributions to the development of the theory of quantum mechanics.\"\n    ]\n}\n-----------------------------\n\nNow perform the same with the following input\ninput: {\n    \"question\": \"Where should completed archive housekeeping work at Borealis station be recorded?\",\n    \"answer\": \"Completed archive housekeeping work at Borealis station should be recorded in the inventory ledger.\"\n}\nOutput: ",
+    "response_schema": {
+      "description": "Structured output for statement generation.",
+      "properties": {
+        "statements": {
+          "description": "The generated statements from the answer",
+          "items": {
+            "type": "string"
+          },
+          "title": "Statements",
+          "type": "array"
+        }
+      },
+      "required": [
+        "statements"
+      ],
+      "title": "StatementGeneratorOutput",
+      "type": "object"
+    },
+    "judge": {
+      "model": "openai/gpt-oss-120b",
+      "provider": "groq_openai_compatible",
+      "temperature": 0,
+      "max_tokens": 4096,
+      "seed": 20260831,
+      "transport_max_retries": 2,
+      "timeout_seconds": 60,
+      "resolved_model_args": {
+        "temperature": 0,
+        "top_p": 0.1,
+        "max_tokens": 4096,
+        "seed": 20260831
+      },
+      "adapter": "InstructorLLM"
+    },
+    "kwargs": {}
+  },
+  "response": {
+    "statements": [
+      "Completed archive housekeeping work at Borealis station should be recorded in the inventory ledger."
+    ]
+  },
+  "provider_metadata": {
+    "id": "chatcmpl-6794ef98-ec11-434d-8dd3-30b3a7f15241",
+    "model": "openai/gpt-oss-120b",
+    "created": 1788167865,
+    "system_fingerprint": "fp_47082602e2",
+    "usage": {
+      "completion_tokens": 165,
+      "prompt_tokens": 616,
+      "total_tokens": 781,
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": null,
+        "audio_tokens": 0,
+        "reasoning_tokens": 134,
+        "rejected_prediction_tokens": null
+      },
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cache_write_tokens": null,
+        "cached_tokens": 0
+      },
+      "queue_time": 0.313564923,
+      "prompt_time": 0.028268001,
+      "completion_time": 0.344779099,
+      "total_time": 0.3730471
+    }
+  },
+  "completed_at": "2026-08-31T09:17:45.359299+00:00",
+  "elapsed_seconds": 0.7177597999980208
+}

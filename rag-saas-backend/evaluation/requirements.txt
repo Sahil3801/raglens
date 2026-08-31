@@ -1,0 +1,4 @@
+# Install on top of ../requirements.txt; this pin restores the VertexAI module
+# imported by RAGAS 0.4.3. No fake compatibility modules are used by this runner.
+ragas==0.4.3
+langchain-community==0.4.1

@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "queries": 16,
+  "arms": 32,
+  "chunks": 72,
+  "production_source_files_unchanged": 14,
+  "context_precision_scores_recomputed": 24,
+  "faithfulness_scores_recomputed": 23,
+  "answer_relevancy_scores_recomputed": 32,
+  "checks": [
+    "frozen inputs and evidence",
+    "candidate provenance and filtering",
+    "MMR ranks",
+    "production threshold/top-N replay",
+    "promotions and losses",
+    "actual generation prompts/model",
+    "real judge outputs and input hashes",
+    "per-query JSON/CSV and macro/paired aggregates"
+  ],
+  "context_precision_gold_label_disagreements": 5
+}
