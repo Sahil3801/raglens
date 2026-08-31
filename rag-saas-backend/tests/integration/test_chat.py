@@ -1,13 +1,54 @@
+from unittest.mock import MagicMock
 import pytest
-from httpx import AsyncClient, ASGITransport
+from langchain_core.documents import Document
 from app.main import app
+from app.api import chat
+from app.core.dependencies import get_generation_service, get_retrieval_service
 
-@pytest.mark.asyncio
-async def test_chat_endpoint_contract():
-    async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as ac:
-        response = await ac.post("/chat", json={"query": "ping test"})
+REFUSAL = 'I cannot answer this based on the provided document.'
+
+
+def test_chat_endpoint_contract(client):
+    response = client.post('/chat', json={'query': 'Unsupported question'})
     assert response.status_code == 200
-    data = response.json()
-    assert "answer" in data
-    assert "sources" in data
-    assert isinstance(data["sources"], list)
+    assert response.json() == {'answer': REFUSAL, 'sources': []}
+
+
+@pytest.mark.parametrize('filename', [None, 'A & notes.pdf'])
+def test_only_reranked_context_reaches_generation_in_order(client, monkeypatch, filename):
+    candidates = [Document(page_content=f'candidate {i}', metadata={'source_file': 'A & notes.pdf'}) for i in range(40)]
+    selected = [candidates[31], candidates[8], candidates[19], candidates[2]]
+    events = []
+    retriever, generator = MagicMock(), MagicMock()
+    retriever.retrieve.side_effect = lambda *args, **kwargs: events.append('retrieve') or candidates
+    rerank = MagicMock(side_effect=lambda *args: events.append('rerank') or selected)
+    generator.generate_answer.side_effect = lambda *args: events.append('generate') or 'A grounded answer.'
+    app.dependency_overrides[get_retrieval_service] = lambda: retriever
+    app.dependency_overrides[get_generation_service] = lambda: generator
+    monkeypatch.setattr(chat.reranker_service, 'rerank', rerank)
+    request = {'query': 'question'}
+    if filename:
+        request['filter_filename'] = filename
+    response = client.post('/chat', json=request)
+    assert response.status_code == 200
+    assert events == ['retrieve', 'rerank', 'generate']
+    retriever.retrieve.assert_called_once_with('question', filter_filename=filename)
+    rerank.assert_called_once_with('question', candidates)
+    generator.generate_answer.assert_called_once_with('question', selected)
+    assert response.json() == {'answer': 'A grounded answer.', 'sources': [d.page_content for d in selected]}
+
+
+@pytest.mark.parametrize('payload', [{}, {'query': None}, {'query': 123}, {'query': []}])
+def test_invalid_payload_is_422_without_retrieval(client, payload):
+    retriever = MagicMock()
+    app.dependency_overrides[get_retrieval_service] = lambda: retriever
+    assert client.post('/chat', json=payload).status_code == 422
+    retriever.retrieve.assert_not_called()
+
+
+def test_irrelevant_question_refusal_is_not_rewritten(client, repo):
+    repo.add_documents([Document(page_content='Archive boxes have paper labels.', metadata={'source_file': 'archive.pdf'})])
+    response = client.post('/chat', json={'query': 'What is the weather on Mars?'})
+    assert response.json()['answer'] == REFUSAL
+    assert response.json()['sources'] == ['Archive boxes have paper labels.']
+    # Controlled provider response; not proof that a real LLM obeys the prompt.

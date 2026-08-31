@@ -1,0 +1,9 @@
+[run]
+branch = True
+source = app, evaluation
+omit =
+    evaluation/runs/*
+    evaluation/.work/*
+[report]
+show_missing = True
+include_namespace_packages = True

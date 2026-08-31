@@ -1,0 +1,5 @@
+-r requirements.txt
+-r evaluation/requirements.txt
+pytest-cov==7.1.0
+# Archived native-MMR replay intentionally rejects a different storage version.
+qdrant-client==1.19.0

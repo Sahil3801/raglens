@@ -1,5 +1,6 @@
 import os
 import shutil
+import tempfile
 from fastapi import HTTPException, UploadFile
 from pypdf.errors import PdfReadError
 from langchain_community.document_loaders import PyPDFLoader
@@ -27,11 +28,12 @@ class IngestionService:
         Takes an uploaded PDF file, saves it temporarily, extracts its text,
         splits it into chunks, saves it to the vector store, and cleans up.
         """
-        # Define a temporary file path on disk using the uploaded filename
-        temp_file_path = f"./temp_{file.filename}"
+        # Unique server-owned paths prevent same-name uploads from overwriting
+        # each other or files already present in the working directory.
+        descriptor, temp_file_path = tempfile.mkstemp(prefix="raglens-upload-", suffix=".pdf")
         try:
             # Step 1: Save the uploaded file to disk temporarily so the loader can read it
-            with open(temp_file_path, "wb") as buffer:
+            with os.fdopen(descriptor, "wb") as buffer:
                 shutil.copyfileobj(file.file, buffer)
 
             # Step 2: Load the PDF document and extract pages into LangChain Document objects

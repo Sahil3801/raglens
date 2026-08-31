@@ -78,19 +78,24 @@ class VectorStoreRepository:
         return retriever.invoke(query)
 
     def list_unique_source_files(self) -> List[str]:
-        records, _ = self.client.scroll(
-            collection_name=settings.QDRANT_COLLECTION,
-            with_payload=["metadata"],
-            limit=1000
-        )
         files: Set[str] = set()
-        for record in records:
-            if (
-                record.payload 
-                and "metadata" in record.payload 
-                and "source_file" in record.payload["metadata"]
-            ):
-                files.add(record.payload["metadata"]["source_file"])
+        offset = None
+        while True:
+            records, offset = self.client.scroll(
+                collection_name=settings.QDRANT_COLLECTION,
+                with_payload=["metadata"],
+                limit=1000,
+                offset=offset,
+            )
+            for record in records:
+                if (
+                    record.payload
+                    and "metadata" in record.payload
+                    and "source_file" in record.payload["metadata"]
+                ):
+                    files.add(record.payload["metadata"]["source_file"])
+            if offset is None:
+                break
         return sorted(list(files))
 
     def delete_by_source_file(self, filename: str) -> None:

@@ -6,6 +6,7 @@ function App() {
   const [answer, setAnswer] = useState("");
   const [documents, setDocuments] = useState<string[]>([]);
   const [uploading, setUploading] = useState(false);
+  const [asking, setAsking] = useState(false);
   const [error, setError] = useState("");
 
   // NEW: State to track which document is currently selected for filtering
@@ -37,6 +38,7 @@ function App() {
   const handleFileUpload = async (
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
+    const fileInput = event.currentTarget;
     const file = event.target.files?.[0];
     if (!file) return;
 
@@ -59,6 +61,7 @@ function App() {
       setError(errorMessage(error));
     } finally {
       setUploading(false);
+      fileInput.value = "";
     }
   };
 
@@ -80,7 +83,8 @@ function App() {
   };
 
   const handleAsk = async () => {
-    if (!query) return;
+    if (!query.trim() || asking) return;
+    setAsking(true);
     setError("");
     setAnswer("Thinking...");
 
@@ -101,6 +105,8 @@ function App() {
       console.error("Chat failed:", error);
       setAnswer("");
       setError(errorMessage(error));
+    } finally {
+      setAsking(false);
     }
   };
 
@@ -251,6 +257,7 @@ function App() {
           />
           <button
             onClick={handleAsk}
+            disabled={asking}
             style={{
               padding: "10px 20px",
               backgroundColor: "#10b981",

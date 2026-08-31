@@ -11,3 +11,6 @@ rag-saas-backend/evaluation/.work/
 *.pyc
 .pytest_cache/
 evaluation/results/
+.coverage
+rag-saas-backend/tests/.artifacts/
+rag-saas-frontend/coverage/
