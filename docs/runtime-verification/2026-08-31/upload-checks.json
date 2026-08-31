@@ -1,0 +1,30 @@
+[
+  {
+    "case": "malformed_pdf",
+    "endpoint": "/upload",
+    "status": 400,
+    "body": {
+      "detail": "The uploaded PDF could not be read."
+    },
+    "cors_origin": "http://127.0.0.1:5173"
+  },
+  {
+    "case": "textless_pdf",
+    "endpoint": "/upload",
+    "status": 400,
+    "body": {
+      "detail": "The PDF contains no extractable text. OCR is not supported."
+    },
+    "cors_origin": "http://127.0.0.1:5173"
+  },
+  {
+    "case": "modular_upload_special_filename",
+    "endpoint": "/documents/upload",
+    "status": 200,
+    "body": {
+      "filename": "raglens_runtime_20260831_special # &.pdf",
+      "message": "Document successfully uploaded and indexed!"
+    },
+    "cors_origin": "http://127.0.0.1:5173"
+  }
+]

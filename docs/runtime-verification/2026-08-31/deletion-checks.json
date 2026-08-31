@@ -1,0 +1,18 @@
+[
+  {
+    "case": "deleted_document_not_retrievable",
+    "documents_after_deletion": [
+      "raglens_runtime_20260831_aurora.pdf"
+    ],
+    "status": 200,
+    "answer": "I cannot answer this based on the provided document.",
+    "sources_count": 0
+  },
+  {
+    "case": "empty_corpus_after_cleanup",
+    "documents_after_deletion": [],
+    "status": 200,
+    "answer": "I cannot answer this based on the provided document.",
+    "sources_count": 0
+  }
+]

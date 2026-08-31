@@ -1,0 +1,30 @@
+[
+  {
+    "case": "empty",
+    "status": 200,
+    "answer": "I cannot answer this based on the provided document.",
+    "sources_count": 8,
+    "seconds": 2.77
+  },
+  {
+    "case": "whitespace",
+    "status": 200,
+    "answer": "I cannot answer this based on the provided document.",
+    "sources_count": 8,
+    "seconds": 2.61
+  },
+  {
+    "case": "irrelevant",
+    "status": 200,
+    "answer": "I cannot answer this based on the provided document.",
+    "sources_count": 8,
+    "seconds": 3.01
+  },
+  {
+    "case": "missing_document",
+    "status": 200,
+    "answer": "I cannot answer this based on the provided document.",
+    "sources_count": 0,
+    "seconds": 1.78
+  }
+]

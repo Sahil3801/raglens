@@ -13,6 +13,8 @@ class Settings(BaseSettings):
     QDRANT_URL: str = ""
     QDRANT_API_KEY: str = ""
     QDRANT_COLLECTION: str = "my_documents"
+    # Opt-in embedded Qdrant for local development; cloud mode remains the default.
+    QDRANT_PATH: str = ""
     
     # Retrieval Configuration
     RETRIEVER_K: int = 40

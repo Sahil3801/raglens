@@ -1,0 +1,142 @@
+{
+  "kind": "runtime_smoke_verification_not_evaluation",
+  "timestamp_utc": "2026-08-31T07:28:23.667409+00:00",
+  "python": "3.13.14",
+  "packages": {
+    "langchain-qdrant": "1.1.0",
+    "qdrant-client": "1.19.0",
+    "sentence-transformers": "5.7.0",
+    "langchain-groq": "1.1.3",
+    "pypdf": "6.16.1"
+  },
+  "config": {
+    "GROQ_MODEL": "openai/gpt-oss-20b",
+    "QDRANT_COLLECTION": "raglens_runtime_probe_20260831",
+    "CHUNK_SIZE": 800,
+    "CHUNK_OVERLAP": 200,
+    "RETRIEVER_K": 40,
+    "RETRIEVER_FETCH_K": 60,
+    "RERANKER_TOP_N": 8
+  },
+  "qdrant_mode": "embedded_local",
+  "documents": [
+    {
+      "filename": "raglens_runtime_20260831_aurora.pdf",
+      "sha256": "cb3874b5a59366d1bc687b7ba47e77704cab9457e67da9573194ca0d9fedaf82"
+    },
+    {
+      "filename": "raglens_runtime_20260831_borealis.pdf",
+      "sha256": "6f61c0ab99d6894e2b981ad86efc76edff2929dbc50bb4b6c06e489bf7b28bfa"
+    }
+  ],
+  "query": "List the maintenance access code and inspection interval for both Aurora station and Borealis station.",
+  "actual_embedding_dimension": 384,
+  "stored_points": 72,
+  "stored_vector_dimensions": [
+    384
+  ],
+  "chunks_by_file": {
+    "raglens_runtime_20260831_aurora.pdf": 36,
+    "raglens_runtime_20260831_borealis.pdf": 36
+  },
+  "chunk_character_lengths": {
+    "min": 417,
+    "max": 507
+  },
+  "page_metadata_preserved": true,
+  "temporary_upload_files_removed": true,
+  "candidate_search": {
+    "requested": 60,
+    "actual_count": 60
+  },
+  "mmr": {
+    "requested_k": 40,
+    "candidate_limit": 60,
+    "diversity": 0.5,
+    "returned": 40
+  },
+  "crossencoder": {
+    "model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "scored_pairs": 40,
+    "scores": [
+      7.351415157318115,
+      2.597966432571411,
+      6.906831741333008,
+      3.054457902908325,
+      2.944343090057373,
+      2.9024343490600586,
+      3.037902355194092,
+      2.930844306945801,
+      2.781266212463379,
+      3.0370144844055176,
+      2.950739860534668,
+      3.0760250091552734,
+      2.8614251613616943,
+      3.0089001655578613,
+      3.032862901687622,
+      2.9490270614624023,
+      3.254605293273926,
+      3.061953544616699,
+      2.8752825260162354,
+      2.944227695465088,
+      2.984628677368164,
+      3.0724172592163086,
+      2.958189010620117,
+      3.2485084533691406,
+      3.0657944679260254,
+      3.0606863498687744,
+      2.98506498336792,
+      3.279146671295166,
+      2.95065975189209,
+      3.063776969909668,
+      2.923217296600342,
+      2.9527435302734375,
+      3.059816837310791,
+      2.945486545562744,
+      2.9544293880462646,
+      3.0342249870300293,
+      3.065894603729248,
+      2.960034132003784,
+      2.6800918579101562,
+      2.534437656402588
+    ]
+  },
+  "llm_context_chunks": 8,
+  "selected_sources": [
+    {
+      "filename": "raglens_runtime_20260831_aurora.pdf",
+      "page": 0
+    },
+    {
+      "filename": "raglens_runtime_20260831_borealis.pdf",
+      "page": 0
+    },
+    {
+      "filename": "raglens_runtime_20260831_aurora.pdf",
+      "page": 7
+    },
+    {
+      "filename": "raglens_runtime_20260831_aurora.pdf",
+      "page": 6
+    },
+    {
+      "filename": "raglens_runtime_20260831_aurora.pdf",
+      "page": 2
+    },
+    {
+      "filename": "raglens_runtime_20260831_aurora.pdf",
+      "page": 5
+    },
+    {
+      "filename": "raglens_runtime_20260831_aurora.pdf",
+      "page": 4
+    },
+    {
+      "filename": "raglens_runtime_20260831_aurora.pdf",
+      "page": 33
+    }
+  ],
+  "answer": "- **Aurora Station**: maintenance access code **AMBER‑731**; inspection interval **17 days**.  \n- **Borealis Station**: maintenance access code **COBALT‑482**; inspection interval **29 days**.",
+  "status": "completed",
+  "remaining_points_after_cleanup": 0
+}

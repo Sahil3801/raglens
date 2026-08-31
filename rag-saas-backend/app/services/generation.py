@@ -6,13 +6,19 @@ from langchain_core.output_parsers import StrOutputParser
 from app.core.config import settings
 
 class GenerationService:
+    """
+    Service responsible for interacting with the LLM (via Groq), 
+    formatting retrieved document chunks into context, and generating grounded answers.
+    """
     def __init__(self):
+        # Initialize the ChatGroq LLM client using settings for model name, temperature, and API key
         self.llm = ChatGroq(
             model_name=settings.GROQ_MODEL,
-            temperature=0,
+            temperature=0,  # Temperature set to 0 for deterministic, factual, non-creative responses
             api_key=settings.GROQ_API_KEY
         )
         
+        # Define a strict system prompt enforcing document-grounded behavior and anti-hallucination rules
         system_prompt = (
             "You are a strict, document-grounded retrieval assistant.\n"
             "Your ONLY purpose is to answer questions using information explicitly supported by the provided Context.\n"
@@ -25,27 +31,37 @@ class GenerationService:
             "5. If the user asks for a summary, construct the best possible summary using ONLY the provided chunks. "
             "Do not apologize or state what you cannot do; just provide the synthesized information directly.\n\n"
             "Context:\n{context}"
-
         )
         
+        # Build a chat prompt template combining the system instructions (with context placeholder) and the human input query
         self.prompt = ChatPromptTemplate.from_messages([
             ("system", system_prompt),
             ("human", "{input}"),
         ])
 
     def generate_answer(self, query: str, documents: List[Document]) -> str:
+        """
+        Takes a user query and a list of retrieved documents, formats them into a single context string,
+        and invokes the LLM chain to produce a grounded response.
+        """
+        # Step 1: Format and bundle the retrieved documents into a single text block with clear source boundaries
         context_parts = []
         for doc in documents:
             source_name = doc.metadata.get("source_file", "Unknown Document")
             context_parts.append(
                 f"--- CHUNK FROM {source_name} ---\n{doc.page_content}\n--- END CHUNK ---"
             )
+        # Join all chunks together with double newlines
         context_text = "\n\n".join(context_parts)
 
+        # Step 2: Create a LangChain LCEL (LangChain Expression Language) pipeline: Prompt -> LLM -> String Output Parser
         chain = self.prompt | self.llm | StrOutputParser()
+        
+        # Step 3: Invoke the chain with the user query and the compiled context text, returning the raw string output
         return chain.invoke({
             "input": query,
             "context": context_text
         })
 
+# Instantiate a global singleton service object to be imported across the application API routes
 generation_service = GenerationService()

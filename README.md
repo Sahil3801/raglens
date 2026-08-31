@@ -6,6 +6,8 @@ The system uses vector search, MMR retrieval, CrossEncoder reranking, and a grou
 
 > **Note:** This project is currently demonstrated locally. Screenshots and a short demo video are provided to showcase the complete working pipeline.
 
+For the verified local setup, environment variables, and runtime limitations, see [Local runtime setup](docs/LOCAL_RUNTIME.md) and the [2026-08-31 runtime verification report](docs/runtime-verification/2026-08-31/REPORT.md). The runtime checks are not a RAGAS comparison or evidence for resume quality metrics.
+
 ---
 
 ## 🎥 Demo
@@ -243,10 +245,10 @@ evaluation-first-rag/
 
 Before running the project locally, make sure you have:
 
-- Python 3.9+
-- Node.js 18+
+- Python 3.13 (verified with 3.13.14)
+- Node.js 22.13+ in the 22.x series (verified with 22.17.1)
 - A Groq API key
-- A Qdrant Cloud instance and API credentials
+- A reachable Qdrant Cloud instance and API credentials, or embedded local Qdrant via `QDRANT_PATH`
 
 ---
 
@@ -312,14 +314,18 @@ Example:
 
 ```env
 GROQ_API_KEY=your_groq_api_key
-GROQ_MODEL=llama-3.1-8b-instant
+GROQ_MODEL=openai/gpt-oss-20b
 
 QDRANT_URL=your_qdrant_url
 QDRANT_API_KEY=your_qdrant_api_key
 QDRANT_COLLECTION=my_documents
+# Optional local mode: set a path to avoid using Qdrant Cloud.
+# QDRANT_PATH=./qdrant_db
 ```
 
 > **Warning:** Never commit API keys or `.env` files to GitHub. Make sure it is included in your `.gitignore`.
+
+Select a Groq model available to your account. During the runtime check, the historical code default `llama-3.1-8b-instant` returned HTTP 404; `openai/gpt-oss-20b` worked when explicitly configured. No evaluation results are comparable across that model change without a new controlled experiment.
 
 ---
 

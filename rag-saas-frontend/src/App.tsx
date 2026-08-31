@@ -1,32 +1,34 @@
 import React, { useState, useEffect } from "react";
+import { apiRequest, errorMessage } from "./api";
 
 function App() {
   const [query, setQuery] = useState("");
   const [answer, setAnswer] = useState("");
   const [documents, setDocuments] = useState<string[]>([]);
   const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState("");
 
   // NEW: State to track which document is currently selected for filtering
   const [selectedDocument, setSelectedDocument] = useState<string | null>(null);
 
   const fetchDocuments = async () => {
     try {
-      const res = await fetch("http://127.0.0.1:8000/documents");
-      const data = await res.json();
+      const data = await apiRequest<{ documents: string[] }>("/documents");
       setDocuments(data.documents);
     } catch (error) {
       console.error("Failed to fetch documents:", error);
+      setError(errorMessage(error));
     }
   };
 
   useEffect(() => {
     const loadInitialData = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:8000/documents");
-        const data = await res.json();
+        const data = await apiRequest<{ documents: string[] }>("/documents");
         setDocuments(data.documents);
       } catch (error) {
         console.error("Failed to load initial documents:", error);
+        setError(errorMessage(error));
       }
     };
     loadInitialData();
@@ -39,11 +41,12 @@ function App() {
     if (!file) return;
 
     setUploading(true);
+    setError("");
     const formData = new FormData();
     formData.append("file", file);
 
     try {
-      await fetch("http://127.0.0.1:8000/upload", {
+      await apiRequest("/upload", {
         method: "POST",
         body: formData,
       });
@@ -53,14 +56,16 @@ function App() {
       setSelectedDocument(file.name);
     } catch (error) {
       console.error("Upload failed:", error);
+      setError(errorMessage(error));
     } finally {
       setUploading(false);
     }
   };
 
   const handleDelete = async (filename: string) => {
+    setError("");
     try {
-      await fetch(`http://127.0.0.1:8000/documents/${filename}`, {
+      await apiRequest(`/documents/${encodeURIComponent(filename)}`, {
         method: "DELETE",
       });
       // If we delete the currently selected document, clear the selection
@@ -70,11 +75,13 @@ function App() {
       await fetchDocuments();
     } catch (error) {
       console.error("Delete failed:", error);
+      setError(errorMessage(error));
     }
   };
 
   const handleAsk = async () => {
     if (!query) return;
+    setError("");
     setAnswer("Thinking...");
 
     // NEW: Dynamically build the payload based on whether a document is selected
@@ -84,16 +91,16 @@ function App() {
     }
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/chat", {
+      const data = await apiRequest<{ answer: string; sources: string[] }>("/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      const data = await res.json();
       setAnswer(data.answer);
     } catch (error) {
       console.error("Chat failed:", error);
-      setAnswer("Failed to connect to the server.");
+      setAnswer("");
+      setError(errorMessage(error));
     }
   };
 
@@ -217,6 +224,7 @@ function App() {
         <h1 style={{ fontSize: "24px", marginBottom: "5px" }}>
           Evaluation-First RAG
         </h1>
+        {error && <p role="alert" style={{ color: "#b91c1c" }}>{error}</p>}
 
         {/* NEW: Visual indicator of current mode */}
         <p style={{ color: "#6b7280", marginBottom: "20px", fontSize: "14px" }}>

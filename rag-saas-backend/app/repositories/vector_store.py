@@ -1,4 +1,5 @@
 from typing import List, Set
+from threading import Lock
 from langchain_core.documents import Document
 from langchain_huggingface import HuggingFaceEmbeddings
 # from langchain_huggingface import HuggingFaceEndpointEmbeddings
@@ -11,11 +12,17 @@ from app.core.config import settings
 class VectorStoreRepository:
     def __init__(self):
         # 1. Initialize the Qdrant connection first
-        self.client = QdrantClient(
-            url=settings.QDRANT_URL,
-            api_key=settings.QDRANT_API_KEY,
-            timeout=60.0 # Keep your timeout fix!
-        )
+        if settings.QDRANT_PATH:
+            self.client = QdrantClient(
+                path=settings.QDRANT_PATH,
+                force_disable_check_same_thread=True,
+            )
+        else:
+            self.client = QdrantClient(
+                url=settings.QDRANT_URL,
+                api_key=settings.QDRANT_API_KEY,
+                timeout=60.0,
+            )
 
         self.embeddings = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
         
@@ -38,11 +45,13 @@ class VectorStoreRepository:
                 ),
             )
             # Create the required keyword index for fast filtering and deletion
-            self.client.create_payload_index(
-                collection_name=settings.QDRANT_COLLECTION,
-                field_name="metadata.source_file",
-                field_schema=models.PayloadSchemaType.KEYWORD,
-            )
+            # Embedded Qdrant supports filtering but does not use payload indexes.
+            if not settings.QDRANT_PATH:
+                self.client.create_payload_index(
+                    collection_name=settings.QDRANT_COLLECTION,
+                    field_name="metadata.source_file",
+                    field_schema=models.PayloadSchemaType.KEYWORD,
+                )
 
     def add_documents(self, documents: List[Document]) -> None:
         if documents:
@@ -100,9 +109,12 @@ class VectorStoreRepository:
 # vector_store_repo = VectorStoreRepository()
 
 _vector_store_repo = None
+_vector_store_lock = Lock()
 
 def get_vector_store_repo() -> VectorStoreRepository:
     global _vector_store_repo
     if _vector_store_repo is None:
-        _vector_store_repo = VectorStoreRepository()
+        with _vector_store_lock:
+            if _vector_store_repo is None:
+                _vector_store_repo = VectorStoreRepository()
     return _vector_store_repo
