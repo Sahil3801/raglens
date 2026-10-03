@@ -82,3 +82,26 @@ def test_citations_carry_file_and_one_based_page(client, monkeypatch):
         {'source_file': 'manual.pdf', 'page': 5, 'text': 'Valve spec'},
         {'source_file': 'Unknown', 'page': None, 'text': 'Loose text'},
     ]
+
+
+def test_chat_without_groq_key_is_a_clear_503(client, monkeypatch):
+    from app.core.config import settings
+    app.dependency_overrides.pop(get_generation_service)
+    retriever = MagicMock()
+    app.dependency_overrides[get_retrieval_service] = lambda: retriever
+    monkeypatch.setattr(settings, 'GROQ_API_KEY', '')
+    response = client.post('/chat', json={'query': 'question'})
+    assert response.status_code == 503
+    assert response.json()['detail'] == 'GROQ_API_KEY is not configured on the server.'
+
+
+def test_app_imports_without_groq_key_or_models():
+    # Regression: the server must start (health, upload, list, delete) with no Groq key.
+    import os, subprocess, sys
+    from pathlib import Path
+    env = {**os.environ, 'GROQ_API_KEY': '', 'HF_HUB_OFFLINE': '1'}
+    code = 'import app.main; print("ok")'
+    result = subprocess.run([sys.executable, '-c', code], cwd=Path(__file__).resolve().parents[2],
+                            env=env, capture_output=True, text=True, timeout=120)
+    assert result.returncode == 0, result.stderr
+    assert result.stdout.strip() == 'ok'
