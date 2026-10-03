@@ -1,0 +1,44 @@
+# Full stack: Qdrant server, FastAPI backend and the built React frontend.
+#   cp rag-saas-backend/.env.example rag-saas-backend/.env   # set GROQ_API_KEY
+#   docker compose up --build
+# Frontend: http://localhost:5173   API docs: http://localhost:8000/docs
+services:
+  qdrant:
+    image: qdrant/qdrant:v1.19.0
+    volumes:
+      - qdrant_data:/qdrant/storage
+    restart: unless-stopped
+
+  backend:
+    build: ./rag-saas-backend
+    env_file:
+      - path: ./rag-saas-backend/.env
+        required: false
+    environment:
+      # Use the Qdrant server above instead of embedded or cloud storage.
+      QDRANT_URL: http://qdrant:6333
+      QDRANT_API_KEY: ""
+      QDRANT_PATH: ""
+      CORS_ORIGINS: http://localhost:5173,http://127.0.0.1:5173
+    volumes:
+      - hf_cache:/app/.cache/huggingface
+    ports:
+      - "8000:8000"
+    depends_on:
+      - qdrant
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./rag-saas-frontend
+      args:
+        VITE_API_BASE_URL: http://localhost:8000
+    ports:
+      - "5173:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  qdrant_data:
+  hf_cache:

@@ -44,3 +44,25 @@ jobs:
       - run: npm run lint
       - run: npm test
       - run: npm run build
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and start the stack
+        run: docker compose up --build --detach
+      - name: Smoke test (no Groq key needed)
+        run: |
+          set -euo pipefail
+          for i in $(seq 1 60); do curl -fsS http://localhost:8000/health && break; sleep 2; done
+          curl -fsS -o /dev/null http://localhost:5173/
+          curl -fsS -o /dev/null http://localhost:8000/docs
+          # Upload, list and delete a real PDF: exercises embeddings and the Qdrant server.
+          pdf=rag-saas-backend/evaluation/corpora/synthetic_stations_v1/raglens_runtime_20260831_aurora.pdf
+          curl -fsS -F "file=@${pdf}" http://localhost:8000/documents/upload
+          curl -fsS http://localhost:8000/documents | grep -q raglens_runtime_20260831_aurora.pdf
+          curl -fsS -X DELETE http://localhost:8000/documents/raglens_runtime_20260831_aurora.pdf
+          test "$(curl -fsS http://localhost:8000/documents)" = '{"documents":[]}'
+      - name: Logs on failure
+        if: failure()
+        run: docker compose logs

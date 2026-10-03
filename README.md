@@ -256,6 +256,23 @@ Before running the project locally, make sure you have:
 
 ## 🚀 Running Locally
 
+### With Docker (recommended)
+
+Runs Qdrant, the FastAPI backend and the built frontend together:
+
+```bash
+cp rag-saas-backend/.env.example rag-saas-backend/.env   # then set GROQ_API_KEY
+docker compose up --build
+```
+
+- Frontend: `http://localhost:5173`
+- Swagger Documentation: `http://localhost:8000/docs`
+- Health check: `http://localhost:8000/health`
+
+The embedding and reranker models download on first use and are cached in a Docker volume. To bake them into the backend image instead, build with `--build-arg PRELOAD_MODELS=1`.
+
+To deploy the frontend on another domain, rebuild it with `VITE_API_BASE_URL` pointing at the deployed API, and add that frontend's origin to the backend's `CORS_ORIGINS` (comma-separated).
+
 ### Backend
 
 Navigate to the backend directory:
@@ -323,6 +340,9 @@ QDRANT_API_KEY=your_qdrant_api_key
 QDRANT_COLLECTION=my_documents
 # Optional local mode: set a path to avoid using Qdrant Cloud.
 # QDRANT_PATH=./qdrant_db
+
+# Browser origins allowed to call the API (comma-separated).
+# CORS_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
 ```
 
 > **Warning:** Never commit API keys or `.env` files to GitHub. Make sure it is included in your `.gitignore`.
@@ -333,7 +353,7 @@ Select a Groq model available to your account. During the runtime check, the his
 
 ## 📌 Current Limitations
 
-- The project is currently demonstrated through local execution rather than a public deployment.
+- The project is containerized (`docker compose up`) but not yet deployed publicly.
 - Embedding models are loaded locally during runtime.
 - Qdrant is used as the vector store.
 - Evaluation coverage can be expanded with additional RAGAS metrics.
