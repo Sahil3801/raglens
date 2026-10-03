@@ -13,6 +13,12 @@ def digest(data):
     return hashlib.sha256(data).hexdigest()
 
 
+def text_digest_matches(data, expected):
+    """Compare a text file's hash independently of LF/CRLF checkout line endings."""
+    lf = data.replace(b'\r\n', b'\n')
+    return expected in {digest(data), digest(lf), digest(lf.replace(b'\n', b'\r\n'))}
+
+
 def write_json(path, data):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
