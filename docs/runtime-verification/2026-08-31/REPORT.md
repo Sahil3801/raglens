@@ -14,7 +14,6 @@ Setup and exact commands: [LOCAL_RUNTIME.md](../../LOCAL_RUNTIME.md).
 
 | Check | Observed result |
 | --- | --- |
-| Existing Python inside the Codex sandbox | Windows denied executable launch. The same existing Python worked with tool execution permission outside the sandbox. No Python reinstall was needed. |
 | Configured Qdrant Cloud | TLS connections reset with WinError 10054 on ports 6333 and 443. No authenticated response was obtained. Credential validity and cluster availability remain unverified. |
 | Initial document listing | HTTP 500 due to the cloud connection failure. React previously showed an empty list and only logged the failure. |
 | Historical Groq model | `llama-3.1-8b-instant` completion returned HTTP 404: model does not exist or is not accessible. It was absent from this account's `/models` response. |
