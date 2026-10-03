@@ -30,8 +30,9 @@ python -m venv venv
 `requirements-test.txt` includes the production dependencies, the existing
 RAGAS/LC-community compatibility pins, coverage support, and the Qdrant version
 required by the archived native-MMR replay. It does not change metric definitions.
-Most other Python dependencies retain the repository's existing version ranges;
-the dated report records the versions actually exercised.
+Direct dependencies in `requirements.txt` are pinned to the versions the suite
+passes with. GitHub Actions (`.github/workflows/ci.yml`) runs the backend and
+frontend checks on every push and pull request.
 
 Run with coverage, including namespace-package files that have no tests:
 
