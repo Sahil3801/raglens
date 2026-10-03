@@ -7,7 +7,7 @@ from app.core.dependencies import get_ingestion_service, get_vector_store_repo
 router = APIRouter(prefix="/documents", tags=["Documents"])
 
 @router.post("/upload", response_model=UploadResponse)
-async def upload_document(
+def upload_document(
     file: UploadFile = File(...),
     ingestion: IngestionService = Depends(get_ingestion_service)
 ):
@@ -18,14 +18,14 @@ async def upload_document(
     )
 
 @router.get("", response_model=DocumentListResponse)
-async def list_documents(
+def list_documents(
     repo: VectorStoreRepository = Depends(get_vector_store_repo)
 ):
     files = repo.list_unique_source_files()
     return DocumentListResponse(documents=files)
 
 @router.delete("/{filename}", response_model=GenericResponse)
-async def delete_document(
+def delete_document(
     filename: str,
     repo: VectorStoreRepository = Depends(get_vector_store_repo)
 ):

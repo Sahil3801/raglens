@@ -1,3 +1,4 @@
+from threading import Lock
 from typing import List
 from langchain_core.documents import Document
 from sentence_transformers import CrossEncoder
@@ -9,8 +10,23 @@ class RerankingService:
     semantic relevance to the user's query using a Cross-Encoder model.
     """
     def __init__(self, model_name: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"):
-        # Initialize the CrossEncoder model (which evaluates query-document pairs simultaneously for higher accuracy)
-        self.encoder = CrossEncoder(model_name)
+        # The CrossEncoder is loaded on first use, so importing the app (and starting
+        # the server) does not download or load the model.
+        self.model_name = model_name
+        self._encoder = None
+        self._encoder_lock = Lock()
+
+    @property
+    def encoder(self) -> CrossEncoder:
+        if self._encoder is None:
+            with self._encoder_lock:
+                if self._encoder is None:
+                    self._encoder = CrossEncoder(self.model_name)
+        return self._encoder
+
+    @encoder.setter
+    def encoder(self, value: CrossEncoder) -> None:
+        self._encoder = value
 
     def rerank(self, query: str, documents: List[Document], top_n: int = None) -> List[Document]:
         """
@@ -57,5 +73,5 @@ class RerankingService:
         # Return the final filtered documents capped at the specified limit
         return filtered_docs[:limit]
 
-# Instantiate a global singleton service object to be imported across the application API routes
+# Global singleton shared by the API routes; cheap to create because the model loads lazily
 reranker_service = RerankingService()

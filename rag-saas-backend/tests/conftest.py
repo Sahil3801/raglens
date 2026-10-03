@@ -25,6 +25,7 @@ from langchain_groq import ChatGroq
 with patch('sentence_transformers.CrossEncoder'), patch('langchain_groq.ChatGroq'):
     from app.main import app
     from app.services import reranking, generation
+    reranking.reranker_service.encoder  # Lazily created while CrossEncoder is still patched.
 reranking.CrossEncoder = CrossEncoder
 generation.ChatGroq = ChatGroq
 
