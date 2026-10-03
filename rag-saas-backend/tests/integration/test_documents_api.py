@@ -14,6 +14,7 @@ def test_upload_list_filter_delete_lifecycle(client, upload_route):
     assert client.get('/documents').json()['documents'] == names
     single = client.post('/chat', json={'query': 'evidence', 'filter_filename': names[0]}).json()
     assert single['sources'] == [names[0] + ' evidence']
+    assert single['citations'] == [{'source_file': names[0], 'page': 1, 'text': names[0] + ' evidence'}]
     global_result = client.post('/chat', json={'query': 'evidence'}).json()
     assert set(global_result['sources']) == {name + ' evidence' for name in names}
     response = client.delete('/documents/' + quote(names[0], safe=''))
