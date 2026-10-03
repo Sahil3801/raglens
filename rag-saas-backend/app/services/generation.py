@@ -1,3 +1,4 @@
+from threading import Lock
 from typing import List
 from langchain_core.documents import Document
 from langchain_groq import ChatGroq
@@ -63,5 +64,24 @@ class GenerationService:
             "context": context_text
         })
 
-# Instantiate a global singleton service object to be imported across the application API routes
-generation_service = GenerationService()
+_generation_service = None
+_generation_service_lock = Lock()
+
+
+def get_shared_generation_service() -> GenerationService:
+    """Shared service, created on first use: the Groq client rejects an empty
+    API key, and the server must still start (upload, list, delete) without one."""
+    global _generation_service
+    if _generation_service is None:
+        with _generation_service_lock:
+            if _generation_service is None:
+                _generation_service = GenerationService()
+    return _generation_service
+
+
+def __getattr__(name):
+    # Keeps `from app.services.generation import generation_service` working
+    # (evaluation scripts) without creating the client at import time.
+    if name == "generation_service":
+        return get_shared_generation_service()
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
