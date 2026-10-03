@@ -7,9 +7,19 @@ from unittest.mock import AsyncMock
 import pytest
 from pydantic import BaseModel, ValidationError
 
-from comparison_artifacts import digest, evidence_scores, export_run, resolve_evidence, summarize, write_json
+from comparison_artifacts import digest, evidence_scores, export_run, resolve_evidence, summarize, text_digest_matches, write_json
 from run_comparison import RecordedJudge, safe_error
 
+
+
+def test_text_digest_ignores_checkout_line_endings_but_not_content():
+    crlf = b'{\r\n  "seed": 1\r\n}\r\n'
+    lf = crlf.replace(b'\r\n', b'\n')
+    # Archived on Windows (CRLF) and checked out on Linux (LF), or vice versa.
+    assert text_digest_matches(lf, digest(crlf))
+    assert text_digest_matches(crlf, digest(lf))
+    assert text_digest_matches(lf, digest(lf))
+    assert not text_digest_matches(lf.replace(b'1', b'2'), digest(crlf))
 
 def test_ranking_metrics_distinguish_equivalent_chunks_from_required_facts():
     # a/b are alternative evidence for fact one; c is required for fact two.
