@@ -47,8 +47,6 @@ $env:HF_HUB_OFFLINE = '1'
 This is the command used for browser verification. API documentation: http://127.0.0.1:8000/docs.
 Use one backend worker for embedded Qdrant. Do not open the same local storage directory from a second process, including pytest or a probe. Use separate paths as shown below.
 
-The Codex sandbox initially denied this machine's Python executable. Running the same existing interpreter with the tool's elevated execution permission succeeded; Python did not need reinstalling. This is a host permission issue, not an application code requirement to run as Administrator.
-
 ## Backend: new environment
 
 From the repository root, with Python 3.13 available:
@@ -140,4 +138,4 @@ $env:PYTHONIOENCODING = 'utf-8'
 
 The probe refuses nonlocal storage, collection names outside its test namespace, and nonempty collections. It deletes the documents it inserts and records the remaining point count. Use synthetic inputs only because source names and the generated answer are saved. The PDF generator uses invariant PDF metadata for repeatable fixture bytes within the same ReportLab version.
 
-For the recorded run, fixture generation used Codex's bundled Python/ReportLab 4.4.9, not an installation into the application virtual environment. The probe itself used the application's Python 3.13.14 and installed application dependencies.
+For the recorded run, fixture generation used a separate Python installation with ReportLab 4.4.9, not an installation into the application virtual environment. The probe itself used the application's Python 3.13.14 and installed application dependencies.
