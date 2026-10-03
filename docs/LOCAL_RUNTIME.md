@@ -61,7 +61,7 @@ if (-not (Test-Path .env)) { Copy-Item .env.example .env }
 .\venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
-If `py` is unavailable, use the absolute path of your Python 3.13 executable. First-time startup needs network access to download both public models. Dependencies remain unpinned in requirements.txt; the recorded runtime trace identifies the versions actually exercised, not a full dependency lock.
+If `py` is unavailable, use the absolute path of your Python 3.13 executable. First-time startup needs network access to download both public models. Direct dependencies are pinned in requirements.txt to the versions the test suite passes with; transitive dependencies are not locked.
 
 ## Cloud mode
 

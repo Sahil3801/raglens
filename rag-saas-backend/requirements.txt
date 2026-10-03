@@ -1,32 +1,35 @@
+# Direct dependencies, pinned to the versions the test suite passes with.
+# Upgrade deliberately: bump a pin, run `pytest tests`, then commit.
+
 # Web Framework
-fastapi
-uvicorn
-python-multipart
+fastapi==0.142.2
+uvicorn==0.54.0
+python-multipart==0.0.32
 
 # Configuration & Environment
-pydantic
-pydantic-settings
-python-dotenv
+pydantic==2.13.5
+pydantic-settings==2.15.0
+python-dotenv==1.2.4
 
 # LangChain & Vector Store
-langchain
-langchain-community
-langchain-text-splitters
-langchain-qdrant
-langchain-huggingface
-langchain-groq
-qdrant-client
-sentence-transformers
+langchain==1.4.3
+langchain-community==0.4.1
+langchain-text-splitters==1.1.3
+langchain-qdrant==1.1.0
+langchain-huggingface==1.2.2
+langchain-groq==1.1.3
+qdrant-client==1.19.0
+sentence-transformers==6.1.0
 
 # Document Processing
-pypdf
+pypdf==6.19.0
 
 # Evaluation & Data Handling
-ragas
-pandas
-requests
+ragas==0.4.3
+pandas==3.0.6
+requests==2.34.2
 
 # Testing
-pytest
-pytest-asyncio
-httpx
+pytest==9.1.1
+pytest-asyncio==1.4.0
+httpx==0.28.1
