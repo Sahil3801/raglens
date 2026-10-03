@@ -51,5 +51,15 @@ def test_configured_crossencoder_model_is_used(monkeypatch):
     from app.services import reranking
     constructor = MagicMock()
     monkeypatch.setattr(reranking, 'CrossEncoder', constructor)
-    RerankingService()
+    RerankingService().encoder
     constructor.assert_called_once_with('cross-encoder/ms-marco-MiniLM-L-6-v2')
+
+
+def test_crossencoder_is_loaded_lazily_and_only_once(monkeypatch):
+    from app.services import reranking
+    constructor = MagicMock()
+    monkeypatch.setattr(reranking, 'CrossEncoder', constructor)
+    service = RerankingService('test-model')
+    constructor.assert_not_called()  # Creating the service (app import) loads nothing.
+    assert service.encoder is service.encoder
+    constructor.assert_called_once_with('test-model')

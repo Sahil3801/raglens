@@ -52,3 +52,13 @@ def test_irrelevant_question_refusal_is_not_rewritten(client, repo):
     assert response.json()['answer'] == REFUSAL
     assert response.json()['sources'] == ['Archive boxes have paper labels.']
     # Controlled provider response; not proof that a real LLM obeys the prompt.
+
+
+def test_blocking_endpoints_run_off_the_event_loop():
+    # Sync handlers run in FastAPI's threadpool, so model/LLM calls cannot block the loop.
+    import inspect
+    from app.api import documents
+    from app import main
+    for handler in [chat.chat_endpoint, documents.upload_document, documents.list_documents,
+                    documents.delete_document, main.root_upload_compat]:
+        assert not inspect.iscoroutinefunction(handler), handler.__name__

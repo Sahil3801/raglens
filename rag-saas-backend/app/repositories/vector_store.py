@@ -1,5 +1,6 @@
 from typing import List, Set
-from threading import Lock
+from contextlib import nullcontext
+from threading import Lock, RLock
 from langchain_core.documents import Document
 from langchain_huggingface import HuggingFaceEmbeddings
 # from langchain_huggingface import HuggingFaceEndpointEmbeddings
@@ -12,6 +13,9 @@ from app.core.config import settings
 class VectorStoreRepository:
     def __init__(self):
         # 1. Initialize the Qdrant connection first
+        # Endpoints run in FastAPI's threadpool. Embedded (local) Qdrant is not
+        # safe for concurrent use, so its operations are serialized.
+        self._lock = RLock() if settings.QDRANT_PATH else nullcontext()
         if settings.QDRANT_PATH:
             self.client = QdrantClient(
                 path=settings.QDRANT_PATH,
@@ -55,7 +59,8 @@ class VectorStoreRepository:
 
     def add_documents(self, documents: List[Document]) -> None:
         if documents:
-            self.store.add_documents(documents)
+            with self._lock:
+                self.store.add_documents(documents)
 
     def search_mmr(self, query: str, k: int = 8, fetch_k: int = 20, filter_filename: str = None) -> List[Document]:
         # Create a Qdrant filter if a filename is provided
@@ -75,18 +80,20 @@ class VectorStoreRepository:
             search_type="mmr",
             search_kwargs=search_kwargs
         )
-        return retriever.invoke(query)
+        with self._lock:
+            return retriever.invoke(query)
 
     def list_unique_source_files(self) -> List[str]:
         files: Set[str] = set()
         offset = None
         while True:
-            records, offset = self.client.scroll(
-                collection_name=settings.QDRANT_COLLECTION,
-                with_payload=["metadata"],
-                limit=1000,
-                offset=offset,
-            )
+            with self._lock:
+                records, offset = self.client.scroll(
+                    collection_name=settings.QDRANT_COLLECTION,
+                    with_payload=["metadata"],
+                    limit=1000,
+                    offset=offset,
+                )
             for record in records:
                 if (
                     record.payload
@@ -99,17 +106,18 @@ class VectorStoreRepository:
         return sorted(list(files))
 
     def delete_by_source_file(self, filename: str) -> None:
-        self.client.delete(
-            collection_name=settings.QDRANT_COLLECTION,
-            points_selector=models.Filter(
-                must=[
-                    models.FieldCondition(
-                        key="metadata.source_file",
-                        match=models.MatchValue(value=filename)
-                    )
-                ]
+        with self._lock:
+            self.client.delete(
+                collection_name=settings.QDRANT_COLLECTION,
+                points_selector=models.Filter(
+                    must=[
+                        models.FieldCondition(
+                            key="metadata.source_file",
+                            match=models.MatchValue(value=filename)
+                        )
+                    ]
+                )
             )
-        )
 
 # vector_store_repo = VectorStoreRepository()
 

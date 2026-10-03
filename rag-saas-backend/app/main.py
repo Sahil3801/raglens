@@ -1,3 +1,5 @@
+import logging
+
 from fastapi import FastAPI, UploadFile, File, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
@@ -5,6 +7,8 @@ from app.api import chat, documents
 from app.models.schemas import UploadResponse
 from app.services.ingestion import IngestionService
 from app.core.dependencies import get_ingestion_service
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
 
 app = FastAPI(title=settings.PROJECT_NAME)
 
@@ -22,7 +26,7 @@ app.add_middleware(
 
 # Compatibility route for Vite frontends pointing directly to /upload
 @app.post("/upload", response_model=UploadResponse, tags=["Documents"])
-async def root_upload_compat(
+def root_upload_compat(
     file: UploadFile = File(...),
     ingestion: IngestionService = Depends(get_ingestion_service)
 ):
