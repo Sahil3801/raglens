@@ -23,6 +23,7 @@ Keep credentials in that file or the shell, never in frontend variables or commi
 | `EMBEDDING_MODEL` | Declared setting, but currently unused by the repository; the model remains hardcoded to `all-MiniLM-L6-v2`. |
 | `RETRIEVER_K` / `RETRIEVER_FETCH_K` | Defaults `40` / `60`: return up to 40 MMR selections from up to 60 candidates. |
 | `RERANKER_TOP_N` | Default `8`. Existing threshold and minimum-four fallback remain unchanged. |
+| `CORS_ORIGINS` | Comma-separated browser origins allowed to call the API. Default `http://localhost:5173,http://127.0.0.1:5173`. |
 | `PROJECT_NAME` | Optional API display title. |
 | `VITE_API_BASE_URL` | Optional frontend build-time setting, default `http://127.0.0.1:8000`. Never put secrets in any `VITE_` variable. |
 
@@ -98,7 +99,7 @@ npm.cmd run lint
 npm.cmd run preview -- --host 127.0.0.1 --port 5173 --strictPort
 ```
 
-Preview deliberately uses port 5173, matching the existing CORS configuration. A deployed frontend on another origin needs an explicit CORS configuration update. Build-time URL changes require rebuilding.
+Preview deliberately uses port 5173, matching the existing CORS configuration. A deployed frontend on another origin must be added to `CORS_ORIGINS`. Build-time URL changes require rebuilding.
 
 ## Existing tests and ingestion regressions
 

@@ -61,3 +61,10 @@ def test_cors_allows_only_configured_frontend_origins(client, origin, allowed):
                                                'Access-Control-Request-Headers': 'content-type'})
     assert (response.headers.get('access-control-allow-origin') == origin) is allowed
     assert response.status_code == (200 if allowed else 400)
+
+
+def test_health_does_not_need_models_or_qdrant():
+    from fastapi.testclient import TestClient
+    from app.main import app
+    with TestClient(app) as client:
+        assert client.get('/health').json() == {'status': 'ok'}

@@ -1,0 +1,9 @@
+venv/
+.env
+qdrant_db/
+tests/
+evaluation/
+scripts/
+**/__pycache__/
+.pytest_cache/
+.coverage

@@ -15,14 +15,16 @@ app = FastAPI(title=settings.PROJECT_NAME)
 # CORS Configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173"
-    ],
+    allow_origins=settings.cors_origin_list,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.get("/health", tags=["Health"])
+def health():
+    # Liveness only: does not load models or touch Qdrant.
+    return {"status": "ok"}
 
 # Compatibility route for Vite frontends pointing directly to /upload
 @app.post("/upload", response_model=UploadResponse, tags=["Documents"])
