@@ -27,6 +27,13 @@ class Settings(BaseSettings):
     CHUNK_SIZE: int = 800
     CHUNK_OVERLAP: int = 200
 
+    # Comma-separated browser origins allowed to call the API
+    CORS_ORIGINS: str = "http://localhost:5173,http://127.0.0.1:5173"
+
+    @property
+    def cors_origin_list(self) -> list[str]:
+        return [origin.strip() for origin in self.CORS_ORIGINS.split(",") if origin.strip()]
+
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
 settings = Settings()
