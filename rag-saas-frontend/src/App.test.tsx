@@ -161,3 +161,24 @@ it('reports a list-refresh failure after upload', async () => {
   expect(await screen.findByRole('alert')).toHaveTextContent('Refresh failed');
   expect(uploadInput()).toBeEnabled();
 });
+
+it('lists citations with file and page, and clears them on the next question', async () => {
+  const user = await ready(['manual.pdf']);
+  await user.type(screen.getByRole('textbox'), 'Pump pressure?');
+  fetchMock.mockResolvedValueOnce(json({
+    answer: 'It is 4 bar.',
+    sources: ['Pump runs at 4 bar.', 'Loose text'],
+    citations: [
+      { source_file: 'manual.pdf', page: 3, text: 'Pump runs at 4 bar.' },
+      { source_file: 'notes.pdf', page: null, text: 'Loose text' },
+    ],
+  }));
+  await user.click(screen.getByRole('button', { name: 'Ask' }));
+  expect(await screen.findByText('manual.pdf · page 3')).toBeInTheDocument();
+  expect(screen.getByText('notes.pdf')).toBeInTheDocument();
+  expect(screen.getByText('Pump runs at 4 bar.')).toBeInTheDocument();
+  fetchMock.mockResolvedValueOnce(json({ answer: 'No idea.', sources: [] }));
+  await user.click(screen.getByRole('button', { name: 'Ask' }));
+  await screen.findByText('No idea.');
+  expect(screen.queryByText('Sources')).not.toBeInTheDocument();
+});
