@@ -10,7 +10,7 @@ import json
 import math
 from pathlib import Path
 
-from comparison_artifacts import digest, evidence_scores, resolve_evidence, summarize, write_json
+from comparison_artifacts import digest, evidence_scores, resolve_evidence, summarize, text_digest_matches, write_json
 
 
 def read(path):
@@ -39,7 +39,7 @@ def main(args):
     queries = read(run / 'per_query.json')
     chunk_map = {c['chunk_id']: c for c in chunks}
     assert metadata['status'] in ['completed', 'completed_with_failures']
-    assert digest((run / 'manifest.json').read_bytes()) == metadata['manifest_sha256']
+    assert text_digest_matches((run / 'manifest.json').read_bytes(), metadata['manifest_sha256'])
     assert metadata['benchmark'] == manifest
     assert len(queries) == len(manifest['questions'])
     assert len(chunks) == metadata['corpus_chunks'] == len(chunk_map)
