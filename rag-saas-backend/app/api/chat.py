@@ -1,7 +1,7 @@
 import logging
 
 from fastapi import APIRouter, Depends
-from app.models.schemas import ChatRequest, ChatResponse
+from app.models.schemas import ChatRequest, ChatResponse, Citation
 from app.services.retrieval import RetrievalService
 from app.services.generation import GenerationService
 from app.services.reranking import reranker_service
@@ -46,5 +46,16 @@ def chat_endpoint(
 
     return ChatResponse(
         answer=answer,
-        sources=[doc.page_content for doc in reranked_docs]
+        sources=[doc.page_content for doc in reranked_docs],
+        citations=[_citation(doc) for doc in reranked_docs],
+    )
+
+
+def _citation(doc) -> Citation:
+    # PyPDFLoader stores 0-based page indexes; users read 1-based page numbers.
+    page = doc.metadata.get("page")
+    return Citation(
+        source_file=doc.metadata.get("source_file", "Unknown"),
+        page=page + 1 if isinstance(page, int) else None,
+        text=doc.page_content,
     )

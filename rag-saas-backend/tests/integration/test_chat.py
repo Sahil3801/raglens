@@ -11,7 +11,7 @@ REFUSAL = 'I cannot answer this based on the provided document.'
 def test_chat_endpoint_contract(client):
     response = client.post('/chat', json={'query': 'Unsupported question'})
     assert response.status_code == 200
-    assert response.json() == {'answer': REFUSAL, 'sources': []}
+    assert response.json() == {'answer': REFUSAL, 'sources': [], 'citations': []}
 
 
 @pytest.mark.parametrize('filename', [None, 'A & notes.pdf'])
@@ -35,7 +35,11 @@ def test_only_reranked_context_reaches_generation_in_order(client, monkeypatch, 
     retriever.retrieve.assert_called_once_with('question', filter_filename=filename)
     rerank.assert_called_once_with('question', candidates)
     generator.generate_answer.assert_called_once_with('question', selected)
-    assert response.json() == {'answer': 'A grounded answer.', 'sources': [d.page_content for d in selected]}
+    assert response.json() == {
+        'answer': 'A grounded answer.',
+        'sources': [d.page_content for d in selected],
+        'citations': [{'source_file': 'A & notes.pdf', 'page': None, 'text': d.page_content} for d in selected],
+    }
 
 
 @pytest.mark.parametrize('payload', [{}, {'query': None}, {'query': 123}, {'query': []}])
@@ -62,3 +66,19 @@ def test_blocking_endpoints_run_off_the_event_loop():
     for handler in [chat.chat_endpoint, documents.upload_document, documents.list_documents,
                     documents.delete_document, main.root_upload_compat]:
         assert not inspect.iscoroutinefunction(handler), handler.__name__
+
+
+def test_citations_carry_file_and_one_based_page(client, monkeypatch):
+    docs = [Document(page_content='Pump spec', metadata={'source_file': 'manual.pdf', 'page': 0}),
+            Document(page_content='Valve spec', metadata={'source_file': 'manual.pdf', 'page': 4}),
+            Document(page_content='Loose text', metadata={})]
+    retriever = MagicMock()
+    retriever.retrieve.return_value = docs
+    app.dependency_overrides[get_retrieval_service] = lambda: retriever
+    monkeypatch.setattr(chat.reranker_service, 'rerank', lambda query, candidates: candidates)
+    response = client.post('/chat', json={'query': 'specs'})
+    assert response.json()['citations'] == [
+        {'source_file': 'manual.pdf', 'page': 1, 'text': 'Pump spec'},
+        {'source_file': 'manual.pdf', 'page': 5, 'text': 'Valve spec'},
+        {'source_file': 'Unknown', 'page': None, 'text': 'Loose text'},
+    ]

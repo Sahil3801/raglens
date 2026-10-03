@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { apiRequest, errorMessage } from "./api";
 
+type Citation = { source_file: string; page: number | null; text: string };
+type ChatResponse = { answer: string; sources: string[]; citations?: Citation[] };
+
 function App() {
   const [query, setQuery] = useState("");
   const [answer, setAnswer] = useState("");
+  const [citations, setCitations] = useState<Citation[]>([]);
   const [documents, setDocuments] = useState<string[]>([]);
   const [uploading, setUploading] = useState(false);
   const [asking, setAsking] = useState(false);
@@ -87,6 +91,7 @@ function App() {
     setAsking(true);
     setError("");
     setAnswer("Thinking...");
+    setCitations([]);
 
     // NEW: Dynamically build the payload based on whether a document is selected
     const payload: { query: string; filter_filename?: string } = { query };
@@ -95,12 +100,13 @@ function App() {
     }
 
     try {
-      const data = await apiRequest<{ answer: string; sources: string[] }>("/chat", {
+      const data = await apiRequest<ChatResponse>("/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
       setAnswer(data.answer);
+      setCitations(data.citations ?? []);
     } catch (error) {
       console.error("Chat failed:", error);
       setAnswer("");
@@ -283,6 +289,37 @@ function App() {
           >
             <strong>Answer:</strong>
             <p style={{ marginTop: "10px" }}>{answer}</p>
+          </div>
+        )}
+
+        {citations.length > 0 && (
+          <div style={{ marginTop: "20px" }}>
+            <h2 style={{ fontSize: "16px", marginBottom: "10px" }}>Sources</h2>
+            <ol style={{ paddingLeft: "20px", margin: 0 }}>
+              {citations.map((citation, index) => (
+                <li key={index} style={{ marginBottom: "8px", fontSize: "14px" }}>
+                  <details>
+                    <summary style={{ cursor: "pointer" }}>
+                      {citation.source_file}
+                      {citation.page !== null && ` · page ${citation.page}`}
+                    </summary>
+                    <p
+                      style={{
+                        whiteSpace: "pre-wrap",
+                        color: "#4b5563",
+                        backgroundColor: "#f9fafb",
+                        border: "1px solid #e5e7eb",
+                        borderRadius: "5px",
+                        padding: "10px",
+                        marginTop: "6px",
+                      }}
+                    >
+                      {citation.text}
+                    </p>
+                  </details>
+                </li>
+              ))}
+            </ol>
           </div>
         )}
       </div>
