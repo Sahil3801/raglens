@@ -116,3 +116,35 @@ def test_real_pipeline_ranks_the_answering_page_first_with_ordered_scores(monkey
     files_in_context = [part.split(' ---', 1)[0] for part in contexts[0].split('--- CHUNK FROM ')[1:]]
     first_sahil = files_in_context.index('sahil_portfolio.pdf')
     assert set(files_in_context[first_sahil:]) == {'sahil_portfolio.pdf'}  # Omar's chunks grouped first
+
+
+RESUME_CHUNKS = [
+    ('omarPaypalResume.pdf', 1, 'Omar Badr. Software Engineer. San Diego, California. omar@example.com'),
+    ('omarPaypalResume.pdf', 2, 'Experience: Software Engineering Intern at PayPal. Built payment APIs in Java and Spring Boot.'),
+    ('omarPaypalResume.pdf', 3, 'Education: San Diego State University. Bachelor of Science in Computer Science, expected May 2025.'),
+    ('sahilportfoliopage.pdf', 1, 'Sahil Shinde. Portfolio. Projects: a RAG application with FastAPI, Qdrant and React.'),
+    ('sahilportfoliopage.pdf', 2, 'Education: Post Graduate Diploma in Advanced Computing (PG-DAC), C-DAC Pune.'),
+]
+
+
+@pytest.mark.models
+@pytest.mark.parametrize('question,answer_page', [
+    ("what is omar's education", ('omarPaypalResume.pdf', 3)),
+    ('where did omar do his internship', ('omarPaypalResume.pdf', 2)),
+    ("what is sahil's education", ('sahilportfoliopage.pdf', 2)),
+])
+def test_source_headers_effect_on_real_reranker(monkeypatch, question, answer_page):
+    """Measures, with the real CrossEncoder, how a file label changes the ranking."""
+    from sentence_transformers import CrossEncoder
+    from app.services import reranking
+    monkeypatch.setattr(reranking.reranker_service, 'encoder',
+                        CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2', device='cpu', local_files_only=True))
+    docs = [Document(page_content=text, metadata={'source_file': f, 'page': p - 1}) for f, p, text in RESUME_CHUNKS]
+    rank_of_answer = {}
+    for headers in (False, True):
+        ranked = reranking.reranker_service.rerank_with_scores(question, docs, top_n=5, source_headers=headers)
+        rows = [(d.metadata['source_file'], d.metadata['page'] + 1, round(s, 2)) for d, s in ranked]
+        rank_of_answer[headers] = [r[:2] for r in rows].index(answer_page) + 1
+        print(f'{question!r} headers={headers}: {rows}')
+        assert [s for *_, s in rows] == sorted((s for *_, s in rows), reverse=True)
+    print(f'{question!r}: answer page rank without headers={rank_of_answer[False]}, with headers={rank_of_answer[True]}')
