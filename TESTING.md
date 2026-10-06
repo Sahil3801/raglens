@@ -32,7 +32,7 @@ RAGAS/LC-community compatibility pins, coverage support, and the Qdrant version
 required by the archived native-MMR replay. It does not change metric definitions.
 Direct dependencies in `requirements.txt` are pinned to the versions the suite
 passes with. GitHub Actions (`.github/workflows/ci.yml`) runs the backend and
-frontend checks on every push and pull request.
+frontend checks on every pull request and on pushes to `main` (docs-only changes are skipped).
 
 Run with coverage, including namespace-package files that have no tests:
 

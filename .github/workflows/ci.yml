@@ -1,8 +1,19 @@
 name: CI
 
 on:
+  # One run per PR update, plus one on main after merging (not a second run
+  # for every push to a PR branch). Docs-only changes skip CI entirely.
   push:
+    branches: [main]
+    paths-ignore:
+      - "**.md"
+      - "docs/**"
+      - "screenshots/**"
   pull_request:
+    paths-ignore:
+      - "**.md"
+      - "docs/**"
+      - "screenshots/**"
 
 jobs:
   backend:
