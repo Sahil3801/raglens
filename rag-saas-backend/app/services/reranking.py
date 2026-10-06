@@ -30,9 +30,10 @@ class RerankingService:
     def encoder(self, value: CrossEncoder) -> None:
         self._encoder = value
 
-    def rerank(self, query: str, documents: List[Document], top_n: int = None) -> List[Document]:
+    def rerank(self, query: str, documents: List[Document], top_n: int = None,
+               source_headers: bool = None) -> List[Document]:
         """Reranked documents without their scores (see rerank_with_scores)."""
-        return [doc for doc, _ in self.rerank_with_scores(query, documents, top_n)]
+        return [doc for doc, _ in self.rerank_with_scores(query, documents, top_n, source_headers)]
 
     def rerank_with_scores(self, query: str, documents: List[Document], top_n: int = None,
                            source_headers: bool = None) -> List[Tuple[Document, float]]:

@@ -24,7 +24,7 @@ class Settings(BaseSettings):
     RERANKER_TOP_N: int = 8
     # Prefix each chunk with a readable file label (e.g. "omar paypal resume") when
     # reranking, so chunks that never repeat the subject's name can still match it.
-    RERANKER_SOURCE_HEADERS: bool = False
+    RERANKER_SOURCE_HEADERS: bool = True
 
     # Ingestion Defaults
     CHUNK_SIZE: int = 800

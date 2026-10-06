@@ -22,6 +22,7 @@ Keep credentials in that file or the shell, never in frontend variables or commi
 | `EMBEDDING_DIMENSION` | Default `384`, which matches measured vectors. Do not change it independently of the embedding model/collection. |
 | `EMBEDDING_MODEL` | Declared setting, but currently unused by the repository; the model remains hardcoded to `all-MiniLM-L6-v2`. |
 | `RETRIEVER_K` / `RETRIEVER_FETCH_K` | Defaults `40` / `60`: return up to 40 MMR selections from up to 60 candidates. |
+| `RERANKER_SOURCE_HEADERS` | Default `true`: the reranker sees each chunk prefixed with a readable file label (e.g. `omar paypal resume: ...`), so chunks that never repeat a person's name still match questions about them. Set `false` for the original behavior. |
 | `RERANKER_TOP_N` | Default `8`. Existing threshold and minimum-four fallback remain unchanged. |
 | `CORS_ORIGINS` | Comma-separated browser origins allowed to call the API. Default `http://localhost:5173,http://127.0.0.1:5173`. |
 | `PROJECT_NAME` | Optional API display title. |
