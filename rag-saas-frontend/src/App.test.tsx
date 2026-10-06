@@ -182,3 +182,28 @@ it('lists citations with file and page, and clears them on the next question', a
   await screen.findByText('No idea.');
   expect(screen.queryByText('Sources')).not.toBeInTheDocument();
 });
+
+it('shows pipeline stats, relevance scores and only the top 3 sources until expanded', async () => {
+  const user = await ready(['manual.pdf']);
+  await user.type(screen.getByRole('textbox'), 'Pump pressure?');
+  const citations = [9.5, 7.25, 3, 1, -2].map((score, i) => ({
+    source_file: 'manual.pdf', page: i + 1, text: `chunk ${i + 1}`, score,
+  }));
+  fetchMock.mockResolvedValueOnce(json({
+    answer: 'It is 4 bar.',
+    sources: citations.map((c) => c.text),
+    citations,
+    pipeline: { retrieved: 40, reranked: 5, timings_ms: { retrieval: 120.4, reranking: 340.6, generation: 912 } },
+  }));
+  await user.click(screen.getByRole('button', { name: 'Ask' }));
+  expect(await screen.findByTestId('pipeline-stats')).toHaveTextContent(
+    'Pipeline: 40 chunks retrieved (MMR) → 5 kept after reranking · retrieval 120 ms · reranking 341 ms · LLM 912 ms',
+  );
+  expect(screen.getAllByRole('listitem').filter((li) => li.textContent?.includes('relevance'))).toHaveLength(3);
+  expect(screen.getByText('· relevance 9.50')).toBeInTheDocument();
+  expect(screen.queryByText('chunk 4')).not.toBeInTheDocument();
+  await user.click(screen.getByRole('button', { name: 'Show all 5' }));
+  expect(screen.getByText('· relevance -2.00')).toBeInTheDocument();
+  await user.click(screen.getByRole('button', { name: 'Show top 3' }));
+  expect(screen.queryByText('· relevance -2.00')).not.toBeInTheDocument();
+});

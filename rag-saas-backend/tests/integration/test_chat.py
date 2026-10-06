@@ -11,7 +11,11 @@ REFUSAL = 'I cannot answer this based on the provided document.'
 def test_chat_endpoint_contract(client):
     response = client.post('/chat', json={'query': 'Unsupported question'})
     assert response.status_code == 200
-    assert response.json() == {'answer': REFUSAL, 'sources': [], 'citations': []}
+    body = response.json()
+    assert {k: body[k] for k in ('answer', 'sources', 'citations')} == {'answer': REFUSAL, 'sources': [], 'citations': []}
+    assert body['pipeline']['retrieved'] == 0 and body['pipeline']['reranked'] == 0
+    assert set(body['pipeline']['timings_ms']) == {'retrieval', 'reranking', 'generation'}
+    assert all(ms >= 0 for ms in body['pipeline']['timings_ms'].values())
 
 
 @pytest.mark.parametrize('filename', [None, 'A & notes.pdf'])
@@ -21,11 +25,12 @@ def test_only_reranked_context_reaches_generation_in_order(client, monkeypatch, 
     events = []
     retriever, generator = MagicMock(), MagicMock()
     retriever.retrieve.side_effect = lambda *args, **kwargs: events.append('retrieve') or candidates
-    rerank = MagicMock(side_effect=lambda *args: events.append('rerank') or selected)
+    scores = [9.5, 7.25, 3.0, -1.0]
+    rerank = MagicMock(side_effect=lambda *args: events.append('rerank') or list(zip(selected, scores)))
     generator.generate_answer.side_effect = lambda *args: events.append('generate') or 'A grounded answer.'
     app.dependency_overrides[get_retrieval_service] = lambda: retriever
     app.dependency_overrides[get_generation_service] = lambda: generator
-    monkeypatch.setattr(chat.reranker_service, 'rerank', rerank)
+    monkeypatch.setattr(chat.reranker_service, 'rerank_with_scores', rerank)
     request = {'query': 'question'}
     if filename:
         request['filter_filename'] = filename
@@ -35,11 +40,12 @@ def test_only_reranked_context_reaches_generation_in_order(client, monkeypatch, 
     retriever.retrieve.assert_called_once_with('question', filter_filename=filename)
     rerank.assert_called_once_with('question', candidates)
     generator.generate_answer.assert_called_once_with('question', selected)
-    assert response.json() == {
-        'answer': 'A grounded answer.',
-        'sources': [d.page_content for d in selected],
-        'citations': [{'source_file': 'A & notes.pdf', 'page': None, 'text': d.page_content} for d in selected],
-    }
+    body = response.json()
+    assert body['answer'] == 'A grounded answer.'
+    assert body['sources'] == [d.page_content for d in selected]
+    assert body['citations'] == [{'source_file': 'A & notes.pdf', 'page': None, 'text': d.page_content, 'score': s}
+                                 for d, s in zip(selected, scores)]
+    assert body['pipeline']['retrieved'] == 40 and body['pipeline']['reranked'] == 4
 
 
 @pytest.mark.parametrize('payload', [{}, {'query': None}, {'query': 123}, {'query': []}])
@@ -75,12 +81,13 @@ def test_citations_carry_file_and_one_based_page(client, monkeypatch):
     retriever = MagicMock()
     retriever.retrieve.return_value = docs
     app.dependency_overrides[get_retrieval_service] = lambda: retriever
-    monkeypatch.setattr(chat.reranker_service, 'rerank', lambda query, candidates: candidates)
+    monkeypatch.setattr(chat.reranker_service, 'rerank_with_scores',
+                        lambda query, candidates: [(d, 1.23456) for d in candidates])
     response = client.post('/chat', json={'query': 'specs'})
     assert response.json()['citations'] == [
-        {'source_file': 'manual.pdf', 'page': 1, 'text': 'Pump spec'},
-        {'source_file': 'manual.pdf', 'page': 5, 'text': 'Valve spec'},
-        {'source_file': 'Unknown', 'page': None, 'text': 'Loose text'},
+        {'source_file': 'manual.pdf', 'page': 1, 'text': 'Pump spec', 'score': 1.235},
+        {'source_file': 'manual.pdf', 'page': 5, 'text': 'Valve spec', 'score': 1.235},
+        {'source_file': 'Unknown', 'page': None, 'text': 'Loose text', 'score': 1.235},
     ]
 
 
