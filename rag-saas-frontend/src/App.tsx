@@ -1,13 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { apiRequest, errorMessage } from "./api";
 
-type Citation = { source_file: string; page: number | null; text: string };
-type ChatResponse = { answer: string; sources: string[]; citations?: Citation[] };
+type Citation = { source_file: string; page: number | null; text: string; score?: number | null };
+type PipelineStats = {
+  retrieved: number;
+  reranked: number;
+  timings_ms: { retrieval: number; reranking: number; generation: number };
+};
+type ChatResponse = {
+  answer: string;
+  sources: string[];
+  citations?: Citation[];
+  pipeline?: PipelineStats | null;
+};
+
+const TOP_SOURCES = 3;
 
 function App() {
   const [query, setQuery] = useState("");
   const [answer, setAnswer] = useState("");
   const [citations, setCitations] = useState<Citation[]>([]);
+  const [pipeline, setPipeline] = useState<PipelineStats | null>(null);
+  const [showAllSources, setShowAllSources] = useState(false);
   const [documents, setDocuments] = useState<string[]>([]);
   const [uploading, setUploading] = useState(false);
   const [asking, setAsking] = useState(false);
@@ -92,6 +106,8 @@ function App() {
     setError("");
     setAnswer("Thinking...");
     setCitations([]);
+    setPipeline(null);
+    setShowAllSources(false);
 
     // NEW: Dynamically build the payload based on whether a document is selected
     const payload: { query: string; filter_filename?: string } = { query };
@@ -107,6 +123,7 @@ function App() {
       });
       setAnswer(data.answer);
       setCitations(data.citations ?? []);
+      setPipeline(data.pipeline ?? null);
     } catch (error) {
       console.error("Chat failed:", error);
       setAnswer("");
@@ -292,16 +309,34 @@ function App() {
           </div>
         )}
 
+        {pipeline && (
+          <p
+            data-testid="pipeline-stats"
+            style={{ marginTop: "12px", fontSize: "13px", color: "#6b7280" }}
+          >
+            Pipeline: {pipeline.retrieved} chunks retrieved (MMR) →{" "}
+            {pipeline.reranked} kept after reranking · retrieval{" "}
+            {Math.round(pipeline.timings_ms.retrieval)} ms · reranking{" "}
+            {Math.round(pipeline.timings_ms.reranking)} ms · LLM{" "}
+            {Math.round(pipeline.timings_ms.generation)} ms
+          </p>
+        )}
+
         {citations.length > 0 && (
           <div style={{ marginTop: "20px" }}>
             <h2 style={{ fontSize: "16px", marginBottom: "10px" }}>Sources</h2>
             <ol style={{ paddingLeft: "20px", margin: 0 }}>
-              {citations.map((citation, index) => (
+              {(showAllSources ? citations : citations.slice(0, TOP_SOURCES)).map((citation, index) => (
                 <li key={index} style={{ marginBottom: "8px", fontSize: "14px" }}>
                   <details>
                     <summary style={{ cursor: "pointer" }}>
                       {citation.source_file}
                       {citation.page !== null && ` · page ${citation.page}`}
+                      {typeof citation.score === "number" && (
+                        <span style={{ color: "#6b7280" }}>
+                          {` · relevance ${citation.score.toFixed(2)}`}
+                        </span>
+                      )}
                     </summary>
                     <p
                       style={{
@@ -320,6 +355,23 @@ function App() {
                 </li>
               ))}
             </ol>
+            {citations.length > TOP_SOURCES && (
+              <button
+                type="button"
+                onClick={() => setShowAllSources(!showAllSources)}
+                style={{
+                  marginTop: "6px",
+                  background: "none",
+                  border: "none",
+                  color: "#3b82f6",
+                  cursor: "pointer",
+                  padding: 0,
+                  fontSize: "14px",
+                }}
+              >
+                {showAllSources ? "Show top 3" : `Show all ${citations.length}`}
+              </button>
+            )}
           </div>
         )}
       </div>
