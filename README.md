@@ -1,29 +1,14 @@
-# Evaluation-First RAG SaaS
+# RagLens: Evaluation-First RAG Pipeline
 
-An evaluation-focused Retrieval-Augmented Generation (RAG) system that allows users to upload multiple PDF documents and ask questions using either document-specific or global retrieval.
+An evaluation-focused Retrieval-Augmented Generation (RAG) pipeline: upload PDF documents and ask questions across all of them or within a single document.
 
-The system uses vector search, MMR retrieval, CrossEncoder reranking, and a grounded LLM generation pipeline. It also includes an evaluation layer for measuring RAG response quality.
+The pipeline combines vector search, MMR retrieval, CrossEncoder reranking and grounded LLM generation. Every answer shows **which sources it used, how relevant each one was, and how long each pipeline step took**, and an evaluation layer measures RAG response quality.
 
-> **Note:** This project is currently demonstrated locally. Screenshots and a short demo video are provided to showcase the complete working pipeline.
+> **Note:** This project runs locally (or with `docker compose up`). The screenshots below show the working pipeline.
 
 For the verified local setup, environment variables, and runtime limitations, see [Local runtime setup](docs/LOCAL_RUNTIME.md) and the [2026-08-31 runtime verification report](docs/runtime-verification/2026-08-31/REPORT.md). The runtime checks are not a RAGAS comparison or evidence for resume quality metrics.
 
-For the separate paired MMR baseline-versus-reranker experiment, see [the reproducible evaluation protocol](rag-saas-backend/evaluation/COMPARISON.md) and [the measured results and resume-claim assessment](rag-saas-backend/evaluation/REPORT_2026-08-31.md). Its frozen corpus is explicitly synthetic; nine faithfulness values remain quota-blocked, and it does not establish the historical resume metrics.
-
----
-
-## 🎥 Demo
-
-[Watch the 30–60 second demo video](YOUR_VIDEO_LINK)
-
-The demo shows:
-
-- Multiple PDF document ingestion
-- Document-specific question answering
-- Global search across uploaded documents
-- MMR retrieval and CrossEncoder reranking
-- Grounded LLM response generation
-- FastAPI backend APIs
+For the separate paired MMR baseline-versus-reranker experiment, see [the reproducible evaluation protocol](rag-saas-backend/evaluation/COMPARISON.md) and [the measured results and resume-claim assessment](rag-saas-backend/evaluation/REPORT_2026-08-31.md). Its frozen corpus is explicitly synthetic; nine faithfulness values remain quota-blocked, it does not establish the historical resume metrics, and it predates the later prompt and reranker-input changes described below.
 
 ---
 
@@ -70,15 +55,19 @@ The complete ingestion, retrieval, reranking, generation, and evaluation archite
 - 🎯 **Document-specific retrieval**
 - 🧩 **Recursive text chunking**
 - 🧠 **HuggingFace sentence embeddings**
-- 🗄️ **Qdrant vector database**
+- 🗄️ **Qdrant vector database** (embedded local mode or server/cloud)
 - 🔀 **MMR-based retrieval**
-- ⚡ **CrossEncoder reranking**
-- 🤖 **Groq / Llama 3.1 generation**
-- 🛡️ **Strict document-grounded generation**
-- 📊 **RAG evaluation**
-- 🔬 **Faithfulness evaluation**
+- ⚡ **CrossEncoder reranking with file-label headers**
+- 📑 **Citations with file name and page number**
+- 📈 **Relevance shown as a "match %" for every source**
+- ⏱️ **Pipeline view:** chunks retrieved, chunks kept after reranking, and time per step
+- 🤖 **Groq-hosted LLM generation** (model configurable)
+- 🛡️ **Document-grounded generation** with an explicit refusal when the documents have no answer
+- 📊 **RAG evaluation with RAGAS** (faithfulness, context precision)
 - 🚀 **FastAPI REST API**
-- ⚛️ **React / Vite frontend**
+- ⚛️ **React / Vite / TypeScript frontend**
+- 🐳 **Docker Compose** for the full stack
+- ✅ **CI on every push:** backend and frontend tests, real-model checks, and a Docker smoke test
 
 ---
 
@@ -92,39 +81,60 @@ When a PDF is uploaded:
 
 The current chunking configuration uses:
 
-- Chunk size: `800`
-- Chunk overlap: `200`
+- Chunk size: `800` characters
+- Chunk overlap: `200` characters
+
+Each chunk keeps its source file name and page number, which are later shown as citations.
 
 ### 2. Retrieval
 
 When a user submits a query, the system searches Qdrant for relevant document chunks.
 The retrieval pipeline uses:
 
-- Vector similarity search
-- MMR retrieval
+- Vector similarity search (`all-MiniLM-L6-v2` embeddings)
+- MMR retrieval for diverse results
 - Metadata filtering for document-specific queries
 
-The system retrieves up to `40` candidate chunks before reranking.
+MMR selects up to `40` chunks from `60` candidates before reranking.
 
 ### 3. Reranking
 
-The retrieved candidates are passed through a CrossEncoder:
+The retrieved chunks are scored by a CrossEncoder (`cross-encoder/ms-marco-MiniLM-L-6-v2`):
 
-`40 Candidate Chunks` ➔ `CrossEncoder` ➔ `Relevance Scoring` ➔ `Threshold Filtering` ➔ `Top 8 Chunks`
+`Retrieved Chunks` ➔ `File-Label Headers` ➔ `CrossEncoder Scoring` ➔ `Threshold Filtering` ➔ `Top 8 Chunks`
 
-This reduces irrelevant context before the LLM receives the retrieved information.
+- **File-label headers:** the reranker sees each chunk prefixed with a readable file label, so `omarPaypalResume.pdf` gives `omar paypal resume: Education: San Diego State ...`. Chunks such as a resume's education section rarely repeat the person's name; the label lets a question like *"what is omar's education"* still match them. Set `RERANKER_SOURCE_HEADERS=false` to turn this off.
+- **Threshold filtering:** chunks scoring within `8` points of the best chunk are kept, with at least `4` and at most `8` chunks sent to the LLM.
+
+Measured with the real models in CI (rank of the page that contains the answer):
+
+| Question | Without file labels | With file labels |
+| --- | --- | --- |
+| what is omar's education | #3 | **#1** |
+| where did omar do his internship | #2 | **#1** |
+| what is sahil's education | #2 | **#1** |
+
+These are behavior checks on a small fixed set of chunks, not a benchmark.
 
 ### 4. Grounded Generation
 
-The selected chunks are passed to the Groq-hosted Llama model.
+The selected chunks are grouped by source file (best-ranked file first) and passed to the Groq-hosted LLM.
 The generation prompt enforces document grounding:
 
-- The answer must be based on the retrieved context.
-- External assumptions are not allowed.
-- Source boundaries are preserved.
-- If sufficient information is unavailable, the model should refuse to answer from unsupported information.
+- The answer must be based on the retrieved context; external knowledge is not allowed.
+- Chunks from the same file belong to the same document, and the file name often identifies whose document it is.
+- Facts from different files are never combined about the same person or topic.
+- If the context contains no relevant information, the model replies: *"I cannot answer this based on the provided document."*
 
-### 5. Evaluation
+### 5. Transparency in the UI
+
+Every answer shows:
+
+- **Pipeline line:** for example `40 chunks retrieved (MMR) → 8 kept after reranking · retrieval 84 ms · reranking 413 ms · LLM 1094 ms`
+- **Sources:** the top 3 sources with file name and page (expand to read the exact text), plus a "Show all" link
+- **Match %:** how strongly the reranker connected each source to the question, compared with the other sources sent to the LLM. The percentages add up to 100%, and higher is better. The raw CrossEncoder score (an unbounded number such as `-8.98` or `+5.01`) is shown on hover.
+
+### 6. Evaluation
 
 The project includes an evaluation layer using RAGAS.
 The evaluation pipeline is used to measure the quality of generated RAG responses, including faithfulness.
@@ -143,6 +153,15 @@ Faithfulness evaluates whether the generated answer is supported by the retrieve
 
 This helps identify cases where the LLM generates information that is not supported by the retrieved documents.
 
+### Automated tests
+
+- **Backend:** pytest suite that runs offline (real PDF parsing, chunking, embedded Qdrant and the production API code).
+- **Real-model checks:** CI downloads the embedding and CrossEncoder models and runs the full upload ➔ retrieval ➔ reranking ➔ `/chat` pipeline. Only the LLM is replaced.
+- **Frontend:** Vitest and Testing Library tests for the UI and the match % calculation.
+- **Docker:** CI builds the stack and smoke-tests health, the frontend, and a real PDF upload, list and delete.
+
+See [TESTING.md](TESTING.md) for commands.
+
 ---
 
 ## 🛠️ Tech Stack
@@ -150,6 +169,7 @@ This helps identify cases where the LLM generates information that is not suppor
 **Frontend**
 
 - React
+- TypeScript
 - Vite
 
 **Backend**
@@ -161,10 +181,9 @@ This helps identify cases where the LLM generates information that is not suppor
 **RAG / AI**
 
 - LangChain
-- HuggingFace Embeddings
-- CrossEncoder
-- Groq
-- Llama 3.1
+- HuggingFace Embeddings (`all-MiniLM-L6-v2`)
+- CrossEncoder (`ms-marco-MiniLM-L-6-v2`)
+- Groq (`GROQ_MODEL`; `.env.example` uses `openai/gpt-oss-20b`)
 
 **Vector Database**
 
@@ -175,14 +194,16 @@ This helps identify cases where the LLM generates information that is not suppor
 - PyPDF
 - RecursiveCharacterTextSplitter
 
-**Evaluation**
+**Evaluation & Testing**
 
 - RAGAS
+- pytest
+- Vitest
 
-**Development**
+**DevOps**
 
-- Git & GitHub
-- Postman
+- Docker & Docker Compose
+- GitHub Actions
 - Swagger / OpenAPI
 
 ---
@@ -190,55 +211,51 @@ This helps identify cases where the LLM generates information that is not suppor
 ## 📁 Project Structure
 
 ```text
-evaluation-first-rag/
+raglens/
 │
 ├── README.md
+├── TESTING.md
+├── docker-compose.yml
+├── .github/workflows/ci.yml
+├── docs/                       # runtime setup and verification reports
 ├── screenshots/
-│   ├── 01-multiple-documents.png
-│   └── 06-architecture.jpg
 │
 ├── rag-saas-frontend/
+│   ├── Dockerfile
 │   ├── package.json
-│   ├── vite.config.js
-│   ├── index.html
+│   ├── vite.config.ts
 │   └── src/
-│       ├── App.jsx
-│       ├── main.jsx
-│       ├── components/
-│       ├── services/
-│       └── styles/
+│       ├── App.tsx             # upload, chat, sources and pipeline view
+│       ├── api.ts              # API client
+│       └── relevance.ts        # raw reranker scores ➔ match %
 │
 └── rag-saas-backend/
+    ├── Dockerfile
     ├── requirements.txt
-    ├── .env
-    ├── .gitignore
+    ├── .env.example
     │
-    ├── tests/
-    │   ├── test_api.py
-    │   └── test_ragas.py
+    ├── app/
+    │   ├── main.py
+    │   ├── api/
+    │   │   ├── chat.py         # /chat: retrieval ➔ reranking ➔ generation
+    │   │   └── documents.py    # upload, list, delete
+    │   ├── core/
+    │   │   ├── config.py
+    │   │   └── dependencies.py
+    │   ├── models/
+    │   │   └── schemas.py
+    │   ├── repositories/
+    │   │   └── vector_store.py
+    │   └── services/
+    │       ├── ingestion.py
+    │       ├── retrieval.py
+    │       ├── reranking.py
+    │       └── generation.py
     │
-    └── app/
-        ├── main.py
-        │
-        ├── api/
-        │   ├── chat.py
-        │   └── documents.py
-        │
-        ├── core/
-        │   ├── config.py
-        │   └── dependencies.py
-        │
-        ├── models/
-        │   └── schemas.py
-        │
-        ├── repositories/
-        │   └── vector_store.py
-        │
-        └── services/
-            ├── ingestion.py
-            ├── retrieval.py
-            ├── reranking.py
-            └── generation.py
+    ├── evaluation/             # RAGAS A/B comparison, reports, archived runs
+    └── tests/
+        ├── unit/
+        └── integration/
 ```
 
 ---
@@ -247,10 +264,11 @@ evaluation-first-rag/
 
 Before running the project locally, make sure you have:
 
-- Python 3.13 (verified with 3.13.14)
-- Node.js 22.13+ in the 22.x series (verified with 22.17.1)
-- A Groq API key
-- A reachable Qdrant Cloud instance and API credentials, or embedded local Qdrant via `QDRANT_PATH`
+- A Groq API key ([console.groq.com](https://console.groq.com))
+- **Either** Docker Desktop
+- **Or** Python 3.13 and Node.js 22
+
+No Qdrant account is needed: the default `.env.example` uses embedded local Qdrant (`QDRANT_PATH`), and Docker Compose starts a Qdrant server.
 
 ---
 
@@ -275,10 +293,11 @@ To deploy the frontend on another domain, rebuild it with `VITE_API_BASE_URL` po
 
 ### Backend
 
-Navigate to the backend directory:
+Navigate to the backend directory and create the environment file:
 
 ```bash
 cd rag-saas-backend
+cp .env.example .env    # then set GROQ_API_KEY
 ```
 
 Create and activate a virtual environment:
@@ -304,6 +323,8 @@ uvicorn app.main:app --reload
 - Backend API: `http://127.0.0.1:8000`
 - Swagger Documentation: `http://127.0.0.1:8000/docs`
 
+The first upload downloads the embedding and reranker models (about 200 MB, once).
+
 ### Frontend
 
 Navigate to the frontend directory:
@@ -318,7 +339,7 @@ Install dependencies:
 npm install
 ```
 
-Start the development server:
+Start the development server, then open the URL it prints:
 
 ```bash
 npm run dev
@@ -328,18 +349,22 @@ npm run dev
 
 ## 🔐 Environment Variables
 
-Create a `.env` file in the backend directory.
+Create a `.env` file in the backend directory (copy `.env.example`).
 Example:
 
 ```env
 GROQ_API_KEY=your_groq_api_key
 GROQ_MODEL=openai/gpt-oss-20b
 
-QDRANT_URL=your_qdrant_url
-QDRANT_API_KEY=your_qdrant_api_key
+# Embedded local Qdrant (no account needed). Leave empty to use QDRANT_URL instead.
+QDRANT_PATH=./qdrant_db
 QDRANT_COLLECTION=my_documents
-# Optional local mode: set a path to avoid using Qdrant Cloud.
-# QDRANT_PATH=./qdrant_db
+# Qdrant server/cloud mode (used only when QDRANT_PATH is empty):
+# QDRANT_URL=your_qdrant_url
+# QDRANT_API_KEY=your_qdrant_api_key
+
+# Prefix chunks with a readable file label when reranking (default true).
+RERANKER_SOURCE_HEADERS=true
 
 # Browser origins allowed to call the API (comma-separated).
 # CORS_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
@@ -353,23 +378,25 @@ Select a Groq model available to your account. During the runtime check, the his
 
 ## 📌 Current Limitations
 
-- The project is containerized (`docker compose up`) but not yet deployed publicly.
-- Embedding models are loaded locally during runtime.
-- Qdrant is used as the vector store.
-- Evaluation coverage can be expanded with additional RAGAS metrics.
+- Containerized (`docker compose up`) but not deployed publicly yet.
+- Single shared knowledge base: there are no user accounts, so everyone using an instance sees all uploaded documents.
+- File-label headers only help when file names are meaningful (`omar_resume.pdf` helps, `scan_001.pdf` does not).
+- Match % compares sources against each other within one answer; it is not an absolute confidence score.
+- Embedding and reranker models run locally on CPU.
+- The archived RAGAS comparison uses a small synthetic corpus and predates the current prompt and reranker input.
 
 ---
 
 ## 🎯 Project Goals
 
-This project was built to explore a production-oriented Retrieval-Augmented Generation (RAG) system designed to demonstrate a complete document ingestion, retrieval, reranking, generation, and evaluation pipeline.
+This project was built to demonstrate a complete Retrieval-Augmented Generation (RAG) pipeline, from document ingestion through retrieval, reranking, generation and evaluation:
 
 - Retrieval
 - Reranking
 - Grounded Generation
 - Evaluation
 
-The primary focus is not simply generating an answer, but measuring whether the generated answer is actually supported by the retrieved context.
+The primary focus is not simply generating an answer, but showing and measuring whether the answer is actually supported by the retrieved context.
 
 ---
 
