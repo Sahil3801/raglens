@@ -1,5 +1,5 @@
 from threading import Lock
-from typing import List
+from typing import List, Tuple
 from langchain_core.documents import Document
 from sentence_transformers import CrossEncoder
 from app.core.config import settings
@@ -29,9 +29,14 @@ class RerankingService:
         self._encoder = value
 
     def rerank(self, query: str, documents: List[Document], top_n: int = None) -> List[Document]:
+        """Reranked documents without their scores (see rerank_with_scores)."""
+        return [doc for doc, _ in self.rerank_with_scores(query, documents, top_n)]
+
+    def rerank_with_scores(self, query: str, documents: List[Document], top_n: int = None) -> List[Tuple[Document, float]]:
         """
         Takes a query and a list of documents, scores their relevance, filters out 
-        low-quality matches using a dynamic threshold, and returns the top results.
+        low-quality matches using a dynamic threshold, and returns the top results
+        together with their CrossEncoder scores (highest first).
         """
         # Return an empty list early if no documents were provided
         if not documents:
@@ -47,7 +52,7 @@ class RerankingService:
         scores = self.encoder.predict(pairs)
         
         # Step 3: Zip documents with their respective scores and sort them in descending order (highest score first)
-        scored_docs = list(zip(documents, scores))
+        scored_docs = [(doc, float(score)) for doc, score in zip(documents, scores)]
         scored_docs.sort(key=lambda x: x[1], reverse=True)
         
         # --- THE DYNAMIC THRESHOLD ---
@@ -57,7 +62,7 @@ class RerankingService:
         dynamic_threshold = best_score - tolerance
         
         # Filter documents to keep only those meeting or exceeding the dynamic threshold
-        filtered_docs = [doc for doc, score in scored_docs if score >= dynamic_threshold]
+        filtered_docs = [(doc, score) for doc, score in scored_docs if score >= dynamic_threshold]
         
         # --- THE FIX: The Minimum Context Safety Net ---
         # If the threshold is too aggressive and starves the LLM, 
@@ -65,10 +70,10 @@ class RerankingService:
         MIN_CHUNKS = 4
         if len(filtered_docs) < MIN_CHUNKS and len(scored_docs) >= MIN_CHUNKS:
             # Fall back to taking the top MIN_CHUNKS if the filter was too strict
-            filtered_docs = [doc for doc, score in scored_docs[:MIN_CHUNKS]]
+            filtered_docs = scored_docs[:MIN_CHUNKS]
         elif len(filtered_docs) < MIN_CHUNKS:
             # Just in case the entire document pool has fewer than MIN_CHUNKS total, keep all of them
-            filtered_docs = [doc for doc, score in scored_docs]
+            filtered_docs = scored_docs
             
         # Return the final filtered documents capped at the specified limit
         return filtered_docs[:limit]
