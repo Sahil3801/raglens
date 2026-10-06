@@ -199,11 +199,13 @@ it('shows pipeline stats, relevance scores and only the top 3 sources until expa
   expect(await screen.findByTestId('pipeline-stats')).toHaveTextContent(
     'Pipeline: 40 chunks retrieved (MMR) → 5 kept after reranking · retrieval 120 ms · reranking 341 ms · LLM 912 ms',
   );
-  expect(screen.getAllByRole('listitem').filter((li) => li.textContent?.includes('relevance'))).toHaveLength(3);
-  expect(screen.getByText('· relevance 9.50')).toBeInTheDocument();
+  expect(screen.getAllByRole('listitem').filter((li) => li.textContent?.includes('match'))).toHaveLength(3);
+  expect(screen.getByText('· match 90%')).toHaveAttribute('title', 'Raw reranker score: 9.50');
+  expect(screen.getByText('· match 10%')).toBeInTheDocument();
+  expect(screen.getByText(/Match % = how strongly the reranker/)).toBeInTheDocument();
   expect(screen.queryByText('chunk 4')).not.toBeInTheDocument();
   await user.click(screen.getByRole('button', { name: 'Show all 5' }));
-  expect(screen.getByText('· relevance -2.00')).toBeInTheDocument();
+  expect(screen.getByTitle('Raw reranker score: -2.00')).toHaveTextContent('· match <1%');
   await user.click(screen.getByRole('button', { name: 'Show top 3' }));
-  expect(screen.queryByText('· relevance -2.00')).not.toBeInTheDocument();
+  expect(screen.queryByTitle('Raw reranker score: -2.00')).not.toBeInTheDocument();
 });

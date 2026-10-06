@@ -69,8 +69,12 @@ def test_real_pipeline_ranks_the_answering_page_first_with_ordered_scores(monkey
     from app.services import generation, reranking
     from tests.pdf_factory import pdf_bytes
 
+    # Cached models only: the suite blocks network access.
     monkeypatch.setattr(reranking.reranker_service, 'encoder',
-                        CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2', device='cpu'))
+                        CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2', device='cpu', local_files_only=True))
+    real_embeddings = vector_store.HuggingFaceEmbeddings
+    monkeypatch.setattr(vector_store, 'HuggingFaceEmbeddings', lambda model_name: real_embeddings(
+        model_name=model_name, model_kwargs={'device': 'cpu', 'local_files_only': True}))
     repo = vector_store.VectorStoreRepository()  # real all-MiniLM-L6-v2 embeddings
     monkeypatch.setattr(vector_store, '_vector_store_repo', repo)
     contexts = []
