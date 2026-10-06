@@ -50,3 +50,101 @@ def test_live_groq_refuses_unsupported_question(monkeypatch, documents):
     service.llm.max_retries = 0
     response = service.generate_answer('What is the annual operating budget of Aurora station?', documents)
     assert response.strip() == 'I cannot answer this based on the provided document.'
+
+
+@pytest.mark.models
+def test_real_pipeline_ranks_the_answering_page_first_with_ordered_scores(monkeypatch):
+    """Upload -> real embeddings -> embedded Qdrant -> MMR -> real CrossEncoder -> /chat.
+
+    Only the LLM is replaced, so this checks retrieval, reranking scores and the
+    context order without a Groq key. It is a behavior check, not a benchmark.
+    """
+    from fastapi.testclient import TestClient
+    from langchain_core.messages import AIMessage
+    from langchain_core.runnables import RunnableLambda
+    from sentence_transformers import CrossEncoder
+    from app.core.dependencies import get_generation_service
+    from app.main import app
+    from app.repositories import vector_store
+    from app.services import generation, reranking
+    from tests.pdf_factory import pdf_bytes
+
+    # Cached models only: the suite blocks network access.
+    monkeypatch.setattr(reranking.reranker_service, 'encoder',
+                        CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2', device='cpu', local_files_only=True))
+    real_embeddings = vector_store.HuggingFaceEmbeddings
+    monkeypatch.setattr(vector_store, 'HuggingFaceEmbeddings', lambda model_name: real_embeddings(
+        model_name=model_name, model_kwargs={'device': 'cpu', 'local_files_only': True}))
+    repo = vector_store.VectorStoreRepository()  # real all-MiniLM-L6-v2 embeddings
+    monkeypatch.setattr(vector_store, '_vector_store_repo', repo)
+    contexts = []
+    def fake_llm(prompt):
+        contexts.append(prompt.to_messages()[0].content)
+        return AIMessage(content='stub answer')
+    monkeypatch.setattr(generation, 'ChatGroq', lambda **kwargs: RunnableLambda(fake_llm))
+    app.dependency_overrides[get_generation_service] = generation.GenerationService
+
+    resumes = {
+        'omar_resume.pdf': [
+            'Omar Badr. Software Engineer. San Diego, California. omar@example.com',
+            'Experience: Software Engineering Intern at PayPal. Built payment APIs in Java and Spring Boot.',
+            'Education: San Diego State University. Bachelor of Science in Computer Science, expected May 2025.',
+        ],
+        'sahil_portfolio.pdf': [
+            'Sahil Shinde. Portfolio. Projects: a RAG application with FastAPI, Qdrant and React.',
+            'Skills: Python, FastAPI, PostgreSQL, Docker, React and machine learning.',
+        ],
+    }
+    try:
+        with TestClient(app) as client:
+            for name, pages in resumes.items():
+                assert client.post('/upload', files={'file': (name, pdf_bytes(pages), 'application/pdf')}).status_code == 200
+            body = client.post('/chat', json={'query': "what is omar's education"}).json()
+    finally:
+        repo.client.close()
+
+    citations = body['citations']
+    scores = [c['score'] for c in citations]
+    print('real reranker ranking:', [(c['source_file'], c['page'], c['score']) for c in citations])
+    assert scores == sorted(scores, reverse=True)  # shown best first
+    # With file-label headers the Education page (which never says "Omar") ranks
+    # first; without them the real CrossEncoder put the name-only header page first.
+    assert (citations[0]['source_file'], citations[0]['page']) == ('omar_resume.pdf', 3)
+    assert citations[0]['score'] > 0
+    assert body['pipeline']['retrieved'] == 5 and body['pipeline']['reranked'] == len(citations) >= 4
+    files_in_context = [part.split(' ---', 1)[0] for part in contexts[0].split('--- CHUNK FROM ')[1:]]
+    first_sahil = files_in_context.index('sahil_portfolio.pdf')
+    assert set(files_in_context[first_sahil:]) == {'sahil_portfolio.pdf'}  # Omar's chunks grouped first
+
+
+RESUME_CHUNKS = [
+    ('omarPaypalResume.pdf', 1, 'Omar Badr. Software Engineer. San Diego, California. omar@example.com'),
+    ('omarPaypalResume.pdf', 2, 'Experience: Software Engineering Intern at PayPal. Built payment APIs in Java and Spring Boot.'),
+    ('omarPaypalResume.pdf', 3, 'Education: San Diego State University. Bachelor of Science in Computer Science, expected May 2025.'),
+    ('sahilportfoliopage.pdf', 1, 'Sahil Shinde. Portfolio. Projects: a RAG application with FastAPI, Qdrant and React.'),
+    ('sahilportfoliopage.pdf', 2, 'Education: Post Graduate Diploma in Advanced Computing (PG-DAC), C-DAC Pune.'),
+]
+
+
+@pytest.mark.models
+@pytest.mark.parametrize('question,answer_page', [
+    ("what is omar's education", ('omarPaypalResume.pdf', 3)),
+    ('where did omar do his internship', ('omarPaypalResume.pdf', 2)),
+    ("what is sahil's education", ('sahilportfoliopage.pdf', 2)),
+])
+def test_source_headers_effect_on_real_reranker(monkeypatch, question, answer_page):
+    """Measures, with the real CrossEncoder, how a file label changes the ranking."""
+    from sentence_transformers import CrossEncoder
+    from app.services import reranking
+    monkeypatch.setattr(reranking.reranker_service, 'encoder',
+                        CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2', device='cpu', local_files_only=True))
+    docs = [Document(page_content=text, metadata={'source_file': f, 'page': p - 1}) for f, p, text in RESUME_CHUNKS]
+    rank_of_answer = {}
+    for headers in (False, True):
+        ranked = reranking.reranker_service.rerank_with_scores(question, docs, top_n=5, source_headers=headers)
+        rows = [(d.metadata['source_file'], d.metadata['page'] + 1, round(s, 2)) for d, s in ranked]
+        rank_of_answer[headers] = [r[:2] for r in rows].index(answer_page) + 1
+        print(f'{question!r} headers={headers}: {rows}')
+        assert [s for *_, s in rows] == sorted((s for *_, s in rows), reverse=True)
+    print(f'{question!r}: answer page rank without headers={rank_of_answer[False]}, with headers={rank_of_answer[True]}')
+    assert rank_of_answer[True] == 1 and rank_of_answer[False] > 1  # measured 2026-10-06

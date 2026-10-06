@@ -11,7 +11,7 @@ def run(scores, top_n=None):
     service.encoder.predict.return_value = np.asarray(scores, dtype=np.float32)
     documents = [Document(page_content=f'chunk {i}', metadata={'source_file': f'{i}.pdf', 'page': i}) for i in range(len(scores))]
     original = [d.model_dump() for d in documents]
-    result = service.rerank('question', documents, top_n=top_n)
+    result = service.rerank('question', documents, top_n=top_n, source_headers=False)
     assert [d.model_dump() for d in documents] == original
     assert all(any(d is original_doc for original_doc in documents) for d in result)
     if documents:
@@ -74,3 +74,27 @@ def test_rerank_with_scores_returns_same_selection_with_float_scores():
     assert [d.page_content for d, _ in scored] == [d.page_content for d in service.rerank('question', documents)]
     assert [s for _, s in scored] == [9.5, 4.0, 3.0, 1.0]
     assert all(type(s) is float for _, s in scored)  # JSON-serializable, not numpy.float32
+
+
+def test_source_headers_are_on_by_default_and_use_readable_file_labels():
+    from app.services.reranking import source_label
+    service = RerankingService.__new__(RerankingService)
+    service.encoder = MagicMock()
+    service.encoder.predict.return_value = np.asarray([1.0, 2.0], dtype=np.float32)
+    docs = [Document(page_content='Education: SDSU', metadata={'source_file': 'omarPaypalResume.pdf'}),
+            Document(page_content='No source', metadata={})]
+    service.rerank('question', docs)
+    service.encoder.predict.assert_called_once_with([['question', 'omar paypal resume: Education: SDSU'],
+                                                     ['question', 'No source']])
+    assert source_label('Gaurav_Gholkar_Resume_2026.pdf') == 'gaurav gholkar resume 2026'
+    assert source_label('chinmayIIT(BHU)_layoff.pdf') == 'chinmay iit bhu layoff'
+
+
+def test_source_headers_can_be_disabled(monkeypatch):
+    from app.core.config import settings
+    monkeypatch.setattr(settings, 'RERANKER_SOURCE_HEADERS', False)
+    service = RerankingService.__new__(RerankingService)
+    service.encoder = MagicMock()
+    service.encoder.predict.return_value = np.asarray([1.0], dtype=np.float32)
+    service.rerank('question', [Document(page_content='text', metadata={'source_file': 'a.pdf'})])
+    service.encoder.predict.assert_called_once_with([['question', 'text']])

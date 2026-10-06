@@ -28,6 +28,43 @@ jobs:
       - name: Run tests
         run: python -m pytest tests -q -p no:cacheprovider
 
+  models:
+    # Real HuggingFace models end to end; Groq runs only if the TEST_GROQ_API_KEY secret exists.
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: rag-saas-backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+          cache-dependency-path: |
+            rag-saas-backend/requirements.txt
+            rag-saas-backend/requirements-test.txt
+            rag-saas-backend/evaluation/requirements.txt
+      - name: Install dependencies
+        run: |
+          pip install torch==2.14.1 --index-url https://download.pytorch.org/whl/cpu
+          pip install -r requirements-test.txt
+      - name: Download models (tests then run offline)
+        run: |
+          python - <<'PY'
+          from huggingface_hub import snapshot_download
+          for repo, revision in [
+              ("sentence-transformers/all-MiniLM-L6-v2", None),
+              ("sentence-transformers/all-MiniLM-L6-v2", "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"),
+              ("cross-encoder/ms-marco-MiniLM-L-6-v2", None),
+              ("cross-encoder/ms-marco-MiniLM-L-6-v2", "233902d25c440f23af6f7d6e94d2946bac0bee0a"),
+          ]:
+              snapshot_download(repo, revision=revision)
+          PY
+      - name: Run real-model tests
+        env:
+          TEST_GROQ_API_KEY: ${{ secrets.TEST_GROQ_API_KEY }}
+        run: python -m pytest tests -q -p no:cacheprovider -m "models or live" --run-models --run-live -rP
+
   frontend:
     runs-on: ubuntu-latest
     defaults:

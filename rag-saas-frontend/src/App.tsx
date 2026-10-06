@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { apiRequest, errorMessage } from "./api";
+import { formatShare, matchShares, type Citation } from "./relevance";
 
-type Citation = { source_file: string; page: number | null; text: string; score?: number | null };
 type PipelineStats = {
   retrieved: number;
   reranked: number;
@@ -22,6 +22,7 @@ function App() {
   const [citations, setCitations] = useState<Citation[]>([]);
   const [pipeline, setPipeline] = useState<PipelineStats | null>(null);
   const [showAllSources, setShowAllSources] = useState(false);
+  const shares = matchShares(citations);
   const [documents, setDocuments] = useState<string[]>([]);
   const [uploading, setUploading] = useState(false);
   const [asking, setAsking] = useState(false);
@@ -324,7 +325,14 @@ function App() {
 
         {citations.length > 0 && (
           <div style={{ marginTop: "20px" }}>
-            <h2 style={{ fontSize: "16px", marginBottom: "10px" }}>Sources</h2>
+            <h2 style={{ fontSize: "16px", marginBottom: "4px" }}>Sources</h2>
+            {shares && (
+              <p style={{ fontSize: "12px", color: "#6b7280", marginTop: 0, marginBottom: "10px" }}>
+                Match % = how strongly the reranker connected each source to your question,
+                compared with all {citations.length} sources given to the AI (they add up to 100%).
+                Higher is better.
+              </p>
+            )}
             <ol style={{ paddingLeft: "20px", margin: 0 }}>
               {(showAllSources ? citations : citations.slice(0, TOP_SOURCES)).map((citation, index) => (
                 <li key={index} style={{ marginBottom: "8px", fontSize: "14px" }}>
@@ -332,9 +340,12 @@ function App() {
                     <summary style={{ cursor: "pointer" }}>
                       {citation.source_file}
                       {citation.page !== null && ` · page ${citation.page}`}
-                      {typeof citation.score === "number" && (
-                        <span style={{ color: "#6b7280" }}>
-                          {` · relevance ${citation.score.toFixed(2)}`}
+                      {shares && typeof citation.score === "number" && (
+                        <span
+                          style={{ color: "#6b7280" }}
+                          title={`Raw reranker score: ${citation.score.toFixed(2)}`}
+                        >
+                          {` · match ${formatShare(shares[index])}`}
                         </span>
                       )}
                     </summary>

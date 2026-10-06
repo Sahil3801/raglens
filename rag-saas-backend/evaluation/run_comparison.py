@@ -258,7 +258,9 @@ async def main(args):
             observation.clear()
             docs = RetrievalService(repo).retrieve(question['question'], question['filter_filename'])
             a = docs[:settings.RERANKER_TOP_N]
-            b = reranker_service.rerank(question['question'], docs)
+            # Arm B reproduces the archived 2026-08-31 reranker input (plain chunk text),
+            # not the later file-label headers enabled in production.
+            b = reranker_service.rerank(question['question'], docs, source_headers=False)
             ids = lambda documents: [d.metadata['eval_chunk_id'] for d in documents]
             mmr_ids, a_ids, b_ids = ids(docs), ids(a), ids(b)
             scores = observation['crossencoder_scores']
