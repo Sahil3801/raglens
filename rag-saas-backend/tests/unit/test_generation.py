@@ -22,7 +22,9 @@ def test_refusal_and_grounding_instruction_survive_prompt_and_parser(monkeypatch
     constructor.assert_called_once_with(model_name=settings.GROQ_MODEL, temperature=0, api_key=settings.GROQ_API_KEY)
     assert observed[1].content == 'Unsupported question'
     assert 'Do not use external assumptions or outside knowledge.' in observed[0].content
-    assert "you MUST reply ONLY with: '" + REFUSAL + "'" in observed[0].content
+    assert "reply ONLY with: '" + REFUSAL + "'" in observed[0].content
+    assert 'If the answer is stated in the Context, give it.' in observed[0].content
+    assert 'the file name often tells whose document it is' in observed[0].content
     if documents:
         assert '--- CHUNK FROM Unknown Document ---\nOnly archive housekeeping.\n--- END CHUNK ---' in observed[0].content
 
@@ -47,3 +49,18 @@ def test_provider_failure_is_not_reported_as_a_grounded_answer(monkeypatch):
     monkeypatch.setattr('app.services.generation.ChatGroq', lambda **kwargs: RunnableLambda(unavailable))
     with pytest.raises(RuntimeError, match='provider unavailable'):
         GenerationService().generate_answer('question', [Document(page_content='Evidence')])
+
+
+def test_chunks_are_grouped_by_file_in_best_rank_order(monkeypatch):
+    observed = []
+    def provider(prompt):
+        observed.extend(prompt.to_messages())
+        return AIMessage(content='ok')
+    monkeypatch.setattr('app.services.generation.ChatGroq', lambda **kwargs: RunnableLambda(provider))
+    reranked = [Document(page_content=text, metadata={'source_file': source}) for text, source in [
+        ('omar 1', 'omar.pdf'), ('sahil 1', 'sahil.pdf'), ('omar 2', 'omar.pdf'),
+        ('sahil 2', 'sahil.pdf'), ('omar 3', 'omar.pdf')]]
+    GenerationService().generate_answer('question', reranked)
+    context = observed[0].content.split('Context:\n', 1)[1]
+    order = [line.split('\n')[1] for line in context.split('--- CHUNK FROM ')[1:]]
+    assert order == ['omar 1', 'omar 2', 'omar 3', 'sahil 1', 'sahil 2']

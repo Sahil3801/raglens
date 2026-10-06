@@ -50,3 +50,60 @@ def test_live_groq_refuses_unsupported_question(monkeypatch, documents):
     service.llm.max_retries = 0
     response = service.generate_answer('What is the annual operating budget of Aurora station?', documents)
     assert response.strip() == 'I cannot answer this based on the provided document.'
+
+
+@pytest.mark.models
+def test_real_pipeline_ranks_the_answering_page_first_with_ordered_scores(monkeypatch):
+    """Upload -> real embeddings -> embedded Qdrant -> MMR -> real CrossEncoder -> /chat.
+
+    Only the LLM is replaced, so this checks retrieval, reranking scores and the
+    context order without a Groq key. It is a behavior check, not a benchmark.
+    """
+    from fastapi.testclient import TestClient
+    from langchain_core.messages import AIMessage
+    from langchain_core.runnables import RunnableLambda
+    from sentence_transformers import CrossEncoder
+    from app.core.dependencies import get_generation_service
+    from app.main import app
+    from app.repositories import vector_store
+    from app.services import generation, reranking
+    from tests.pdf_factory import pdf_bytes
+
+    monkeypatch.setattr(reranking.reranker_service, 'encoder',
+                        CrossEncoder('cross-encoder/ms-marco-MiniLM-L-6-v2', device='cpu'))
+    repo = vector_store.VectorStoreRepository()  # real all-MiniLM-L6-v2 embeddings
+    monkeypatch.setattr(vector_store, '_vector_store_repo', repo)
+    contexts = []
+    def fake_llm(prompt):
+        contexts.append(prompt.to_messages()[0].content)
+        return AIMessage(content='stub answer')
+    monkeypatch.setattr(generation, 'ChatGroq', lambda **kwargs: RunnableLambda(fake_llm))
+    app.dependency_overrides[get_generation_service] = generation.GenerationService
+
+    resumes = {
+        'omar_resume.pdf': [
+            'Omar Badr. Software Engineer. San Diego, California. omar@example.com',
+            'Experience: Software Engineering Intern at PayPal. Built payment APIs in Java and Spring Boot.',
+            'Education: San Diego State University. Bachelor of Science in Computer Science, expected May 2025.',
+        ],
+        'sahil_portfolio.pdf': [
+            'Sahil Shinde. Portfolio. Projects: a RAG application with FastAPI, Qdrant and React.',
+            'Skills: Python, FastAPI, PostgreSQL, Docker, React and machine learning.',
+        ],
+    }
+    try:
+        with TestClient(app) as client:
+            for name, pages in resumes.items():
+                assert client.post('/upload', files={'file': (name, pdf_bytes(pages), 'application/pdf')}).status_code == 200
+            body = client.post('/chat', json={'query': "what is omar's education"}).json()
+    finally:
+        repo.client.close()
+
+    citations = body['citations']
+    scores = [c['score'] for c in citations]
+    assert scores == sorted(scores, reverse=True)  # shown best first
+    assert (citations[0]['source_file'], citations[0]['page']) == ('omar_resume.pdf', 3)
+    assert body['pipeline']['retrieved'] == 5 and body['pipeline']['reranked'] == len(citations) >= 4
+    files_in_context = [part.split(' ---', 1)[0] for part in contexts[0].split('--- CHUNK FROM ')[1:]]
+    first_sahil = files_in_context.index('sahil_portfolio.pdf')
+    assert set(files_in_context[first_sahil:]) == {'sahil_portfolio.pdf'}  # Omar's chunks grouped first
