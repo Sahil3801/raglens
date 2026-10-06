@@ -67,7 +67,7 @@ The complete ingestion, retrieval, reranking, generation, and evaluation archite
 - 🚀 **FastAPI REST API**
 - ⚛️ **React / Vite / TypeScript frontend**
 - 🐳 **Docker Compose** for the full stack
-- ✅ **CI on every push:** backend and frontend tests, real-model checks, and a Docker smoke test
+- ✅ **CI on every pull request:** backend and frontend tests, real-model checks, and a Docker smoke test
 
 ---
 
