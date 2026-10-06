@@ -63,3 +63,14 @@ def test_crossencoder_is_loaded_lazily_and_only_once(monkeypatch):
     constructor.assert_not_called()  # Creating the service (app import) loads nothing.
     assert service.encoder is service.encoder
     constructor.assert_called_once_with('test-model')
+
+
+def test_rerank_with_scores_returns_same_selection_with_float_scores():
+    service = RerankingService.__new__(RerankingService)
+    service.encoder = MagicMock()
+    service.encoder.predict.return_value = np.asarray([1.0, 9.5, -20.0, 4.0, 3.0], dtype=np.float32)
+    documents = [Document(page_content=f'chunk {i}') for i in range(5)]
+    scored = service.rerank_with_scores('question', documents)
+    assert [d.page_content for d, _ in scored] == [d.page_content for d in service.rerank('question', documents)]
+    assert [s for _, s in scored] == [9.5, 4.0, 3.0, 1.0]
+    assert all(type(s) is float for _, s in scored)  # JSON-serializable, not numpy.float32
