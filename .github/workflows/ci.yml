@@ -63,7 +63,7 @@ jobs:
       - name: Run real-model tests
         env:
           TEST_GROQ_API_KEY: ${{ secrets.TEST_GROQ_API_KEY }}
-        run: python -m pytest tests -q -p no:cacheprovider -m "models or live" --run-models --run-live
+        run: python -m pytest tests -q -p no:cacheprovider -m "models or live" --run-models --run-live -rP
 
   frontend:
     runs-on: ubuntu-latest
