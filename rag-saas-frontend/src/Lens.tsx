@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { barWidth, cutoffReason, movement, type LensData } from "./lens";
+import { barWidth, cutoffReason, movement, type LensData } from "./lensData";
 
 const COLLAPSED_ROWS = 10;
 

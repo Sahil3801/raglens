@@ -8,7 +8,7 @@ export default mergeConfig(viteConfig, defineConfig({
     clearMocks: true,
     coverage: {
       provider: 'v8',
-      include: ['src/api.ts', 'src/App.tsx', 'src/relevance.ts', 'src/lens.ts', 'src/Lens.tsx'],
+      include: ['src/api.ts', 'src/App.tsx', 'src/relevance.ts', 'src/lensData.ts', 'src/Lens.tsx'],
       reporter: ['text', 'json-summary', 'lcov'],
       reportsDirectory: 'coverage',
     },

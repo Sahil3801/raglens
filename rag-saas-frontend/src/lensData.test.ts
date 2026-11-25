@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { barWidth, cutoffReason, movement, type LensData } from './lens';
+import { barWidth, cutoffReason, movement, type LensData } from './lensData';
 
 const base: LensData = { candidates: [], threshold: -2.5, min_chunks: 4, top_n: 8, rule: 'threshold' };
 
