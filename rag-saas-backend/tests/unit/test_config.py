@@ -19,3 +19,8 @@ def test_cors_origins_default_to_vite_dev_server_and_accept_a_comma_list(monkeyp
     assert Settings(_env_file=None).cors_origin_list == ['http://localhost:5173', 'http://127.0.0.1:5173']
     monkeypatch.setenv('CORS_ORIGINS', 'https://raglens.example.com, http://localhost:8080 ,')
     assert Settings(_env_file=None).cors_origin_list == ['https://raglens.example.com', 'http://localhost:8080']
+
+
+def test_api_docs_title_is_raglens(monkeypatch):
+    monkeypatch.delenv('PROJECT_NAME', raising=False)
+    assert Settings(_env_file=None).PROJECT_NAME == 'RagLens API'
