@@ -1,5 +1,15 @@
 # RagLens: Evaluation-First RAG Pipeline
 
+**A RAG pipeline you can see through.** Ask a question about your PDFs, then open the **Lens** to see every passage retrieval found, how the reranker re-ordered them, where the cut-off fell, and exactly what reached the AI.
+
+![RagLens Lens view](screenshots/07-lens-view.png)
+
+### What makes it different
+
+- **The Lens:** most RAG demos show only an answer. RagLens shows *why*: each retrieved chunk's reranker score, how far it moved from its retrieval rank (e.g. `▲6 from #13`), and the rule that decided which chunks were sent to the LLM.
+- **Measured, not assumed:** a paired A/B evaluation with RAGAS (reranker raised context precision 0.57 → 0.79 on a synthetic benchmark), plus real-model CI tests that assert the reranker puts the answering page first.
+- **Grounded answers:** citations with file and page for every answer, and an explicit refusal when the documents do not contain the answer.
+
 An evaluation-focused Retrieval-Augmented Generation (RAG) pipeline: upload PDF documents and ask questions across all of them or within a single document.
 
 The pipeline combines vector search, MMR retrieval, CrossEncoder reranking and grounded LLM generation. Every answer shows **which sources it used, how relevant each one was, and how long each pipeline step took**, and an evaluation layer measures RAG response quality.
@@ -60,6 +70,7 @@ The complete ingestion, retrieval, reranking, generation, and evaluation archite
 - ⚡ **CrossEncoder reranking with file-label headers**
 - 📑 **Citations with file name and page number**
 - 📈 **Relevance shown as a "match %" for every source**
+- 🔍 **Lens view:** every retrieved chunk with its reranker score, rank movement and the cut-off rule
 - ⏱️ **Pipeline view:** chunks retrieved, chunks kept after reranking, and time per step
 - 🤖 **Groq-hosted LLM generation** (model configurable)
 - 🛡️ **Document-grounded generation** with an explicit refusal when the documents have no answer
@@ -130,6 +141,7 @@ The generation prompt enforces document grounding:
 
 Every answer shows:
 
+- **Lens (🔍 Open Lens):** every chunk retrieval returned, ranked by reranker score with a bar, how far it moved from its MMR position (▲ promoted / ▼ demoted), a ✓ on chunks sent to the AI, and a cut-off line that explains in plain words why the rest were dropped (below best score − 8, capped at 8, or the minimum of 4 kept)
 - **Pipeline line:** for example `40 chunks retrieved (MMR) → 8 kept after reranking · retrieval 84 ms · reranking 413 ms · LLM 1094 ms`
 - **Sources:** the top 3 sources with file name and page (expand to read the exact text), plus a "Show all" link
 - **Match %:** how strongly the reranker connected each source to the question, compared with the other sources sent to the LLM. The percentages add up to 100%, and higher is better. The raw CrossEncoder score (an unbounded number such as `-8.98` or `+5.01`) is shown on hover.
@@ -225,9 +237,11 @@ raglens/
 │   ├── package.json
 │   ├── vite.config.ts
 │   └── src/
-│       ├── App.tsx             # upload, chat, sources and pipeline view
+│       ├── App.tsx             # upload, chat, sources, pipeline line, Lens button
 │       ├── api.ts              # API client
-│       └── relevance.ts        # raw reranker scores ➔ match %
+│       ├── relevance.ts        # raw reranker scores ➔ match %
+│       ├── Lens.tsx            # the Lens panel
+│       └── lensData.ts         # Lens types and helpers
 │
 └── rag-saas-backend/
     ├── Dockerfile

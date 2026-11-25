@@ -259,3 +259,9 @@ it('has no Lens button when the backend sends no lens data', async () => {
   await screen.findByText('AMBER-731');
   expect(screen.queryByRole('button', { name: /Lens/ })).not.toBeInTheDocument();
 });
+
+it('shows the RagLens name and tagline', async () => {
+  await ready();
+  expect(screen.getByRole('heading', { level: 1, name: 'RagLens' })).toBeInTheDocument();
+  expect(screen.getByText(/See inside every answer/)).toBeInTheDocument();
+});

@@ -259,9 +259,24 @@ function App() {
           margin: "0 auto",
         }}
       >
-        <h1 style={{ fontSize: "24px", marginBottom: "5px" }}>
-          Evaluation-First RAG
-        </h1>
+        <header style={{ marginBottom: "12px" }}>
+          <h1
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+              fontSize: "28px",
+              margin: "0 0 4px",
+            }}
+          >
+            <img src="/favicon.svg" alt="" width={32} height={32} />
+            RagLens
+          </h1>
+          <p style={{ margin: 0, color: "#4b5563", fontSize: "15px" }}>
+            See inside every answer: which passages were found, how the reranker ranked them, and
+            what actually reached the AI.
+          </p>
+        </header>
         {error && <p role="alert" style={{ color: "#b91c1c" }}>{error}</p>}
 
         {/* NEW: Visual indicator of current mode */}
