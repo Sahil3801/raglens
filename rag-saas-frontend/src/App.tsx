@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { apiRequest, errorMessage } from "./api";
 import { formatShare, matchShares, type Citation } from "./relevance";
+import Lens from "./Lens";
+import type { LensData } from "./lens";
 
 type PipelineStats = {
   retrieved: number;
@@ -12,6 +14,7 @@ type ChatResponse = {
   sources: string[];
   citations?: Citation[];
   pipeline?: PipelineStats | null;
+  lens?: LensData | null;
 };
 
 const TOP_SOURCES = 3;
@@ -21,6 +24,8 @@ function App() {
   const [answer, setAnswer] = useState("");
   const [citations, setCitations] = useState<Citation[]>([]);
   const [pipeline, setPipeline] = useState<PipelineStats | null>(null);
+  const [lens, setLens] = useState<LensData | null>(null);
+  const [lensOpen, setLensOpen] = useState(false);
   const [showAllSources, setShowAllSources] = useState(false);
   const shares = matchShares(citations);
   const [documents, setDocuments] = useState<string[]>([]);
@@ -108,6 +113,8 @@ function App() {
     setAnswer("Thinking...");
     setCitations([]);
     setPipeline(null);
+    setLens(null);
+    setLensOpen(false);
     setShowAllSources(false);
 
     // NEW: Dynamically build the payload based on whether a document is selected
@@ -125,6 +132,7 @@ function App() {
       setAnswer(data.answer);
       setCitations(data.citations ?? []);
       setPipeline(data.pipeline ?? null);
+      setLens(data.lens ?? null);
     } catch (error) {
       console.error("Chat failed:", error);
       setAnswer("");
@@ -321,6 +329,29 @@ function App() {
             {Math.round(pipeline.timings_ms.reranking)} ms · LLM{" "}
             {Math.round(pipeline.timings_ms.generation)} ms
           </p>
+        )}
+
+        {lens && lens.candidates.length > 0 && (
+          <div style={{ marginTop: "4px" }}>
+            <button
+              type="button"
+              aria-expanded={lensOpen}
+              onClick={() => setLensOpen(!lensOpen)}
+              style={{
+                backgroundColor: lensOpen ? "#eff6ff" : "white",
+                border: "1px solid #3b82f6",
+                color: "#1d4ed8",
+                borderRadius: "5px",
+                padding: "6px 12px",
+                cursor: "pointer",
+                fontSize: "13px",
+              }}
+            >
+              🔍 {lensOpen ? "Close Lens" : "Open Lens"}: see how {lens.candidates.length} chunks became{" "}
+              {lens.candidates.filter((c) => c.selected).length}
+            </button>
+            {lensOpen && <Lens lens={lens} />}
+          </div>
         )}
 
         {citations.length > 0 && (

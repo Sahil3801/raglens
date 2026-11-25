@@ -98,3 +98,30 @@ def test_source_headers_can_be_disabled(monkeypatch):
     service.encoder.predict.return_value = np.asarray([1.0], dtype=np.float32)
     service.rerank('question', [Document(page_content='text', metadata={'source_file': 'a.pdf'})])
     service.encoder.predict.assert_called_once_with([['question', 'text']])
+
+
+
+@pytest.mark.parametrize('scores,rule,kept', [
+    ([10, 9, 8, 7, 6], 'threshold', 5),        # all within best - 8
+    ([10, 1, 0, -1, -5], 'min_chunks', 4),     # only 1 within best - 8, floor of 4 applies
+    ([10, 1], 'all', 2),                       # fewer than 4 candidates: keep all
+    (list(range(20, 0, -1)), 'top_n', 8),      # 9 pass the threshold, capped at 8
+])
+def test_rerank_trace_reports_every_score_and_the_deciding_rule(scores, rule, kept):
+    service = RerankingService.__new__(RerankingService)
+    service.encoder = MagicMock()
+    service.encoder.predict.return_value = np.asarray(scores, dtype=np.float32)
+    docs = [Document(page_content=f'chunk {i}') for i in range(len(scores))]
+    result = service.rerank_trace('q', docs, source_headers=False)
+    assert result.scores == [float(s) for s in scores]  # input order, every candidate
+    assert result.rule == rule and len(result.selected) == kept
+    assert result.threshold == max(scores) - 8 and result.top_n == 8
+    assert result.selected == service.rerank_with_scores('q', docs, source_headers=False)
+
+
+def test_rerank_trace_on_no_documents():
+    service = RerankingService.__new__(RerankingService)
+    service.encoder = MagicMock()
+    result = service.rerank_trace('q', [])
+    assert (result.selected, result.scores, result.threshold, result.rule) == ([], [], None, 'empty')
+    service.encoder.predict.assert_not_called()

@@ -1,7 +1,8 @@
 import re
 from pathlib import PurePath
+from dataclasses import dataclass
 from threading import Lock
-from typing import List, Tuple
+from typing import List, Optional, Tuple
 from langchain_core.documents import Document
 from sentence_transformers import CrossEncoder
 from app.core.config import settings
@@ -37,17 +38,23 @@ class RerankingService:
 
     def rerank_with_scores(self, query: str, documents: List[Document], top_n: int = None,
                            source_headers: bool = None) -> List[Tuple[Document, float]]:
+        """Selected documents with their CrossEncoder scores, highest first."""
+        return self.rerank_trace(query, documents, top_n, source_headers).selected
+
+    def rerank_trace(self, query: str, documents: List[Document], top_n: int = None,
+                     source_headers: bool = None) -> "RerankResult":
         """
         Takes a query and a list of documents, scores their relevance, filters out 
         low-quality matches using a dynamic threshold, and returns the top results
-        together with their CrossEncoder scores (highest first).
+        together with every candidate's score and the rule that set the cut-off
+        (used by the UI's Lens view).
         """
-        # Return an empty list early if no documents were provided
-        if not documents:
-            return []
-            
         # Determine the maximum number of documents to return (fallback to settings if not explicitly passed)
         limit = settings.RERANKER_TOP_N if top_n is None else top_n
+
+        # Return an empty result early if no documents were provided
+        if not documents:
+            return RerankResult(selected=[], scores=[], threshold=None, rule="empty", top_n=limit)
         
         # Step 1: Create pairs of [query, document text] required by the cross-encoder model
         if source_headers is None:
@@ -55,10 +62,10 @@ class RerankingService:
         pairs = [[query, _with_source_header(doc) if source_headers else doc.page_content] for doc in documents]
         
         # Step 2: Predict relevance scores for all pairs simultaneously
-        scores = self.encoder.predict(pairs)
+        scores = [float(score) for score in self.encoder.predict(pairs)]
         
         # Step 3: Zip documents with their respective scores and sort them in descending order (highest score first)
-        scored_docs = [(doc, float(score)) for doc, score in zip(documents, scores)]
+        scored_docs = list(zip(documents, scores))
         scored_docs.sort(key=lambda x: x[1], reverse=True)
         
         # --- THE DYNAMIC THRESHOLD ---
@@ -69,20 +76,37 @@ class RerankingService:
         
         # Filter documents to keep only those meeting or exceeding the dynamic threshold
         filtered_docs = [(doc, score) for doc, score in scored_docs if score >= dynamic_threshold]
+        rule = "threshold"
         
         # --- THE FIX: The Minimum Context Safety Net ---
         # If the threshold is too aggressive and starves the LLM, 
         # guarantee it gets at least the top 4 chunks (if they exist).
-        MIN_CHUNKS = 4
         if len(filtered_docs) < MIN_CHUNKS and len(scored_docs) >= MIN_CHUNKS:
             # Fall back to taking the top MIN_CHUNKS if the filter was too strict
             filtered_docs = scored_docs[:MIN_CHUNKS]
+            rule = "min_chunks"
         elif len(filtered_docs) < MIN_CHUNKS:
             # Just in case the entire document pool has fewer than MIN_CHUNKS total, keep all of them
             filtered_docs = scored_docs
+            rule = "all"
+        if len(filtered_docs) > limit:
+            rule = "top_n"
             
         # Return the final filtered documents capped at the specified limit
-        return filtered_docs[:limit]
+        return RerankResult(selected=filtered_docs[:limit], scores=scores,
+                            threshold=dynamic_threshold, rule=rule, top_n=limit)
+
+MIN_CHUNKS = 4
+
+
+@dataclass
+class RerankResult:
+    selected: List[Tuple[Document, float]]  # documents sent to the LLM, best first
+    scores: List[float]                      # every candidate's score, in input order
+    threshold: Optional[float]               # best score - 8 (dynamic cut-off)
+    rule: str  # what set the cut-off: threshold, min_chunks, all, top_n or empty
+    top_n: int
+
 
 def source_label(filename: str) -> str:
     """'omarPaypalResume.pdf' -> 'omar paypal resume': words the CrossEncoder can match."""

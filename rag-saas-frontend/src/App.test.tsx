@@ -209,3 +209,53 @@ it('shows pipeline stats, relevance scores and only the top 3 sources until expa
   await user.click(screen.getByRole('button', { name: 'Show top 3' }));
   expect(screen.queryByTitle('Raw reranker score: -2.00')).not.toBeInTheDocument();
 });
+
+it('opens the Lens: all chunks ranked, movement from MMR, cut-off line after the last chunk sent', async () => {
+  const user = await ready(['omar.pdf']);
+  await user.type(screen.getByRole('textbox'), "what is omar's education");
+  const scores = [5.01, -4.42, -5.66, -9.8, -11.0, -11.2, -11.4, -11.6, -12.1, -12.3, -12.9, -13.3];
+  const candidates = scores.map((score, i) => ({
+    source_file: i < 3 ? 'omar.pdf' : 'sahil.pdf', page: i + 1, preview: `chunk text ${i + 1}`,
+    mmr_rank: [3, 1, 2, 4, 5, 6, 7, 8, 9, 10, 11, 12][i], rerank_rank: i + 1, score, selected: i < 4,
+  }));
+  fetchMock.mockResolvedValueOnce(json({
+    answer: 'SDSU, B.S. Computer Science.', sources: [], citations: [],
+    pipeline: { retrieved: 12, reranked: 4, timings_ms: { retrieval: 30, reranking: 400, generation: 800 } },
+    lens: { candidates, threshold: -2.99, min_chunks: 4, top_n: 8, rule: 'min_chunks' },
+  }));
+  await user.click(screen.getByRole('button', { name: 'Ask' }));
+  const toggle = await screen.findByRole('button', { name: /Open Lens: see how 12 chunks became 4/ });
+  expect(screen.queryByRole('region', { name: 'Lens' })).not.toBeInTheDocument();
+  await user.click(toggle);
+
+  const lens = screen.getByRole('region', { name: 'Lens' });
+  const rows = within(lens).getAllByTestId('lens-row');
+  expect(rows).toHaveLength(10);                                   // collapsed to 10 of 12
+  expect(rows[0]).toHaveTextContent('#1');
+  expect(rows[0]).toHaveTextContent('omar.pdf · p.1 — chunk text 1');
+  expect(rows[0]).toHaveTextContent('5.01');
+  expect(rows[0]).toHaveTextContent('▲2 from #3');                  // promoted from MMR #3
+  expect(rows[1]).toHaveTextContent('▼1 from #1');
+  expect(rows[3]).toHaveTextContent('=');
+  expect(rows.map((r) => r.dataset.selected)).toEqual(['true', 'true', 'true', 'true', ...Array(6).fill('false')]);
+  expect(lens).toHaveTextContent('The reranker moved up 1 of the 4 chunks sent to the AI.');
+
+  // The cut-off line sits right after the 4th (last selected) row and explains the rule.
+  const separator = within(lens).getByRole('separator');
+  expect(separator).toHaveTextContent('the top 4 were kept anyway');
+  expect(rows[3].parentElement).toContainElement(separator);
+
+  await user.click(within(lens).getByRole('button', { name: 'Show all 12 chunks' }));
+  expect(within(lens).getAllByTestId('lens-row')).toHaveLength(12);
+  await user.click(screen.getByRole('button', { name: /Close Lens/ }));
+  expect(screen.queryByRole('region', { name: 'Lens' })).not.toBeInTheDocument();
+});
+
+it('has no Lens button when the backend sends no lens data', async () => {
+  const user = await ready();
+  await user.type(screen.getByRole('textbox'), 'Which code?');
+  fetchMock.mockResolvedValueOnce(json({ answer: 'AMBER-731', sources: [] }));
+  await user.click(screen.getByRole('button', { name: 'Ask' }));
+  await screen.findByText('AMBER-731');
+  expect(screen.queryByRole('button', { name: /Lens/ })).not.toBeInTheDocument();
+});
