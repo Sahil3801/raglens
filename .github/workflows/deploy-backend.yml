@@ -1,0 +1,81 @@
+name: Deploy backend to Hugging Face
+
+# Uploads the backend to a Hugging Face Docker Space, which builds and runs it.
+# Needs the repository secret HF_TOKEN (a Hugging Face token with write access).
+# Optional: secret GROQ_API_KEY (copied to the Space), variables HF_SPACE and
+# CORS_ORIGINS to override the defaults below.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "rag-saas-backend/app/**"
+      - "rag-saas-backend/requirements.txt"
+      - "deploy/huggingface/**"
+      - ".github/workflows/deploy-backend.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-backend
+  cancel-in-progress: true
+
+env:
+  HF_SPACE: ${{ vars.HF_SPACE || 'Sahil3801/raglens-api' }}
+  CORS_ORIGINS: ${{ vars.CORS_ORIGINS || 'https://raglens.pages.dev' }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Assemble the Space files
+        run: |
+          mkdir -p space
+          cp deploy/huggingface/Dockerfile space/Dockerfile
+          cp deploy/huggingface/SPACE_README.md space/README.md
+          cp rag-saas-backend/requirements.txt space/requirements.txt
+          cp -r rag-saas-backend/app space/app
+          find space -name '__pycache__' -prune -exec rm -rf {} +
+          find space -type f | sort
+
+      # Build and start the exact image the Space will build, before uploading it.
+      - name: Build and smoke-test the image
+        run: |
+          set -euo pipefail
+          docker build -t raglens-space space
+          docker run -d --name space -p 7860:7860 -e CORS_ORIGINS="$CORS_ORIGINS" raglens-space
+          for i in $(seq 1 60); do curl -fsS http://localhost:7860/health && break; sleep 2; done
+          curl -fsS http://localhost:7860/openapi.json | grep -q '"RagLens API"'
+          # The browser on the Cloudflare site must be allowed to call the API.
+          curl -fsS -D - -o /dev/null -H "Origin: $CORS_ORIGINS" http://localhost:7860/documents \
+            | grep -i "^access-control-allow-origin: $CORS_ORIGINS"
+      - name: Container logs on failure
+        if: failure()
+        run: docker logs space || true
+
+      - name: Upload to the Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: |
+          if [ -z "$HF_TOKEN" ]; then
+            echo "::error::Add the repository secret HF_TOKEN (Hugging Face token with write access)."
+            exit 1
+          fi
+          pip install --quiet huggingface_hub
+          python - <<'PY'
+          import os
+          from huggingface_hub import HfApi
+          api, space = HfApi(token=os.environ["HF_TOKEN"]), os.environ["HF_SPACE"]
+          api.create_repo(space, repo_type="space", space_sdk="docker", exist_ok=True)
+          api.add_space_variable(space, "CORS_ORIGINS", os.environ["CORS_ORIGINS"])
+          api.add_space_variable(space, "GROQ_MODEL", "openai/gpt-oss-20b")
+          if os.environ.get("GROQ_API_KEY"):
+              api.add_space_secret(space, "GROQ_API_KEY", os.environ["GROQ_API_KEY"])
+              print("Set Space secret GROQ_API_KEY")
+          api.upload_folder(repo_id=space, repo_type="space", folder_path="space",
+                            commit_message=f"Deploy {os.environ['GITHUB_SHA'][:7]}", delete_patterns=["*"])
+          owner, name = space.split("/")
+          print(f"Uploaded. Build logs: https://huggingface.co/spaces/{space}")
+          print(f"API: https://{owner.lower()}-{name.lower()}.hf.space")
+          PY

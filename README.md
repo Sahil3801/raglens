@@ -14,7 +14,7 @@ An evaluation-focused Retrieval-Augmented Generation (RAG) pipeline: upload PDF 
 
 The pipeline combines vector search, MMR retrieval, CrossEncoder reranking and grounded LLM generation. Every answer shows **which sources it used, how relevant each one was, and how long each pipeline step took**, and an evaluation layer measures RAG response quality.
 
-> **Note:** This project runs locally (or with `docker compose up`). The screenshots below show the working pipeline.
+> **Live demo:** https://raglens.pages.dev (frontend on Cloudflare Pages, backend on a Hugging Face Space; see [Deploying RagLens](docs/DEPLOY.md)). It also runs locally or with `docker compose up`.
 
 For the verified local setup, environment variables, and runtime limitations, see [Local runtime setup](docs/LOCAL_RUNTIME.md) and the [2026-08-31 runtime verification report](docs/runtime-verification/2026-08-31/REPORT.md). The runtime checks are not a RAGAS comparison or evidence for resume quality metrics.
 
