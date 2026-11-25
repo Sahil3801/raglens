@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { apiRequest, errorMessage } from "./api";
 import { formatShare, matchShares, type Citation } from "./relevance";
 import Lens from "./Lens";
-import type { LensData } from "./lens";
+import type { LensData } from "./lensData";
 
 type PipelineStats = {
   retrieved: number;
